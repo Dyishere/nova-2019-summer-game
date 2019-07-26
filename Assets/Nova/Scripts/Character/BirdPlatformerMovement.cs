@@ -2,36 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+/// <summary>
+/// 鸟类角色移动控制器，实现移动、多段跳、羽落效果、踩头攻击、冲刺攻击等功能。
+/// 这个组件提供Move方法，请在其他组件（如玩家控制器、AI控制器）中调用该方法。
+/// 请注意：默认情况下，角色美术资源应该统一向右看
+/// 如果需要修改朝向,请在Unity Editor修改子物体 CharacterSprite 的 Scale.x 改为 -1
+/// </summary>
+public class BirdPlatformerMovement : MonoBehaviour
 {
 
     [Header("游戏属性")]
     public float moveSpeed;
     public float jumpForce;
+    public int maxJumpTimes = 2; // 可以连跳的次数
+
     [Space(10)]
 
     [Header("高级属性")]
-    [SerializeField] private int maxJumpTimes = 2; // 可以连跳的次数
+    //与游戏内容无关的变量
     [SerializeField] private float jumpBreakTime = .3f; // 两次跳跃之间的间隔时间
-    [SerializeField] private GameObject CharacterSprite;
+    [SerializeField] private GameObject CharacterSprite; // 将角色精灵分离设置成子物体，这样在转身的时候能保持父级物体的Scale始终为正值
     [SerializeField] private Transform GroundCheck;
     [SerializeField] private float groundCheckRadius = .3f;
     [SerializeField] private LayerMask m_WhatIsGround;
 
     [Space(10)]
 
-    // [输入]
-    private float inputMove;
-    private bool inputJump;
-
     // [状态变量]
     private bool isGrounded = false;
     private int jumpCounter = 0; // 记录跳跃的次数（用于连跳）
     private float jumpTimer = 0f; // 记录跳跃后经过的时间
     private bool isFacingRight = true;
-    // 默认情况下，角色美术资源应该统一向右看
-    // 如果需要修改朝向,请在Unity Editor修改子物体 CharacterSprite 的 Scale.x 改为 -1
-    // 这个组件会自动初始化 isFacingRight（在Start()方法）
 
     private Rigidbody2D m_Rigidbody2D;
     private Animator m_Animator;
@@ -44,23 +45,18 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        //自动初始化 isFacingRight 的值
         isFacingRight = CharacterSprite.transform.localScale.x > 0;
     }
-    private void Update()
-    {
-        inputMove = Input.GetAxis("Move");
-        inputJump = Input.GetButtonDown("Jump");
-    }
 
-    private void FixedUpdate()
+    public void Move(float iMove, bool iJump)
     {
         // 移动
-        Vector2 moveDir = new Vector2(inputMove * moveSpeed, 0);
+        Vector2 moveDir = new Vector2(iMove * moveSpeed, 0);
         m_Rigidbody2D.velocity = moveDir * 100f * Time.deltaTime + m_Rigidbody2D.velocity.y * Vector2.up;
-        // 如果需要水平后座力请使用注释中的代码（有bug）
+        // 如果需要水平后座力可以考虑使用注释中的代码（有bug）
         // Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
         // m_Rigidbody2D.MovePosition(m_Rigidbody2D.position + moveDir * Time.deltaTime);
-
 
         // 跳跃
         bool jump = false;
@@ -76,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
 
         jumpTimer += Time.deltaTime;
-        if (inputJump)
+        if (iJump)
         {
             if (isGrounded)
             {
@@ -89,7 +85,7 @@ public class PlayerController : MonoBehaviour
                     jump = true;
                 }
             }
-            inputJump = false;
+            iJump = false;
         }
 
         if (jump)
@@ -100,13 +96,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // 翻转
-        if ((inputMove > 0f && !isFacingRight) || (inputMove < 0f && isFacingRight))
+        if ((iMove > 0f && !isFacingRight) || (iMove < 0f && isFacingRight))
         {
             Vector2 mScale = new Vector2(CharacterSprite.transform.localScale.x * (-1f), CharacterSprite.transform.localScale.y);
             CharacterSprite.transform.localScale = mScale;
             isFacingRight = !isFacingRight;
         }
 
-        m_Animator.SetFloat("move", Mathf.Abs(inputMove));
+        m_Animator.SetFloat("move", Mathf.Abs(iMove));
     }
 }
