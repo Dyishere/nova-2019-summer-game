@@ -14,12 +14,15 @@ public class BirdPlatformerMovement : MonoBehaviour
     [Header("游戏属性")]
     public float moveSpeed;
     public float jumpForce;
-    public int maxJumpTimes = 2; // 可以连跳的次数
+    public float flyingSpeed; // 羽落状态下增加的速度
+    public float flyingBaseSpeed; // 羽落状态下与输入无关的初始速度
+    public float flyingUpForce;
 
     [Space(10)]
 
     [Header("高级属性")]
     //与游戏内容无关的变量
+    private const int maxJumpTimes = 2; // 可以连跳的次数
     [SerializeField] private float jumpBreakTime = .3f; // 两次跳跃之间的间隔时间
     [SerializeField] private GameObject CharacterSprite; // 将角色精灵分离设置成子物体，这样在转身的时候能保持父级物体的Scale始终为正值
     [SerializeField] private Transform GroundCheck;
@@ -32,6 +35,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     private bool isGrounded = false;
     private int jumpCounter = 0; // 记录跳跃的次数（用于连跳）
     private float jumpTimer = 0f; // 记录跳跃后经过的时间
+    private bool isFlying = false;
     private bool isFacingRight = true;
 
     private Rigidbody2D m_Rigidbody2D;
@@ -51,15 +55,11 @@ public class BirdPlatformerMovement : MonoBehaviour
 
     public void Move(float iMove, bool iJump)
     {
-        // 移动
+        // 计算以下两个变量，然后应用变化
         Vector2 moveDir = new Vector2(iMove * moveSpeed, 0);
-        m_Rigidbody2D.velocity = moveDir * 100f * Time.deltaTime + m_Rigidbody2D.velocity.y * Vector2.up;
-        // 如果需要水平后座力可以考虑使用注释中的代码（有bug）
-        // Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
-        // m_Rigidbody2D.MovePosition(m_Rigidbody2D.position + moveDir * Time.deltaTime);
+        bool jump = false;
 
         // 跳跃
-        bool jump = false;
         isGrounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, groundCheckRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -67,7 +67,10 @@ public class BirdPlatformerMovement : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 isGrounded = true;
-                jumpCounter = 0;
+                if (m_Rigidbody2D.velocity.y < 0f)
+                {
+                    jumpCounter = 0;
+                }
             }
         }
 
@@ -80,7 +83,7 @@ public class BirdPlatformerMovement : MonoBehaviour
             }
             else
             {
-                if (jumpCounter < maxJumpTimes - 1 && jumpTimer > jumpBreakTime)
+                if (jumpCounter < maxJumpTimes && jumpTimer > jumpBreakTime)
                 {
                     jump = true;
                 }
@@ -92,7 +95,26 @@ public class BirdPlatformerMovement : MonoBehaviour
         {
             m_Rigidbody2D.AddForce(Vector2.up * jumpForce);
             ++jumpCounter;
+            m_Animator.SetTrigger("jump");
             jumpTimer = 0f;
+        }
+
+        // 羽落效果
+        if (isGrounded || jumpCounter == 2)
+        {
+            isFlying = false;
+        }
+        else if (jumpCounter == 1 && m_Rigidbody2D.velocity.y < -0f)
+        {
+            isFlying = true;
+        }
+        m_Animator.SetBool("isFlying", isFlying);
+
+        if (isFlying)
+        {
+            float facingDir = isFacingRight ? 1f : -1f;
+            moveDir += new Vector2(iMove * flyingSpeed + facingDir * flyingBaseSpeed, 0);
+            m_Rigidbody2D.AddForce(flyingUpForce * Vector2.up);
         }
 
         // 翻转
@@ -103,6 +125,11 @@ public class BirdPlatformerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
         }
 
+        // 移动
+        m_Rigidbody2D.velocity = moveDir * 100f * Time.deltaTime + m_Rigidbody2D.velocity.y * Vector2.up;
+        // 如果需要水平后座力可以考虑使用注释中的代码（有bug）
+        // Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
+        // m_Rigidbody2D.MovePosition(m_Rigidbody2D.position + moveDir * Time.deltaTime);
         m_Animator.SetFloat("move", Mathf.Abs(iMove));
     }
 }
