@@ -46,6 +46,8 @@ public class BirdPlatformerMovement : MonoBehaviour
     private bool dashed = false; // 在这次滑翔中是否已经冲刺过
     public bool isDashing = false;
     private bool isHurt = false; // 被攻击状态/眩晕状态, 无法操作, 短时间内不会被继续伤害
+    private string touchingProp = "null";        //玩家碰触的物品名字
+    private bool isPicking = false;              //是否正在拿着东西
 
     private Rigidbody2D m_Rigidbody2D;
     private Animator m_Animator;
@@ -161,6 +163,7 @@ public class BirdPlatformerMovement : MonoBehaviour
             Vector2 mScale = new Vector2(CharacterSprite.transform.localScale.x * (-1f), CharacterSprite.transform.localScale.y);
             CharacterSprite.transform.localScale = mScale;
             isFacingRight = !isFacingRight;
+            transform.Find("PickPos").transform.localPosition = new Vector2(transform.Find("PickPos").transform.localPosition.x * -1, 1);
         }
 
         // 移动
@@ -221,4 +224,23 @@ public class BirdPlatformerMovement : MonoBehaviour
         isDashing = false;
         m_Animator.SetBool("dash", false);
     }
+    public void PickUp(bool iPick, int curPlayerNum)        //PlayerController调用，传入当前的玩家编号
+    {
+
+        if (touchingProp == "null" || !iPick)       //如果未碰触物体或没有按下捡拾指令
+            return;
+        else
+        {
+            GameObject.Find(touchingProp).SendMessage("BeingPicked", curPlayerNum);     //触发碰触物体上的捡拾脚本Pickable
+            isPicking = !isPicking;
+            if (!isPicking)     //放下物品时初始化
+                touchingProp = "null";
+        }
+    }
+
+    private void PickUpPermit(string message)
+    {
+        if (!isPicking)
+            touchingProp = message;
+    }       //监视是否碰触可捡拾物品并获取物品名字
 }

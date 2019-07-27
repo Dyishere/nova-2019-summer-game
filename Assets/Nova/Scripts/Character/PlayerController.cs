@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool inputPick;
 
     //[本角色的区分信息]
-    private int curNum;             //用于区分当前角色的编号
+    private int curPlayerNum;             //用于区分当前角色的编号
     public string curController;    //用于控制器与当前角色对应
     private BirdPlatformerMovement m_BirdPlatformerMovement;
     private void Awake()
@@ -43,7 +43,25 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         m_BirdPlatformerMovement.Move(inputMove, ref inputJump);
+        m_BirdPlatformerMovement.PickUp(inputPick, curPlayerNum);
     }
+
+    private void ControllerJudgement()
+    {
+        if (curController != "null")
+            return;
+        else
+        {
+            if (Input.GetButtonDown("KAction"))
+                curController = "K";
+            else if (Input.GetButton("J1Action"))
+                curController = "J1";
+            else if (Input.GetButton("J2Action"))
+                curController = "J2";
+            else if (Input.GetButton("J3Action"))
+                curController = "J3";
+        }
+    }       //通过生成角色后第一次按下的互动键来绑定角色与控制器
 
     private void CharaController(string cCurController)
     {
@@ -78,38 +96,21 @@ public class PlayerController : MonoBehaviour
                 inputAction = Input.GetButtonDown("J3Action");
                 break;
         }
-    }
-
-    private void ControllerJudgement()
-    {
-        if (curController != "null")
-            return;
-        else
-        {
-            if (Input.GetButtonDown("KAction"))
-                curController = "K";
-            else if (Input.GetButton("J1Action"))
-                curController = "J1";
-            else if (Input.GetButton("J2Action"))
-                curController = "J2";
-            else if (Input.GetButton("J3Action"))
-                curController = "J3";
-        }
-    }
+    }       //已绑定控制器后分别读取输入
 
     private void CurrentPlayerNum()
     {
-        if (curNum > 0)
+        if (curPlayerNum > 0)
             return;
         else
             foreach (char c in gameObject.name)
                 if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
-                    curNum = Convert.ToInt32(c) - 48;
-    }
+                    curPlayerNum = Convert.ToInt32(c) - 48;
+    }       //获取当前玩家编号
 
     private void NextPlayerCreator()
     {
-        int nextNum = curNum + 1;
+        int nextNum = curPlayerNum + 1;
         string nextPlayer = "Player" + nextNum;
         if (nextNum > 4)
         {
@@ -128,4 +129,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
 }
