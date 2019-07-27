@@ -17,6 +17,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     public float flyingSpeed; // 羽落状态下增加的速度
     public float flyingBaseSpeed; // 羽落状态下与输入无关的初始速度
     public float flyingUpForce; // 空气对鸟翼的支持力（浮力？）
+    public float dashForce;
 
     [Space(10)]
 
@@ -41,6 +42,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     private int jumpCounter = 0; // 记录跳跃的次数（用于连跳）
     private float jumpTimer = 0f; // 记录跳跃后经过的时间
     private bool isFlying = false;
+    private bool dashed = false; // 在这次滑翔中是否已经冲刺过
     private bool isHurt = false; // 被攻击状态/眩晕状态, 无法操作, 短时间内不会被继续伤害
 
     private Rigidbody2D m_Rigidbody2D;
@@ -60,6 +62,8 @@ public class BirdPlatformerMovement : MonoBehaviour
 
     public void Move(float iMove, bool iJump)
     {
+        bool iDash = Input.GetKeyDown(KeyCode.J); // 测试用的代码之后会替换掉
+
         // 眩晕状态，无法操作
         if (isHurt)
         {
@@ -79,6 +83,7 @@ public class BirdPlatformerMovement : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 isGrounded = true;
+                dashed = false;
                 if (m_Rigidbody2D.velocity.y < 0f)
                 {
                     jumpCounter = 0;
@@ -127,6 +132,15 @@ public class BirdPlatformerMovement : MonoBehaviour
             float facingDir = isFacingRight ? 1f : -1f;
             moveDir += new Vector2(iMove * flyingSpeed + facingDir * flyingBaseSpeed, 0);
             m_Rigidbody2D.AddForce(flyingUpForce * Vector2.up);
+
+            if (!dashed && iDash)
+            {
+                // 冲刺状态变化 如“金身模式”，全身发光？？？（未实现）
+                // 加力出现历史遗留BUG！！移动方式为直接修改velocity所以加力之后只会瞬移！
+                // m_Rigidbody2D.AddForce(facingDir * Vector2.right * dashForce);
+                m_Animator.SetTrigger("dash"); // 状态机还有问题
+                dashed = true;
+            }
         }
 
         // 翻转
@@ -167,7 +181,7 @@ public class BirdPlatformerMovement : MonoBehaviour
                 // 这部分可能会连续触发
                 GetHurt();
             }
-            Debug.Log(other.contacts.Length);
+            Debug.Log("Contcts数组元素个数：" + other.contacts.Length.ToString());
         }
     }
 

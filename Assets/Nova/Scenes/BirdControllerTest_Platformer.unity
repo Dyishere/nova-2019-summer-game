@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 601336141}
   - component: {fileID: 601336142}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -697,6 +697,7 @@ MonoBehaviour:
   flyingSpeed: 2
   flyingBaseSpeed: 0
   flyingUpForce: 35
+  dashForce: 10000
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 1506526304}
   GroundCheck: {fileID: 1880914275}
@@ -705,7 +706,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   hurtVelocityY: 0
-  headGetHurtRange: 0.34
+  headGetHurtRange: 0.78
   recoveringTime: 1
 --- !u!114 &601336142
 MonoBehaviour:
@@ -719,6 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6430b6d02bdf20e45918280d6c96659f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curController: 
 --- !u!1 &1448559141
 GameObject:
   m_ObjectHideFlags: 0
