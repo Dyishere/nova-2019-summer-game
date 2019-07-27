@@ -698,6 +698,7 @@ MonoBehaviour:
   flyingBaseSpeed: 0
   flyingUpForce: 35
   dashForce: 10000
+  dashTime: 2
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 1506526304}
   GroundCheck: {fileID: 1880914275}
@@ -708,6 +709,7 @@ MonoBehaviour:
   hurtVelocityY: 0
   headGetHurtRange: 0.78
   recoveringTime: 1
+  isDashing: 0
 --- !u!114 &601336142
 MonoBehaviour:
   m_ObjectHideFlags: 0

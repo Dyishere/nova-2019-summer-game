@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_BirdPlatformerMovement.Move(inputMove, inputJump);
+        m_BirdPlatformerMovement.Move(inputMove, ref inputJump);
     }
 
     private void CharaController(string cCurController)
@@ -52,25 +52,29 @@ public class PlayerController : MonoBehaviour
             case "K":
                 inputMove = Input.GetAxis("KMove");
                 inputPick = Input.GetButtonDown("KPick");
-                inputJump = Input.GetButtonDown("KJump");
+                if (Input.GetButtonDown("KJump"))
+                    inputJump = true;
                 inputAction = Input.GetButtonDown("KAction");
                 break;
             case "J1":
                 inputMove = Input.GetAxis("J1Move");
                 inputPick = Input.GetButtonDown("J1Pick");
-                inputJump = Input.GetButtonDown("J1Jump");
+                if (Input.GetButtonDown("J1Jump"))
+                    inputJump = true;
                 inputAction = Input.GetButtonDown("J1Action");
                 break;
             case "J2":
                 inputMove = Input.GetAxis("J2Move");
                 inputPick = Input.GetButtonDown("J2Pick");
-                inputJump = Input.GetButtonDown("J2Jump");
+                if (Input.GetButtonDown("J2Jump"))
+                    inputJump = true;
                 inputAction = Input.GetButtonDown("J2Action");
                 break;
             case "J3":
                 inputMove = Input.GetAxis("J3Move");
                 inputPick = Input.GetButtonDown("J3Pick");
-                inputJump = Input.GetButtonDown("J3Jump");
+                if (Input.GetButtonDown("J3Jump"))
+                    inputJump = true;
                 inputAction = Input.GetButtonDown("J3Action");
                 break;
         }

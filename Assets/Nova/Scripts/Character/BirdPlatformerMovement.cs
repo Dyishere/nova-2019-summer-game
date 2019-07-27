@@ -18,6 +18,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     public float flyingBaseSpeed; // 羽落状态下与输入无关的初始速度
     public float flyingUpForce; // 空气对鸟翼的支持力（浮力？）
     public float dashForce;
+    public float dashTime;
 
     [Space(10)]
 
@@ -43,6 +44,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     private float jumpTimer = 0f; // 记录跳跃后经过的时间
     private bool isFlying = false;
     private bool dashed = false; // 在这次滑翔中是否已经冲刺过
+    public bool isDashing = false;
     private bool isHurt = false; // 被攻击状态/眩晕状态, 无法操作, 短时间内不会被继续伤害
 
     private Rigidbody2D m_Rigidbody2D;
@@ -60,9 +62,17 @@ public class BirdPlatformerMovement : MonoBehaviour
         isFacingRight = CharacterSprite.transform.localScale.x > 0;
     }
 
-    public void Move(float iMove, bool iJump)
+    /// <summary>
+    /// 由GetButtonDown方法计算的变量（以下以iJump为例），应传入引用。
+    /// GetButtonDown使iJump的值为true，但应该由Move方法来使其值重新变为false
+    /// 这样可以避免Update方法和FixUpdate方法调用错位的问题，并保证跳跃代码只执行一次
+    /// 错位问题举例：Update函数每帧调用，FixedUpdate函数0.2s调用一次。小概率情况下，在某帧中按下跳跃键，但该帧没有调用FixedUpdate，这时候跳跃代码不会执行。到下一帧时，iJump变回false。到下一次执行FixedUpdate函数代码时，iJump值为false。于是这次按键没有成功跳跃。
+    /// </summary>
+    /// <param name="iMove"></param>
+    /// <param name="iJump"></param>
+    public void Move(float iMove, ref bool iJump)
     {
-        bool iDash = Input.GetKeyDown(KeyCode.J); // 测试用的代码之后会替换掉
+        bool iDash = Input.GetKeyDown(KeyCode.J); // 测试用的代码,之后会替换掉
 
         // 眩晕状态，无法操作
         if (isHurt)
@@ -127,9 +137,9 @@ public class BirdPlatformerMovement : MonoBehaviour
         }
         m_Animator.SetBool("isFlying", isFlying);
 
+        float facingDir = isFacingRight ? 1f : -1f;
         if (isFlying)
         {
-            float facingDir = isFacingRight ? 1f : -1f;
             moveDir += new Vector2(iMove * flyingSpeed + facingDir * flyingBaseSpeed, 0);
             m_Rigidbody2D.AddForce(flyingUpForce * Vector2.up);
 
@@ -138,7 +148,9 @@ public class BirdPlatformerMovement : MonoBehaviour
                 // 冲刺状态变化 如“金身模式”，全身发光？？？（未实现）
                 // 加力出现历史遗留BUG！！移动方式为直接修改velocity所以加力之后只会瞬移！
                 // m_Rigidbody2D.AddForce(facingDir * Vector2.right * dashForce);
-                m_Animator.SetTrigger("dash"); // 状态机还有问题
+                m_Animator.SetBool("dash", true);
+                isDashing = true;
+                Invoke("FinishDashing", dashTime); // 如果直接落地了呢？
                 dashed = true;
             }
         }
@@ -202,5 +214,11 @@ public class BirdPlatformerMovement : MonoBehaviour
     {
         isHurt = false;
         m_Animator.SetBool("hurt", false);
+    }
+
+    private void FinishDashing()
+    {
+        isDashing = false;
+        m_Animator.SetBool("dash", false);
     }
 }
