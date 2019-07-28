@@ -73,9 +73,9 @@ public class BirdPlatformerMovement : MonoBehaviour
     /// </summary>
     /// <param name="iMove"></param>
     /// <param name="iJump"></param>
-    public void Move(float iMove, ref bool iJump)
+    public void Move(float iMove, ref bool iJump, ref bool iDash)
     {
-        bool iDash = Input.GetKeyDown(KeyCode.J); // 测试用的代码,之后会替换掉
+        //bool iDash = Input.GetKeyDown(KeyCode.J); // 测试用的代码,之后会替换掉
 
         // 眩晕状态或者冲刺阶段，禁用控制
         if (isHurt || isDashing)

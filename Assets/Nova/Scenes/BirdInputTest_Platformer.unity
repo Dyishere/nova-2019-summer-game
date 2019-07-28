@@ -171,6 +171,7 @@ MonoBehaviour:
   flyingBaseSpeed: 1
   flyingUpForce: 35
   dashForce: 0
+  dashTime: 0
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 2108840779}
   GroundCheck: {fileID: 845513559}
@@ -181,8 +182,7 @@ MonoBehaviour:
   hurtVelocityY: 0.2
   headGetHurtRange: 0.9
   recoveringTime: 1
-  touchingProp: null
-  isPicking: 0
+  isDashing: 0
 --- !u!70 &173404860
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -577,7 +577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740381b4aaacb644296c36addb7313f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curPlayerNum: 0
 --- !u!1 &402522513
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740381b4aaacb644296c36addb7313f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curPlayerNum: 0
 --- !u!50 &418434715
 Rigidbody2D:
   serializedVersion: 4
@@ -1075,6 +1073,7 @@ MonoBehaviour:
   flyingBaseSpeed: 1
   flyingUpForce: 35
   dashForce: 0
+  dashTime: 0
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 1659142108}
   GroundCheck: {fileID: 908116956}
@@ -1085,8 +1084,7 @@ MonoBehaviour:
   hurtVelocityY: 0.2
   headGetHurtRange: 0.9
   recoveringTime: 1
-  touchingProp: null
-  isPicking: 0
+  isDashing: 0
 --- !u!70 &570429906
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1312,6 +1310,7 @@ MonoBehaviour:
   flyingBaseSpeed: 1
   flyingUpForce: 35
   dashForce: 0
+  dashTime: 0
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 402522513}
   GroundCheck: {fileID: 177791811}
@@ -1322,8 +1321,7 @@ MonoBehaviour:
   hurtVelocityY: 0.2
   headGetHurtRange: 0.9
   recoveringTime: 1
-  touchingProp: null
-  isPicking: 0
+  isDashing: 0
 --- !u!70 &1271340446
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1732,7 +1730,8 @@ MonoBehaviour:
   flyingSpeed: 2
   flyingBaseSpeed: 1
   flyingUpForce: 35
-  dashForce: 0
+  dashForce: 1000
+  dashTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 1743476812}
   GroundCheck: {fileID: 1800677783}
@@ -1743,8 +1742,7 @@ MonoBehaviour:
   hurtVelocityY: 0.2
   headGetHurtRange: 0.9
   recoveringTime: 1
-  touchingProp: null
-  isPicking: 0
+  isDashing: 0
 --- !u!70 &1776397305
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
