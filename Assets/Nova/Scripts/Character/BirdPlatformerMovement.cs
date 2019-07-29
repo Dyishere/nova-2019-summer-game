@@ -19,6 +19,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     public float flyingUpForce; // 空气对鸟翼的支持力（浮力？）
     public float dashForce;
     public float dashTime;
+    public float recoveringTime = 1f; // 被攻击后需要的恢复时间，期间为眩晕状态，无法操作
 
     [Space(10)]
 
@@ -28,11 +29,12 @@ public class BirdPlatformerMovement : MonoBehaviour
     [SerializeField] private float jumpBreakTime = .3f; // 两次跳跃之间的间隔时间
     [SerializeField] private GameObject CharacterSprite = null; // 将角色精灵分离设置成子物体，这样在转身的时候能保持父级物体的Scale始终为正值(预防潜在bug?)
     [SerializeField] private Transform GroundCheck = null;
-    [SerializeField] private float groundCheckRadius = .3f;
+    [SerializeField] private float groundCheckRadius = 0.15f; // 尽量把这个值设置得小一些，过大会导致沿着墙可以无限往上跳
     [SerializeField] private LayerMask m_WhatIsGround = 0;
-    [SerializeField] private float hurtVelocityY = 0.2f; // 被踩头的时候，对方的掉落速度最小值
-    [SerializeField] [Range(0f, 1f)] private float headGetHurtRange = 0.9f; // 属于可以被踩的头的范围是多少（头部边缘踩到后不属于有效攻击）
-    [SerializeField] private float recoveringTime = 1f; // 被攻击后需要的恢复时间，期间为眩晕状态，无法操作
+    [SerializeField] private float hurtHeadVelocityY = 0.2f; // 被踩头的时候，对方的掉落速度最小值
+    [SerializeField] private float hurtHeadMinDy = 0.3f; // 被踩头的时候，对方至少比角色的位置高多少
+    [SerializeField] private float headBounce = 500f; // 踩到对方的头的时候，弹起的力的大小
+    [SerializeField] [Range(0f, 1f)] private float headGetHurtRange = 0.9f; // 属于可以被踩的头的范围是多少（头部边缘踩到后不属于有效攻击，头部指胶囊型碰撞体上部分的整个半圆形）
 
     [Space(10)]
     // [状态变量]
@@ -173,8 +175,8 @@ public class BirdPlatformerMovement : MonoBehaviour
             transform.Find("PickPos").transform.localPosition = new Vector2(transform.Find("PickPos").transform.localPosition.x * -1, 1);
         }
 
-        // 移动(冲刺状态下不能直接修改velocity)
-        if (!isDashing)
+        // 移动(冲刺状态,受伤状态下不能直接修改velocity)
+        if (!isDashing && !isHurt)
         {
             m_Rigidbody2D.velocity = moveDir * 100f * Time.deltaTime + m_Rigidbody2D.velocity.y * Vector2.up;
         }
@@ -183,45 +185,76 @@ public class BirdPlatformerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        // 被踩头
-        PlayerController m_player = other.gameObject.GetComponent<PlayerController>();
-        if (m_player && other.rigidbody.velocity.y < -1f * hurtVelocityY)
+        BirdPlatformerMovement otherPlayer = other.gameObject.GetComponent<BirdPlatformerMovement>();
+        if (otherPlayer)
         {
-            CapsuleCollider2D capsule = GetComponent<CapsuleCollider2D>();
-            float headRadius = capsule.size.x;
-            float playerHeight = capsule.size.y;
-            bool isHit = false;
-            foreach (ContactPoint2D m_contact in other.contacts)
+            // 冲刺攻击
+            if (otherPlayer.isDashing)
             {
-                // 踩到圆形头部的上半部分 算作有效攻击
-                Vector2 contactPos = m_contact.point;
-                // 接触点到头中心的距离差（transform.position在脚底）
-                float dx = contactPos.x - transform.position.x;
-                float dy = contactPos.y - (transform.position.y + playerHeight - headRadius);
-
-                if (dy > 0f && (Mathf.Abs(dx) < headRadius * headGetHurtRange))
+                if (!isDashing && !isHurt)
                 {
-                    isHit = true;
-                    break;
+                    GetHurt();
+                }
+                else
+                {
+                    AddRevForce();
                 }
             }
-            if (isHit)
+            // 被踩头
+            if (other.rigidbody.velocity.y < -1f * hurtHeadVelocityY
+            && other.transform.position.y - transform.position.y > hurtHeadMinDy)
             {
-                GetHurt();
+                CapsuleCollider2D capsule = GetComponent<CapsuleCollider2D>();
+                float headRadius = capsule.size.x;
+                float playerHeight = capsule.size.y;
+                bool isHitHead = false;
+                foreach (ContactPoint2D m_contact in other.contacts)
+                {
+                    // 踩到圆形头部的上半部分 算作有效攻击
+                    Vector2 contactPos = m_contact.point;
+                    // 接触点到头中心的距离差（transform.position在脚底）
+                    float dx = contactPos.x - transform.position.x;
+                    float dy = contactPos.y - (transform.position.y + playerHeight - headRadius);
+
+                    if (dy > 0f && (Mathf.Abs(dx) < headRadius * headGetHurtRange))
+                    {
+                        isHitHead = true;
+                        break;
+                    }
+                }
+                if (isHitHead && !isHurt)
+                {
+                    GetHurt();
+                    otherPlayer.AddHeadBounce();
+                }
             }
         }
     }
 
+    /// <summary>
+    /// 加上水平反向力(反弹)，用于冲刺撞到冲刺中的敌人
+    /// </summary>
+    private void AddRevForce()
+    {
+        float facingDir = isFacingRight ? 1f : -1f;
+        float revForce = 0.8f * dashForce; // 这里使用了魔法数字0.8倍
+        m_Rigidbody2D.AddForce(Vector2.right * -1f * facingDir * revForce);
+    }
     private void GetHurt()
     {
-        if (isHurt) // 防止多次受伤
-            return;
-
         isHurt = true;
 
         // 眩晕部分代码
         m_Animator.SetBool("hurt", true);
         Invoke("Recover", recoveringTime);
+    }
+
+    /// <summary>
+    /// 踩对方的头之后获得向上的弹力
+    /// </summary>
+    public void AddHeadBounce()
+    {
+        m_Rigidbody2D.AddForce(Vector2.up * headBounce);
     }
 
     private void Recover()
