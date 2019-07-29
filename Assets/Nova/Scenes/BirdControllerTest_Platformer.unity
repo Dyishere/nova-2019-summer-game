@@ -1229,6 +1229,7 @@ MonoBehaviour:
   flyingUpForce: 35
   dashForce: 1000
   dashTime: 0.4
+  recoveringTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 5514277329774788209}
   GroundCheck: {fileID: 5514277329712992170}
@@ -1240,7 +1241,6 @@ MonoBehaviour:
   hurtHeadMinDy: 0.3
   headBounce: 1000
   headGetHurtRange: 0.88
-  recoveringTime: 1
   isDashing: 0
 --- !u!4 &5514277329674554822
 Transform:
@@ -1250,7 +1250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5514277329674554827}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.47, y: -12.14, z: 0}
+  m_LocalPosition: {x: 3.9, y: -8.91, z: 0}
   m_LocalScale: {x: 0.8798997, y: 1.185455, z: 1}
   m_Children:
   - {fileID: 5514277329712992170}

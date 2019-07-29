@@ -158,6 +158,10 @@ public class BirdPlatformerMovement : MonoBehaviour
                 dashTimer = 0f;
             }
         }
+        else
+        {
+            iDash = false; // 如果不在滑翔状态，更新iDash的值
+        }
 
         dashTimer += Time.deltaTime;
         if (dashTimer > dashTime || !isFlying)
