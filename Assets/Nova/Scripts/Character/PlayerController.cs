@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("PlayerController的双击开关：" + inputDash);//双击时Debug用
         //触发一次互动键来首次储存该角色的控制,例如键盘的互动键为e，触发一次后便可用键盘移动此角色。
         ControllerJudgement();
 
@@ -62,56 +61,22 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("KAction"))
                 curController = "K";
-            else if (Input.GetButton("J1Action"))
-                curController = "J1";
-            else if (Input.GetButton("J2Action"))
-                curController = "J2";
-            else if (Input.GetButton("J3Action"))
-                curController = "J3";
+            else
+                for (int i = 1; i < 10; i++)
+                    if (Input.GetButton("J" + i + "Action"))
+                        curController = "J" + i;
         }
     }       //通过生成角色后第一次按下的互动键来绑定角色与控制器
 
     private void CharaController(string cCurController)
     {
-        switch (cCurController)
-        {
-            case "K":
-                inputMove = Input.GetAxis("KMove");
-                inputPick = Input.GetButtonDown("KPick");
-                if (Input.GetButtonDown("KJump"))
-                    inputJump = true;
-                inputAction = Input.GetButtonDown("KAction");
-                if (DoubleClick(Input.GetAxis("KMove")))
-                    inputDash = true;
-                break;
-            case "J1":
-                inputMove = Input.GetAxis("J1Move");
-                inputPick = Input.GetButtonDown("J1Pick");
-                if (Input.GetButtonDown("J1Jump"))
-                    inputJump = true;
-                inputAction = Input.GetButtonDown("J1Action");
-                if (DoubleClick(Input.GetAxis("J1Move")))
-                    inputDash = true;
-                break;
-            case "J2":
-                inputMove = Input.GetAxis("J2Move");
-                inputPick = Input.GetButtonDown("J2Pick");
-                if (Input.GetButtonDown("J2Jump"))
-                    inputJump = true;
-                inputAction = Input.GetButtonDown("J2Action");
-                if (DoubleClick(Input.GetAxis("J2Move")))
-                    inputDash = true;
-                break;
-            case "J3":
-                inputMove = Input.GetAxis("J3Move");
-                inputPick = Input.GetButtonDown("J3Pick");
-                if (Input.GetButtonDown("J3Jump"))
-                    inputJump = true;
-                inputAction = Input.GetButtonDown("J3Action");
-                if (DoubleClick(Input.GetAxis("J3Move")))
-                    inputDash = true;
-                break;
-        }
+        inputMove = Input.GetAxis(cCurController + "Move");
+        inputPick = Input.GetButtonDown(cCurController + "Pick");
+        if (Input.GetButtonDown(cCurController + "Jump"))
+            inputJump = true;
+        inputAction = Input.GetButtonDown(cCurController + "Action");
+        if (DoubleClick(Input.GetAxis(cCurController + "Move")))
+            inputDash = true;
     }       //已绑定控制器后分别读取输入
 
     private void CurrentPlayerNum()

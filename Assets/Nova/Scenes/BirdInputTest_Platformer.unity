@@ -170,8 +170,8 @@ MonoBehaviour:
   flyingSpeed: 2
   flyingBaseSpeed: 1
   flyingUpForce: 35
-  dashForce: 0
-  dashTime: 0
+  dashForce: 1000
+  dashTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 2108840779}
   GroundCheck: {fileID: 845513559}
@@ -1072,8 +1072,8 @@ MonoBehaviour:
   flyingSpeed: 2
   flyingBaseSpeed: 1
   flyingUpForce: 35
-  dashForce: 0
-  dashTime: 0
+  dashForce: 1000
+  dashTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 1659142108}
   GroundCheck: {fileID: 908116956}
@@ -1309,8 +1309,8 @@ MonoBehaviour:
   flyingSpeed: 2
   flyingBaseSpeed: 1
   flyingUpForce: 35
-  dashForce: 0
-  dashTime: 0
+  dashForce: 1000
+  dashTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 402522513}
   GroundCheck: {fileID: 177791811}
