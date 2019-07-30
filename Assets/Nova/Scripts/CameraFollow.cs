@@ -28,7 +28,7 @@ public class CameraFollow : MonoBehaviour
         if (Targets.Length == 0) return;
 
         // 跟随
-        var m_bounds = new Bounds();
+        var m_bounds = new Bounds(Targets[0].position, Vector3.zero);
         for (int i = 0; i < Targets.Length; ++i)
         {
             m_bounds.Encapsulate(Targets[i].position);
@@ -36,6 +36,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 targetPos = m_bounds.center;
         targetPos += offset;
 
+        // 地图边缘限制
         targetPos.x = Mathf.Max(minPosX, targetPos.x);
         targetPos.x = Mathf.Min(maxPosX, targetPos.x);
         targetPos.y = Mathf.Max(minPosY, targetPos.y);

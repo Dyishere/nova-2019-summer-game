@@ -172,6 +172,7 @@ MonoBehaviour:
   flyingUpForce: 35
   dashForce: 1000
   dashTime: 1
+  recoveringTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 2108840779}
   GroundCheck: {fileID: 845513559}
@@ -179,9 +180,10 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
-  hurtVelocityY: 0.2
+  hurtHeadVelocityY: 0.2
+  hurtHeadMinDy: 0.3
+  headBounce: 500
   headGetHurtRange: 0.9
-  recoveringTime: 1
   isDashing: 0
 --- !u!70 &173404860
 CapsuleCollider2D:
@@ -962,9 +964,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51118aa52840b65468f5bc282da3ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t: 0.2
-  offset: {x: 0, y: 0.8, z: 0}
-  Target: {fileID: 1776397307}
+  followingSmoothTime: 0.5
+  maxFollowingSpeed: 20
+  offset: {x: 0, y: 0, z: -10}
+  zoomingSmoothTime: 2
+  minZoom: 5.6666665
+  maxZoom: 15
+  zoomingRatio: 0.6
+  minPosX: -100
+  maxPosX: 100
+  minPosY: -100
+  maxPosY: 100
+  Targets:
+  - {fileID: 1776397307}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1074,6 +1086,7 @@ MonoBehaviour:
   flyingUpForce: 35
   dashForce: 1000
   dashTime: 1
+  recoveringTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 1659142108}
   GroundCheck: {fileID: 908116956}
@@ -1081,9 +1094,10 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
-  hurtVelocityY: 0.2
+  hurtHeadVelocityY: 0.2
+  hurtHeadMinDy: 0.3
+  headBounce: 500
   headGetHurtRange: 0.9
-  recoveringTime: 1
   isDashing: 0
 --- !u!70 &570429906
 CapsuleCollider2D:
@@ -1311,6 +1325,7 @@ MonoBehaviour:
   flyingUpForce: 35
   dashForce: 1000
   dashTime: 1
+  recoveringTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 402522513}
   GroundCheck: {fileID: 177791811}
@@ -1318,9 +1333,10 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
-  hurtVelocityY: 0.2
+  hurtHeadVelocityY: 0.2
+  hurtHeadMinDy: 0.3
+  headBounce: 500
   headGetHurtRange: 0.9
-  recoveringTime: 1
   isDashing: 0
 --- !u!70 &1271340446
 CapsuleCollider2D:
@@ -1732,6 +1748,7 @@ MonoBehaviour:
   flyingUpForce: 35
   dashForce: 1000
   dashTime: 1
+  recoveringTime: 1
   jumpBreakTime: 0.2
   CharacterSprite: {fileID: 1743476812}
   GroundCheck: {fileID: 1800677783}
@@ -1739,9 +1756,10 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
-  hurtVelocityY: 0.2
+  hurtHeadVelocityY: 0.2
+  hurtHeadMinDy: 0.3
+  headBounce: 500
   headGetHurtRange: 0.9
-  recoveringTime: 1
   isDashing: 0
 --- !u!70 &1776397305
 CapsuleCollider2D:

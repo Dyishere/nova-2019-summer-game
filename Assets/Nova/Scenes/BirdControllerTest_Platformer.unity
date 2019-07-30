@@ -507,7 +507,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -535,9 +534,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51118aa52840b65468f5bc282da3ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t: 0.2
-  offset: {x: 0, y: 0.8, z: 0}
-  Target: {fileID: 5514277329674554822}
+  followingSmoothTime: 0.5
+  maxFollowingSpeed: 20
+  offset: {x: 0, y: 0, z: -10}
+  zoomingSmoothTime: 2
+  minZoom: 5.6666665
+  maxZoom: 15
+  zoomingRatio: 0.6
+  minPosX: -100
+  maxPosX: 100
+  minPosY: -100
+  maxPosY: 100
+  Targets:
+  - {fileID: 5514277329674554822}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -595,20 +604,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e988ad89673314f923955733cc2b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 5514277329674554827}
-  fallingX: 0.15
 --- !u!1 &544291250
 GameObject:
   m_ObjectHideFlags: 0
