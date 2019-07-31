@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CSCcontral : MonoBehaviour
 {
@@ -15,5 +16,10 @@ public class CSCcontral : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene(Scenes.StartScene.ToString());
     }
 }

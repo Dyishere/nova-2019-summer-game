@@ -47,9 +47,7 @@ public class UIcontral : MonoBehaviour
     // Method for start button
     public void ChangeScene()
     {
-        //SceneManager.LoadScene("CharacterSelectScene");
-        LoadSceneManager.SceneQueue.Enqueue(Scenes.CharacterSelectScene.ToString());
-        SceneManager.LoadScene("LoadScene");
+        SceneManager.LoadScene(Scenes.CharacterSelectScene.ToString());
     }
 
     // Method for show setting
