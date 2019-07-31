@@ -10,16 +10,11 @@ public class LoadScene : MonoBehaviour
 
     private float progress = 0f;
     private AsyncOperation async;
-    private LoadSceneNext load;
 
-    private void Awake()
-    {
-        load = GameObject.Find("LoadSceneNext(Clone)").GetComponent<LoadSceneNext>();
-    }
     void Start()
     {
-        if (load.q.Count == 0)
-            load.CleanSceneList();
+        if (LoadSceneManager.SceneQueue.Count == 0)
+            LoadSceneManager.CleanSceneQueue();
         StartCoroutine(LoadAsync());
     }
 
@@ -28,18 +23,25 @@ public class LoadScene : MonoBehaviour
         if (async == null)
             return;
 
+    // 模拟速度增加进度条
         slider.value = progress;
         progress += 0.01f;
         if (progress >= 1f)
             async.allowSceneActivation = true;
     }
 
+
+
     IEnumerator LoadAsync()
     {
-        async = SceneManager.LoadSceneAsync(load.q.Dequeue());
+        //async = SceneManager.LoadSceneAsync(load.q.Dequeue());
+        async = SceneManager.LoadSceneAsync(LoadSceneManager.SceneQueue.Dequeue());
         async.allowSceneActivation = false;
         yield return async;
     }
+
+    
+    // 按真实加载速度增加进度条
     //public void LoadGame()
     //{
     //    StartCoroutine(StartLoading(LoadSceneName));

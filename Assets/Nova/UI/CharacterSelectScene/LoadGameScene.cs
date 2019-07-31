@@ -6,17 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class LoadGameScene : MonoBehaviour
 {
-    private LoadSceneNext load;
-    public SceneList list;
+    public Image ListIsEmpty;
+
+    private SceneList list;
 
     void Awake()
     {
         list = GameObject.Find("SceneList").GetComponent<SceneList>();
-        load = GameObject.Find("LoadSceneNext(Clone)").GetComponent<LoadSceneNext>();
+        //load = GameObject.Find("LoadSceneNext(Clone)").GetComponent<LoadSceneNext>();
 
         this.GetComponent<Button>().onClick.AddListener(delegate {
-            list.AddToQueue();
-            SceneManager.LoadScene("LoadScene");
+            if (list.sceneList.Count == 0)
+            {
+                ListIsEmpty.gameObject.SetActive(true);
+                Invoke("DestroyImage", 1f);
+            }
+            else
+            {
+                list.AddToQueue();
+                SceneManager.LoadScene("LoadScene");
+            }
         });
+    }
+
+    void DestroyImage()
+    {
+        ListIsEmpty.gameObject.SetActive(false);
     }
 }

@@ -11,19 +11,7 @@ public class UIcontral : MonoBehaviour
     public Canvas SettingCanvas;
     public Canvas ProducerCanvas;
 
-    public GameObject LoadSceneNext;                            // loadscene prefab
-
     private bool canShow = true;
-    static private bool create = true;                          // Confirm Loadscene prefab if exist
-
-    private void Awake()
-    {
-        if (create)
-        {
-            Instantiate(LoadSceneNext);
-            create = false;
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +47,9 @@ public class UIcontral : MonoBehaviour
     // Method for start button
     public void ChangeScene()
     {
-        SceneManager.LoadScene("CharacterSelectScene");
+        //SceneManager.LoadScene("CharacterSelectScene");
+        LoadSceneManager.SceneQueue.Enqueue(Scenes.CharacterSelectScene.ToString());
+        SceneManager.LoadScene("LoadScene");
     }
 
     // Method for show setting

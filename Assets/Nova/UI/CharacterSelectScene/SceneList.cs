@@ -6,7 +6,6 @@ public class SceneList : MonoBehaviour
 {
     public List<ListItem> sceneList;
 
-    private LoadSceneNext load;
     private int _count = 0;
     public int Count
     {
@@ -16,7 +15,6 @@ public class SceneList : MonoBehaviour
     private void Awake()
     {
         sceneList = new List<ListItem>();
-        load = GameObject.Find("LoadSceneNext(Clone)").GetComponent<LoadSceneNext>();
     }
 
     public void AddToQueue()
@@ -24,7 +22,7 @@ public class SceneList : MonoBehaviour
         foreach (var x in sceneList)
         {
             if (x.Flag)
-                load.q.Enqueue(x.sceneName);
+                LoadSceneManager.SceneQueue.Enqueue(x.sceneName);
         }
     }
 }

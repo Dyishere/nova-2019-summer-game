@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.64025795, y: 0.5293051}
   m_AnchorMax: {x: 0.87700003, y: 0.6093475}
-  m_AnchoredPosition: {x: -0.3999939, y: 0.79999924}
+  m_AnchoredPosition: {x: -0.3999939, y: 0.80000305}
   m_SizeDelta: {x: 1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78643968
@@ -288,7 +288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.64025795, y: 0.13634749}
   m_AnchorMax: {x: 0.87700003, y: 0.21034749}
-  m_AnchoredPosition: {x: 0.50006104, y: 0.6000061}
+  m_AnchoredPosition: {x: 0.50006104, y: 0.6000366}
   m_SizeDelta: {x: 1, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &103991224
@@ -1236,8 +1236,6 @@ MonoBehaviour:
   StartCanvas: {fileID: 1718096079}
   SettingCanvas: {fileID: 606169746}
   ProducerCanvas: {fileID: 1756520748}
-  LoadSceneNext: {fileID: 4525225134641511954, guid: dcb7ab27005883a4e874b7780fe479cc,
-    type: 3}
 --- !u!4 &792943210
 Transform:
   m_ObjectHideFlags: 0
