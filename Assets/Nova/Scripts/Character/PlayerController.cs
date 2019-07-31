@@ -17,9 +17,12 @@ public class PlayerController : MonoBehaviour
     public string curController;    //用于控制器与当前角色对应
 
     //[DoubleClick判定用]
-    private int pressCount = 0;// 按下的次数
-    private bool switchDir; //更换双击方向
-    private float pressedTime; // 按下第一次时的时间记录
+    private int rPressCount = 0;// 按下的右次数
+    private int lPressCount = 0;// 按下的左次数
+    private bool rSwitchDir; //更换右双击方向
+    private bool lSwitchDir; //更换左双击方向
+    private float rPressedTime; // 按下第一次右时的时间记录
+    private float lPressedTime; // 按下第一次左时的时间记录
 
     private BirdPlatformerMovement m_BirdPlatformerMovement;
     private void Awake()
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        InitialDoubleClick();
         m_BirdPlatformerMovement.Move(inputMove, ref inputJump, ref inputDash);
         m_BirdPlatformerMovement.PickUp(inputPick, curPlayerNum);
     }
@@ -113,40 +117,94 @@ public class PlayerController : MonoBehaviour
 
     private bool DoubleClick (float press)
     {
-        if (pressCount == 2)
+        if (press > 0)
         {
-            //Debug.Log("DoubleClick!!!");
-            pressedTime = 0;
-            pressCount = 0;
-            return true;
-        }       //当count记录到按下两次后即可返回true，并且初始化变量
-        if (pressCount == 1)
-        {
-            pressedTime += Time.deltaTime;
-        }       //当按下第一次时的时间记录
+            if (rPressCount == 2)
+            {
+                //Debug.Log("DoubleClick!!!");
+                rPressedTime = 0;
+                rPressCount = 0;
+                return true;
+            }       //当count记录到按下两次后即可返回true，并且初始化变量
 
-        if (Math.Abs(press) >= 0.2f && pressCount < 2)
-        {
-                switchDir = true;
-        }       //当我们按下且输入了axis后，开启双击判定流程
-        else if (switchDir && pressedTime < 0.5f)
-        { 
-            if (pressCount == 0)
+
+            if (press >= 0.2f && rPressCount < 2)
             {
-                pressCount = 1;
-                switchDir = false;
-            }
-            else if (pressCount == 1)
+                rSwitchDir = true;
+            }       //当我们按下且输入了axis后，开启双击判定流程
+            else if (rSwitchDir && rPressedTime < 0.5f)
             {
-                pressCount = 2;
-                switchDir = false;
-            }
-        }       //当我们已经第一次输入axis后的处于2f的时间内进行判定
-        if (pressCount == 1 && pressedTime >= 0.5f)
+                if (rPressCount == 0)
+                {
+                    rPressCount = 1;
+                    rSwitchDir = false;
+                }
+                else if (rPressCount == 1)
+                {
+                    rPressCount = 2;
+                    rSwitchDir = false;
+                }
+            }       //当我们已经第一次输入axis后的处于2f的时间内进行判定
+        }
+        else if (press <= 0)
         {
-            pressedTime = 0;
-            pressCount = 0;
-        }       //当我们已经第一次输入axis后超过了双击时间时的判定
+            if (lPressCount == 2)
+            {
+                //Debug.Log("DoubleClick!!!");
+                lPressedTime = 0;
+                lPressCount = 0;
+                return true;
+            }       //当count记录到按下两次后即可返回true，并且初始化变量
+            if (lPressCount == 1)
+            {
+                lPressedTime += Time.deltaTime;
+            }       //当按下第一次时的时间记录
+
+            if (press <= -0.2f && lPressCount < 2)
+            {
+                lSwitchDir = true;
+            }       //当我们按下且输入了axis后，开启双击判定流程
+            else if (lSwitchDir && lPressedTime < 0.5f)
+            {
+                if (lPressCount == 0)
+                {
+                    lPressCount = 1;
+                    lSwitchDir = false;
+                }
+                else if (lPressCount == 1)
+                {
+                    lPressCount = 2;
+                    lSwitchDir = false;
+                }
+            }       //当我们已经第一次输入axis后的处于2f的时间内进行判定
+            if (lPressCount == 1 && lPressedTime >= 0.5f)
+            {
+                lPressedTime = 0;
+                lPressCount = 0;
+            }       //当我们已经第一次输入axis后超过了双击时间时的判定
+        }
         return false;
     }       //判定双击，传入移动输入的axis进行判断
+
+    private void InitialDoubleClick()
+    {
+        if (rPressCount == 1)
+        {
+            rPressedTime += Time.deltaTime;
+        }       //当按下第一次时的时间记录
+        if (rPressCount == 1 && rPressedTime >= 0.5f)
+        {
+            rPressedTime = 0;
+            rPressCount = 0;
+        }       //当我们已经第一次输入axis后超过了双击时间时的判定
+        if (lPressCount == 1)
+        {
+            lPressedTime += Time.deltaTime;
+        }       //当按下第一次时的时间记录
+        if (lPressCount == 1 && lPressedTime >= 0.5f)
+        {
+            lPressedTime = 0;
+            lPressCount = 0;
+        }       //当我们已经第一次输入axis后超过了双击时间时的判定
+    }       //双击间隔判定
 }
