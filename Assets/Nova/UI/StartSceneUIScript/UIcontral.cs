@@ -6,22 +6,28 @@ using UnityEngine.UI;
 
 public class UIcontral : MonoBehaviour
 {
-    public Text FadeText;
+    public Button SettingButton;
+    public Button ProducerButton;
+    public Button CloseButton;
+    public Button StartButton;
+
+    public Image FadeText;
     public Canvas StartCanvas;
     public Canvas SettingCanvas;
     public Canvas ProducerCanvas;
+    public Canvas QuitCanvas;
 
     private bool canShow = true;
-    // Start is called before the first frame update
+
     void Start()
     {
         FadeText.gameObject.SetActive(true);
         StartCanvas.gameObject.SetActive(false);
         SettingCanvas.gameObject.SetActive(false);
         ProducerCanvas.gameObject.SetActive(false);
+        QuitCanvas.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.anyKey)
@@ -32,7 +38,7 @@ public class UIcontral : MonoBehaviour
 
 
         // Show setting canvas
-        if (Input.GetKey(KeyCode.Escape) && !FadeText.gameObject.activeSelf && canShow)
+        if (Input.GetKey(KeyCode.Escape) && canShow)
         {
             SettingCanvas.gameObject.SetActive((SettingCanvas.gameObject.activeSelf ? false : true));
             if (ProducerCanvas.gameObject.activeSelf)
@@ -57,6 +63,10 @@ public class UIcontral : MonoBehaviour
         SettingCanvas.gameObject.SetActive(SettingisShow ? false : true);
         if (ProducerCanvas.gameObject.activeSelf)
             ProducerCanvas.gameObject.SetActive(false);
+
+        //SettingButton.interactable = SettingButton.interactable ? false : true;
+        ProducerButton.interactable = ProducerButton.interactable ? false : true;
+        CloseButton.interactable = CloseButton.interactable ? false : true;
     }
 
     // Method for show producer
@@ -66,11 +76,26 @@ public class UIcontral : MonoBehaviour
         ProducerCanvas.gameObject.SetActive(ProducerisShow ? false : true);
         if (SettingCanvas.gameObject.activeSelf)
             SettingCanvas.gameObject.SetActive(false);
+
+        SettingButton.interactable = SettingButton.interactable ? false : true;
+        //ProducerButton.interactable = ProducerButton.interactable ? false : true;
+        CloseButton.interactable = CloseButton.interactable ? false : true;
     }
 
     // Method for quit
+    public void ComfirmQuit()
+    {
+        QuitCanvas.gameObject.SetActive(QuitCanvas.gameObject.activeSelf ? false : true);
+
+        SettingButton.interactable = SettingButton.interactable ? false : true;
+        ProducerButton.interactable = ProducerButton.interactable ? false : true;
+        //CloseButton.interactable = CloseButton.interactable ? false : true;
+    }
+
+    // Method in quit canvas
     public void Quit()
     {
         Application.Quit();
     }
+
 }

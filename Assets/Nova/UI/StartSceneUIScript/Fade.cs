@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
-    public Text text;
+    public Image text;
 
     private Color color;
     private bool UpOrDown = true;
     // Start is called before the first frame update
     void Start()
     {
-        color = new Color(0, 0, 0, 1);
+        color = new Color(1, 1, 1, 1);
     }
 
     // Update is called once per frame
