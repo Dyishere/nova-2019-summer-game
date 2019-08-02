@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour
     {
         m_Camera = GetComponent<Camera>();
     }
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (Targets.Length == 0) return;
 
