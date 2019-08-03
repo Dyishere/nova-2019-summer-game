@@ -74,12 +74,12 @@ public class PlayerController : MonoBehaviour
 
     private void CharaController(string cCurController)
     {
-        inputMove = Input.GetAxis(cCurController + "Move");
+        inputMove = Input.GetAxis(cCurController + "Horizontal");
         inputPick = Input.GetButtonDown(cCurController + "Pick");
         if (Input.GetButtonDown(cCurController + "Jump"))
             inputJump = true;
         inputAction = Input.GetButtonDown(cCurController + "Action");
-        if (DoubleClick(Input.GetAxis(cCurController + "Move")))
+        if (DoubleClick(Input.GetAxis(cCurController + "Horizontal")))
             inputDash = true;
     }       //已绑定控制器后分别读取输入
 
