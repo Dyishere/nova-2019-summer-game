@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd4f41f1e0d0b5468b1a7b84cc0ff1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  jumpForce: 800
+  moveSpeed: 4
+  jumpForce: 700
   flyingSpeed: 2
   flyingBaseSpeed: 1
   flyingUpForce: 35
@@ -618,8 +618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd4f41f1e0d0b5468b1a7b84cc0ff1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  jumpForce: 800
+  moveSpeed: 4
+  jumpForce: 700
   flyingSpeed: 2
   flyingBaseSpeed: 1
   flyingUpForce: 35
@@ -1400,11 +1400,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd4f41f1e0d0b5468b1a7b84cc0ff1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  jumpForce: 800
+  moveSpeed: 4
+  jumpForce: 700
   flyingSpeed: 2
   flyingBaseSpeed: 1
-  flyingUpForce: 35
+  flyingUpForce: 30
   dashForce: 1000
   dashTime: 1
   recoveringTime: 1
@@ -1773,11 +1773,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd4f41f1e0d0b5468b1a7b84cc0ff1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  jumpForce: 800
+  moveSpeed: 4
+  jumpForce: 700
   flyingSpeed: 2
   flyingBaseSpeed: 1
-  flyingUpForce: 35
+  flyingUpForce: 300
   dashForce: 1000
   dashTime: 1
   recoveringTime: 1

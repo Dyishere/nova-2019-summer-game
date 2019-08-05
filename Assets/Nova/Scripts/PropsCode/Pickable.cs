@@ -6,7 +6,7 @@ using UnityEngine;
 public class Pickable : MonoBehaviour
 {
     private int curPlayerNum;       //用于判别当前物品被哪个玩家接触
-    private bool isPicked;          //用于判定是否已被捡起
+    public bool isPicked;          //用于判定是否已被捡起
     void Start()
     {
     }
@@ -16,7 +16,7 @@ public class Pickable : MonoBehaviour
             Picking();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (isPicked)
             return;
@@ -25,7 +25,8 @@ public class Pickable : MonoBehaviour
             collision.gameObject.SendMessage("PickUpPermit",gameObject.name);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (isPicked)
             return;

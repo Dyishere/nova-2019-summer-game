@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
             {
                 rSwitchDir = true;
             }       //当我们按下且输入了axis后，开启双击判定流程
-            else if (rSwitchDir && rPressedTime < 0.5f)
+            else if (rSwitchDir && rPressedTime < 1f)
             {
                 if (rPressCount == 0)
                 {
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
             {
                 lSwitchDir = true;
             }       //当我们按下且输入了axis后，开启双击判定流程
-            else if (lSwitchDir && lPressedTime < 0.5f)
+            else if (lSwitchDir && lPressedTime < 1f)
             {
                 if (lPressCount == 0)
                 {
@@ -176,8 +176,8 @@ public class PlayerController : MonoBehaviour
                     lPressCount = 2;
                     lSwitchDir = false;
                 }
-            }       //当我们已经第一次输入axis后的处于2f的时间内进行判定
-            if (lPressCount == 1 && lPressedTime >= 0.5f)
+            }       //当我们已经第一次输入axis后的处于1f的时间内进行判定
+            if (lPressCount == 1 && lPressedTime >= 1f)
             {
                 lPressedTime = 0;
                 lPressCount = 0;

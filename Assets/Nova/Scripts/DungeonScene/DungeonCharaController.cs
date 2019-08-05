@@ -148,7 +148,7 @@ public class DungeonCharaController : MonoBehaviour
             return;
         else
         {
-            GameObject.Find("mission/" + touchingProp).SendMessage("BeingPicked", curNum);     //触发碰触物体上的捡拾脚本Pickable
+            GameObject.Find("Egg/" + touchingProp).SendMessage("BeingPicked", curNum);     //触发碰触物体上的捡拾脚本Pickable
             isPicking = !isPicking;
             if (!isPicking)     //放下物品时初始化
                 touchingProp = "null";

@@ -9,7 +9,7 @@ public class Trap : MonoBehaviour
         
    
         Invoke("TrapDestroy", 4f);
-        //EggDestroy();
+        //TrapDestroy();
     }
 
     void TrapDestroy()
