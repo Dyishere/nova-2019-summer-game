@@ -6,8 +6,14 @@ public class Trash : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Invoke("TrashDestroy", 4f);
-        //EggDestroy();
+        if(collision.gameObject.tag!="Player")
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+
+            Invoke("TrashDestroy", 4f);
+        }
+        
     }
 
     void TrashDestroy()

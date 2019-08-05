@@ -16,6 +16,8 @@ public class Creator : MonoBehaviour
 
     int eggPos = 0;
     int trashPos = 0;
+    int eggNumber = 0;
+    int trashNumber = 0;
 
     void Start()
     {
@@ -51,6 +53,8 @@ public class Creator : MonoBehaviour
             if(trashPos!=1000)
             {
                 GameObject temp1 = Instantiate(trash[trash1], new Vector3(trashPos + 0.5f, transform.position.y, 0), Quaternion.identity);
+                temp1.transform.name = "trash" + trashNumber;
+                trashNumber++;
                 trashes.Add(trashPos, temp1);
             }
 
@@ -58,6 +62,8 @@ public class Creator : MonoBehaviour
             if(trashPos!=1000)
             {
                 GameObject temp2 = Instantiate(trash[trash2], new Vector3(trashPos+0.5f, transform.position.y, 0), Quaternion.identity);
+                temp2.transform.name = "trash" + trashNumber;
+                trashNumber++;
                 trashes.Add(trashPos, temp2);
             }
         }
@@ -69,6 +75,8 @@ public class Creator : MonoBehaviour
             if (trashPos != 1000)
             {
                 GameObject temp = Instantiate(trash[whichTrash], new Vector3(trashPos + 0.5f, transform.position.y, 0), Quaternion.identity);
+                temp.transform.name = "trash" + trashNumber;
+                trashNumber++;
                 trashes.Add(trashPos, temp);
             }
         }
@@ -86,6 +94,8 @@ public class Creator : MonoBehaviour
             if (eggPos != 1000)
             {
                 GameObject temp = Instantiate(egg, new Vector3(eggPos + 0.5f, transform.position.y, 0), Quaternion.identity);
+                temp.transform.name = "egg" + eggNumber;
+                eggNumber++;
                 eggs.Add(eggPos, temp);
             }
         }
@@ -96,6 +106,8 @@ public class Creator : MonoBehaviour
             if (eggPos != 1000)
             {
                 GameObject temp = Instantiate(egg, new Vector3(eggPos + 0.5f, transform.position.y, 0), Quaternion.identity);
+                temp.transform.name = "egg" + eggNumber;
+                eggNumber++;
                 eggs.Add(eggPos, temp);
             }
         }
