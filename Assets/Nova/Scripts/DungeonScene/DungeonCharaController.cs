@@ -141,14 +141,14 @@ public class DungeonCharaController : MonoBehaviour
         }
     }
 
-    private void PickUp(bool iPick, int curPlayerNum)
+    private void PickUp(bool iPick, int curNum)
     {
 
         if (touchingProp == "null" || !iPick)       //如果未碰触物体或没有按下捡拾指令
             return;
         else
         {
-            GameObject.Find(touchingProp).SendMessage("BeingPicked", curPlayerNum);     //触发碰触物体上的捡拾脚本Pickable
+            GameObject.Find("mission/" + touchingProp).SendMessage("BeingPicked", curNum);     //触发碰触物体上的捡拾脚本Pickable
             isPicking = !isPicking;
             if (!isPicking)     //放下物品时初始化
                 touchingProp = "null";
