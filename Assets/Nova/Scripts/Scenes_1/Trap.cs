@@ -5,11 +5,8 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     private void Start()
-    {
-        
-   
-        Invoke("TrapDestroy", 4f);
-        //TrapDestroy();
+    {  
+        Invoke("TrapDestroy", 12f);
     }
 
     void TrapDestroy()
@@ -18,5 +15,32 @@ public class Trap : MonoBehaviour
         TrapCreator.traps.Remove((int)(transform.position.x+0.5f));
         Destroy(gameObject);
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch(collision.name)
+        {
+            case "Player1":
+                ScoringSystom.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player1的分数是：" + ScoringSystom.P1Score);
+                TrapDestroy();
+                break;
+            case "Player2":
+                ScoringSystom.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player2的分数是：" + ScoringSystom.P2Score);
+                TrapDestroy();
+                break;
+            case "Player3":
+                ScoringSystom.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player3的分数是：" + ScoringSystom.P3Score);
+                TrapDestroy();
+                break;
+            case "Player4":
+                ScoringSystom.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player4的分数是：" + ScoringSystom.P4Score);
+                TrapDestroy();
+                break;
+        }
     }
 }
