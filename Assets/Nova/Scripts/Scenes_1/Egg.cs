@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Egg : MonoBehaviour
 {
+    int whoPick;
     // Start is called before the first frame update
     void Start()
     {
-        //Invoke("EggDestroy", 3.1f);
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (transform.GetComponent<Pickable>().isPicked)
             SubstantializeProb();
     }
-    
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,9 +29,25 @@ public class Egg : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "nest1" && whoPick==1)
+        {
+            ScoringSystom.ChangePlayerScore(Player.p1, 5);
+            Debug.Log("Player1的分数是：" + ScoringSystom.P1Score);
+            EggDestroy();            
+        }
+        if (collision.gameObject.name == "nest2" && whoPick == 1)
+        {
+            ScoringSystom.ChangePlayerScore(Player.p2, -5);
+            Debug.Log("Player2的分数是：" + ScoringSystom.P2Score);
+            EggDestroy();
+        }
+    }
+
     void EggDestroy()
     {
-        Creator.eggs.Remove((int)(transform.position.x-0.5f));          //先从字典里面移除，然后再删除
+        Creator.eggs.Remove((int)(transform.position.x - 0.5f));          //先从字典里面移除，然后再删除
         Destroy(gameObject);
     }
 
@@ -38,5 +55,6 @@ public class Egg : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY;
         gameObject.GetComponent<CapsuleCollider2D>().isTrigger = false;
+        whoPick = Pickable.curPlayerNum;
     }
 }

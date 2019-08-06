@@ -12,8 +12,7 @@ public class Trash : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
 
             Invoke("TrashDestroy", 4f);
-        }
-        
+        }      
     }
 
     void TrashDestroy()

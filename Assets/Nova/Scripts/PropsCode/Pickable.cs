@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour
 {
-    private int curPlayerNum;       //用于判别当前物品被哪个玩家接触
+    public static int curPlayerNum;       //用于判别当前物品被哪个玩家接触
     public bool isPicked;          //用于判定是否已被捡起
     void Start()
     {
