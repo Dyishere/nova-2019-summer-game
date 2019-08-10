@@ -18,11 +18,7 @@ public class Line : MonoBehaviour
         LR.SetWidth(0.1f, 0.1f);
     }
 
-    private void Update()
-    {
-        Grapple(Input.GetKeyDown(KeyCode.J), Input.GetKeyDown(KeyCode.K));
-    }
-    public void Grapple(bool iShoot, bool iAim)
+    public void Grapple(ref bool iShoot, ref bool iAim)
     {
         LR.SetPosition(0, gameObject.transform.localPosition);
         LR.SetPosition(1, bullet.transform.localPosition);
@@ -46,5 +42,7 @@ public class Line : MonoBehaviour
             IsShotting = false;
             bullet_.enAbleToCatchPlayer = false;
         }
+        iShoot = false;
+        iAim = false;
     }
 }

@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         curController = "null";     //初始化
-        CurrentPlayerNum();         //按gameObject名字获取当前角色编号
+        CheckCurrentPlayerNum();         //按gameObject名字获取当前角色编号
     }
 
     private void Update()
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
             inputDash = true;
     }       //已绑定控制器后分别读取输入
 
-    private void CurrentPlayerNum()
+    private void CheckCurrentPlayerNum()
     {
         if (curPlayerNum > 0)
             return;

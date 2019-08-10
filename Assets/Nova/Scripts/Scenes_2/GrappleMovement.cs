@@ -9,13 +9,8 @@ public class GrappleMovement : MonoBehaviour
     public int catchPlayer = 0;
     Vector3 Pos = new Vector3();
 
-    public Line m_Line;
 
-    private void FixedUpdate()
-    {
-        Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-    }
-    private void Move(float iMoveX, float iMoveY)
+    public void Move(float iMoveX, float iMoveY)
     {
         //移动改这里
 
