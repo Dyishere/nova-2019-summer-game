@@ -2,41 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class GrappleMovement : MonoBehaviour
 {
-    public bool IsTree=false;
+    public bool IsTree = false;
     public bool IsPlayer = false;
     public int catchPlayer = 0;
     Vector3 Pos = new Vector3();
 
-    void FixedUpdate()
+    public Line m_Line;
+
+    private void FixedUpdate()
+    {
+        Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    }
+    private void Move(float iMoveX, float iMoveY)
     {
         //移动改这里
 
-        Pos.x = Input.GetAxis("Horizontal");
-        Pos.y = Input.GetAxis("Vertical");
+        Pos.x = iMoveX;
+        Pos.y = iMoveY;
 
         gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
 
         //移动改这里
 
 
-        if(IsPlayer==true)                     //拉敌人
+        if (IsPlayer == true)                     //拉敌人
         {
             GameObject temp = null;
 
-            switch(catchPlayer)
+            switch (catchPlayer)
             {
-                case 1: temp = GameObject.Find("Player1");
-                        break;
-                case 2: temp = GameObject.Find("Player2");
-                        break;
-                case 3: temp = GameObject.Find("Player3");
-                        break;
-                case 4: temp = GameObject.Find("Player4");
-                        break;
+                case 1:
+                    temp = GameObject.Find("Player1");
+                    break;
+                case 2:
+                    temp = GameObject.Find("Player2");
+                    break;
+                case 3:
+                    temp = GameObject.Find("Player3");
+                    break;
+                case 4:
+                    temp = GameObject.Find("Player4");
+                    break;
             }
-            if(temp != null)
+            if (temp != null)
             {
                 float dis = (transform.position - temp.transform.position).sqrMagnitude;
                 if (dis <= 6f)
@@ -54,7 +64,7 @@ public class Move : MonoBehaviour
             }
         }
 
-        if(IsTree==true)                      //把自己往树拉
+        if (IsTree == true)                      //把自己往树拉
         {
             GameObject temp = GameObject.FindGameObjectWithTag("Tree");
             gameObject.GetComponent<Rigidbody2D>().velocity = (temp.transform.position - gameObject.transform.position).normalized * 10f;

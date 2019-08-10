@@ -18,19 +18,19 @@ public class Bullet : MonoBehaviour
     bool nowIsReturnTime = false;               //是否停止转动
     float startTime;                            //计发射一段时间后子弹返回
     float endTime;
-    Move move;
+    GrappleMovement move;
     Line line;
-    Vector3 shotVelocity = new Vector3();       
+    Vector3 shotVelocity = new Vector3();
 
     private void Start()
     {
-        move = MoveMaster.GetComponent<Move>();
+        move = MoveMaster.GetComponent<GrappleMovement>();
         line = LineMaster.GetComponent<Line>();
     }
 
     void Update()
     {
-        if(Stop==false)                                      //如果子弹不停止
+        if (Stop == false)                                      //如果子弹不停止
         {
             if (line.IsShotting == false)                    //如果发射是 否，那么旋转，并更新开始时间，等到发射的时候就是
             {                                                //刚好发射的时间
@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour
                 shotVelocity = (gameObject.transform.position - temp.transform.position).normalized * bulletSpeed;
                 GetComponent<Rigidbody2D>().velocity = -1 * shotVelocity;
 
-                                                            //如果当距离小于最小距离，那么回收子弹并且重置变量
+                //如果当距离小于最小距离，那么回收子弹并且重置变量
                 float dis = (gameObject.transform.position - temp.transform.position).sqrMagnitude;
                 if (dis <= 6f)
                 {
@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
 
             }
         }
-        else if(move.IsTree == true)                      //如果子弹不能移动，并且勾到了树
+        else if (move.IsTree == true)                      //如果子弹不能移动，并且勾到了树
         {                                                 //子弹静止
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             GameObject tree = GameObject.Find("Tree");
@@ -92,9 +92,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="Player"&&enAbleToCatchPlayer==true&&collision.name != MoveMaster.name)                     //如果捕捉到玩家，标记玩家
+        if (collision.tag == "Player" && enAbleToCatchPlayer == true && collision.name != MoveMaster.name)                     //如果捕捉到玩家，标记玩家
         {
-            switch(collision.name)
+            switch (collision.name)
             {
                 case "Player1": move.catchPlayer = 1; break;
                 case "Player2": move.catchPlayer = 2; break;
@@ -105,17 +105,17 @@ public class Bullet : MonoBehaviour
             nowIsReturnTime = true;
         }
         if (collision.tag == "Tree")
-        {          
+        {
             GameObject tree = GameObject.Find("Tree");                             //寻找目标树
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);   //子弹停止并移动到树的位置
             gameObject.transform.position = tree.transform.position;
             move.IsTree = true;                                                    //让人物移动到树那里
-            
+
             Stop = true;                                                           //子弹停止移动，转动，重置子弹的发射和捕获
             nowIsReturnTime = true;
             line.IsShotting = true;
             enAbleToCatchPlayer = true;
         }
-        
+
     }
 }

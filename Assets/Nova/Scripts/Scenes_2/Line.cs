@@ -14,25 +14,28 @@ public class Line : MonoBehaviour
     private void Start()
     {
         bullet_ = BulletMaster.GetComponent<Bullet>();
-        LR.SetColors(Color.black,Color.black);
-        LR.SetWidth(0.1f, 0.1f);       
+        LR.SetColors(Color.black, Color.black);
+        LR.SetWidth(0.1f, 0.1f);
     }
-    
-    
+
     private void Update()
+    {
+        Grapple(Input.GetKeyDown(KeyCode.J), Input.GetKeyDown(KeyCode.K));
+    }
+    public void Grapple(bool iShoot, bool iAim)
     {
         LR.SetPosition(0, gameObject.transform.localPosition);
         LR.SetPosition(1, bullet.transform.localPosition);
 
-        if (Input.GetKeyDown(KeyCode.J) && startRound == true)         //如果按下J并且已经开始旋转，那么发射子弹
+        if (iShoot && startRound == true)         //如果按下J并且已经开始旋转，那么发射子弹
         {
             IsShotting = true;
             bullet_.enAbleToCatchPlayer = true;
         }
-                                                                       //如果按下K并且没有旋转，没有发射，那么旋转
-        if (Input.GetKeyDown(KeyCode.K) && IsShotting == false && startRound == false)
+        //如果按下K并且没有旋转，没有发射，那么旋转
+        if (iAim && IsShotting == false && startRound == false)
         {
-            if(bullet_.Stop == true)
+            if (bullet_.Stop == true)
             {
                 bullet_.Stop = false;
             }
