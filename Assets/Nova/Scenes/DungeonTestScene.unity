@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 379108902}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379108901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 849188746}
@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 458825255}
   - component: {fileID: 458825257}
   - component: {fileID: 458825258}
+  - component: {fileID: 458825259}
   m_Layer: 10
   m_Name: greenEgg
   m_TagString: Untagged
@@ -618,6 +619,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740381b4aaacb644296c36addb7313f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPicked: 0
+--- !u!114 &458825259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458825253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a886c4725cef12149bb983e8dc4cf334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curColor: 
 --- !u!1 &467293220
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +990,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 646799265}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,6 +1025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684678734}
   - component: {fileID: 684678735}
+  - component: {fileID: 684678736}
   m_Layer: 8
   m_Name: yellowFoundation
   m_TagString: Untagged
@@ -1058,6 +1074,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &684678736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684678733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27159137588c94abc5fcef08873153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMatch: 0
+  myColor: 
 --- !u!1 &745667629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1180,7 @@ GameObject:
   - component: {fileID: 849188747}
   - component: {fileID: 849188749}
   - component: {fileID: 849188750}
+  - component: {fileID: 849188751}
   m_Layer: 10
   m_Name: redEgg
   m_TagString: Untagged
@@ -1278,6 +1309,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740381b4aaacb644296c36addb7313f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPicked: 0
+--- !u!114 &849188751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849188745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a886c4725cef12149bb983e8dc4cf334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curColor: 
 --- !u!1 &912077381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,6 +1336,7 @@ GameObject:
   - component: {fileID: 912077383}
   - component: {fileID: 912077385}
   - component: {fileID: 912077386}
+  - component: {fileID: 912077387}
   m_Layer: 10
   m_Name: yellowEgg
   m_TagString: Untagged
@@ -1419,6 +1465,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740381b4aaacb644296c36addb7313f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPicked: 0
+--- !u!114 &912077387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912077381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a886c4725cef12149bb983e8dc4cf334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curColor: 
 --- !u!1 &1015817244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,6 +1626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1066601100}
   - component: {fileID: 1066601101}
+  - component: {fileID: 1066601102}
   m_Layer: 8
   m_Name: redFoundation
   m_TagString: Untagged
@@ -1614,6 +1675,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1066601102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066601099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27159137588c94abc5fcef08873153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMatch: 0
+  myColor: 
 --- !u!1 &1133993826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,6 +2018,7 @@ GameObject:
   - component: {fileID: 1354002874}
   - component: {fileID: 1354002876}
   - component: {fileID: 1354002877}
+  - component: {fileID: 1354002878}
   m_Layer: 10
   m_Name: blueEgg
   m_TagString: Untagged
@@ -2071,6 +2147,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740381b4aaacb644296c36addb7313f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPicked: 0
+--- !u!114 &1354002878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354002872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a886c4725cef12149bb983e8dc4cf334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curColor: 
 --- !u!1 &1492499343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,6 +2474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541100308}
   - component: {fileID: 1541100309}
+  - component: {fileID: 1541100310}
   m_Layer: 8
   m_Name: greenFoundation
   m_TagString: Untagged
@@ -2432,6 +2523,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1541100310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541100307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27159137588c94abc5fcef08873153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMatch: 0
+  myColor: 
 --- !u!1 &1550946332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2745,6 +2850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641293601}
   - component: {fileID: 1641293602}
+  - component: {fileID: 1641293603}
   m_Layer: 8
   m_Name: blueFoundation
   m_TagString: Untagged
@@ -2793,6 +2899,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1641293603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641293600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27159137588c94abc5fcef08873153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMatch: 0
+  myColor: 
 --- !u!1 &1652470376
 GameObject:
   m_ObjectHideFlags: 0

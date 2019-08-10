@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4944041}
   - component: {fileID: 4944040}
   - component: {fileID: 4944039}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 25150440}
   - component: {fileID: 25150439}
   - component: {fileID: 25150438}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CharacterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 278631062}
   - component: {fileID: 278631061}
   - component: {fileID: 278631060}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player3
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1029,7 +1029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554724321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.061136, y: -1.9532585, z: 32.14019}
+  m_LocalPosition: {x: 7, y: -11.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2119556018}
@@ -1139,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 612149321}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -1453,7 +1453,7 @@ GameObject:
   - component: {fileID: 816403721}
   - component: {fileID: 816403720}
   - component: {fileID: 816403719}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player4
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1568,7 +1568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 823773601}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PickPos
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -1679,7 +1679,7 @@ GameObject:
   - component: {fileID: 843396692}
   - component: {fileID: 843396691}
   - component: {fileID: 843396690}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CharacterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923396320}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.061136, y: -1.9532585, z: 32.14019}
+  m_LocalPosition: {x: 11, y: -11.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2119556018}
@@ -2087,7 +2087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946688247}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.9388638, y: -1.9532585, z: 32.14019}
+  m_LocalPosition: {x: -11, y: -11.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2119556018}
@@ -2541,7 +2541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1294512048}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -2606,7 +2606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340230124}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PickPos
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -2715,7 +2715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1414236581}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PickPos
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -2763,7 +2763,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478436296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.93886375, y: -1.9532585, z: 32.14019}
+  m_LocalPosition: {x: -7, y: -11.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2119556018}
@@ -6238,7 +6238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1946739490}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -8675,7 +8675,7 @@ GameObject:
   - component: {fileID: 1998795863}
   - component: {fileID: 1998795862}
   - component: {fileID: 1998795861}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CharacterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8833,7 +8833,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119556017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.0611362, y: -9.5467415, z: -32.14019}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 554724322}

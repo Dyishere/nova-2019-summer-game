@@ -5,25 +5,42 @@ using UnityEngine;
 
 public class DungeonEgg : MonoBehaviour
 {
-    private string eggColor = "null";
+    public string curColor;
+    private bool initiallize = false;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        CheckCurColor();
+    }
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void CheckCurrentColor()
+    private void CheckCurColor()
     {
-        if (eggColor != "null")
-            return;
+        foreach (char c in gameObject.name)
+            if (c == 'E')
+                return;
+            else
+                curColor += c;
+    }
+
+    public bool InitializeCheck(string foundationColor)
+    {
+        if (initiallize || curColor == foundationColor)
+            return false;
         else
-            eggColor = gameObject.name;
+        {
+            transform.position = GameObject.Find(foundationColor + "Foundation").transform.position;
+            initiallize = true;
+            return true;
+        }
     }
 }

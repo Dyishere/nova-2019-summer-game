@@ -72,12 +72,22 @@ public class Trash : MonoBehaviour
 
     void Update()
     {
-        whoPick = Pickable.curPlayerNum;    
+        whoPick = Pickable.curPlayerNum;
+        if (transform.GetComponent<Pickable>().isPicked)
+            SubstantializeProb();
     }
 
     void TrashDestroy()
     {
         Creator.trashes.Remove((int)(transform.position.x-0.5f));
+        if(GetComponent<Pickable>().isPicked)
+            GameObject.Find("Player" + Pickable.curPlayerNum).SendMessage("PickUpPermit", "null");
         Destroy(gameObject);
+    }
+
+    private void SubstantializeProb()
+    {
+        gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY;
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
     }
 }
