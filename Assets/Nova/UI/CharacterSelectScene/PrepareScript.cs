@@ -32,6 +32,6 @@ public class PrepareScript : MonoBehaviour
     {
         ReadyImage.SetActive(ReadyImage.activeSelf ? false : true);
         NotReadyImage.SetActive(NotReadyImage.activeSelf ? false : true);
-        modeSelect.SetBoolByName(boolName, ReadyImage.activeSelf ? true : false);
+        //modeSelect.SetBoolByName(boolName, ReadyImage.activeSelf ? true : false);
     }
 }

@@ -8,9 +8,9 @@ public class WidethControl : MonoBehaviour
 
     void Update()
     {
-        float n = this.transform.childCount * 80f;
-        if (n <= 480)
-            n = 480;
+        float n = this.transform.childCount * 77.5f;
+        if (n <= 542.5)
+            n = 542.5f;
 
         Size.y = n;
         this.GetComponent<RectTransform>().sizeDelta = Size;       

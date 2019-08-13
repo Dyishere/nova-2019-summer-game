@@ -4,107 +4,254 @@ using UnityEngine;
 
 public static class ScoringSystom
 {
-    private static int _p1Score = 0;
-    private static int _p2Score = 0;
-    private static int _p3Score = 0;
-    private static int _p4Score = 0;
-    private static int _p1Feathers = 0;
-    private static int _p2Feathers = 0;
-    private static int _p3Feathers = 0;
-    private static int _p4Feathers = 0;
+    
+    private static int[] _playerScore = new int[4];
+    private static int[] _playerFeathers = new int[4];
 
+    public static PlayerChar[] PlayerShow = {
+        new PlayerChar(false, Character.b1),
+        new PlayerChar(false, Character.b1),
+        new PlayerChar(false, Character.b1),
+        new PlayerChar(false, Character.b1)
+    };
+    
     // Score in every level
     public static int P1Score
     {
-        get { return _p1Score; }
+        get { return _playerScore[(int)Player.p1]; }
     }
     public static int P2Score
     {
-        get { return _p2Score; }
+        get { return _playerScore[(int)Player.p2]; }
     }
     public static int P3Score
     {
-        get { return _p3Score; }
+        get { return _playerScore[(int)Player.p3]; }
     }
     public static int P4Score
     {
-        get { return _p4Score; }
+        get { return _playerScore[(int)Player.p4]; }
     }
    
     // Players' feathers in whole game 
     public static int P1Feathers
     {
-        get { return _p1Feathers; }
+        get { return _playerFeathers[(int)Player.p1]; }
     }
     public static int P2Feathers
     {
-        get { return _p2Feathers; }
+        get { return _playerFeathers[(int)Player.p2]; }
     }
     public static int P3Feathers
     {
-        get { return _p3Feathers; }
+        get { return _playerFeathers[(int)Player.p3]; }
     }
     public static int P4Feathers
     {
-        get { return _p4Feathers; }
+        get { return _playerFeathers[(int)Player.p4]; }
     }
 
+    /// <summary>
+    /// 将全部分数归零
+    /// </summary>
     public static void ResetScore()
     {
-        ChangePlayerScore(Player.p1, (0 - P1Score));
-        ChangePlayerScore(Player.p2, (0 - P2Score));
-        ChangePlayerScore(Player.p3, (0 - P3Score));
-        ChangePlayerScore(Player.p4, (0 - P4Score));
+        for (var i = Player.p1; i <= Player.p4; i++)
+            _playerScore[(int)i] = 0;
     }
 
+    /// <summary>
+    /// 将全部羽毛数量归零
+    /// </summary>
     public static void ResetFeathers()
     {
-        ChangePlayerFeather(Player.p1, (0 - P1Feathers));
-        ChangePlayerFeather(Player.p2, (0 - P2Feathers));
-        ChangePlayerFeather(Player.p3, (0 - P3Feathers));
-        ChangePlayerFeather(Player.p4, (0 - P4Feathers));
+        for (var i = Player.p1; i <= Player.p4; i++)
+            _playerFeathers[(int)i] = 0;
     }
 
+    /// <summary>
+    /// 初始化，分数、羽毛归零
+    /// </summary>
+    public static void Init()
+    {
+        ResetFeathers();
+        ResetScore();
+    }
+
+    /// <summary>
+    /// 改变分数的方法
+    /// </summary>
+    /// <param name="player">要改变分数的玩家枚举</param>
+    /// <param name="change">分数变化量</param>
     public static void ChangePlayerScore(Player player, int change)
     {
-        switch (player)
-        {
-            case Player.p1:
-                _p1Score += change;
-                break;
-            case Player.p2:
-                _p2Score += change;
-                break;
-            case Player.p3:
-                _p3Score += change;
-                break;
-            case Player.p4:
-                _p4Score += change;
-                break;
-        }
+        _playerScore[(int)player] += change;
     }
 
+    /// <summary>
+    /// 改变羽毛shuliang
+    /// </summary>
+    /// <param name="player">玩家枚举</param>
+    /// <param name="change">变化量</param>
     public static void ChangePlayerFeather(Player player, int change)
     {
-        switch (player)
-        {
-            case Player.p1:
-                _p1Feathers += change;
-                break;
-            case Player.p2:
-                _p2Feathers += change;
-                break;
-            case Player.p3:
-                _p3Feathers += change;
-                break;
-            case Player.p4:
-                _p4Feathers += change;
-                break;
-        }
+        _playerFeathers[(int)player] += change;
     }
+
+    /// <summary>
+    /// 通过玩家枚举返回分数
+    /// </summary>
+    /// <param name="p">玩家枚举</param>
+    /// <returns>(int)玩家当前分数</returns>
+    public static int ReturnScoreByEnum(Player p)
+    {
+        return _playerScore[(int)p];
+    }
+
+    /// <summary>
+    /// 通过玩家枚举返回羽毛数
+    /// </summary>
+    /// <param name="p">玩家枚举</param>
+    /// <returns>(int)玩家当前羽毛数</returns>
+    public static int ReturnFeathersByEnum(Player p)
+    {
+        return _playerFeathers[(int)p];
+    }
+
+    /// <summary>
+    /// 返回所有最高分角色的信息
+    /// </summary>
+    /// <returns> List<PlayerCantain> 
+    /// PlayerCantain
+    /// {
+    ///     public Player p;
+    ///     public int s;
+    ///     public int f;
+    /// }
+    /// </returns>
+    public static List<PlayerCantain> FindMaxScore()
+    {
+        List<PlayerCantain> l = new List<PlayerCantain>();
+        var s = SortByScore(ToList());
+        l.Add(s[0]);
+        for (int i = 1; i < 4; i++)
+        {
+            if (s[i].s == s[0].s)
+                l.Add(s[i]);
+        }
+
+        return l;
+    }
+
+    /// <summary>
+    /// 返回所有羽毛最多的角色信息
+    /// </summary>
+    /// <returns>List<PlayerCantain></returns>
+    public static List<PlayerCantain> FindMaxFeather()
+    {
+        List<PlayerCantain> l = new List<PlayerCantain>();
+        var s = SortByFeathers(ToList());
+        l.Add(s[0]);
+        for (int i = 1; i < 4; i++)
+        {
+            if (s[i].f == s[0].f)
+                l.Add(s[i]);
+        }
+
+        return l;
+    }
+
+    /// <summary>
+    /// 返回排序后的角色分数dict
+    /// </summary>
+    /// <returns></returns>
+    public static Dictionary<Player, int> SortedScoreDict()
+    {
+        var l = SortByScore(ToList());
+        Dictionary<Player, int> d = new Dictionary<Player, int>();
+        for (int i = 0; i < 4; i++)
+            d.Add(l[i].p, l[i].s);
+
+        return d;
+    }
+
+    // 辅助方法
+    private static List<PlayerCantain> ToList()
+    {
+        List<PlayerCantain> l = new List<PlayerCantain>();
+        for (var i = Player.p1; i <= Player.p4; i++)
+            l.Add(new PlayerCantain(i, _playerScore[(int)i], _playerFeathers[(int)i]));
+        return l;
+    }
+
+    private static List<PlayerCantain> SortByScore(List<PlayerCantain> l)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = i + 1; j < 4; j++)
+            {
+                if (l[i].s < l[j].s)
+                {
+                    var temp = l[i];
+                    l[i] = l[j];
+                    l[j] = temp;
+                }
+            }
+        }
+
+        return l;
+    }
+
+    private static List<PlayerCantain> SortByFeathers(List<PlayerCantain> l)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = i + 1; j < 4; j++)
+            {
+                if (l[i].f < l[j].f)
+                {
+                    var temp = l[i];
+                    l[i] = l[j];
+                    l[j] = temp;
+                }
+            }
+        }
+
+        return l;
+    }
+}
+
+public struct PlayerCantain
+{
+    public PlayerCantain(Player _p, int _s, int _f)
+    {
+        p = _p;
+        s = _s;
+        f = _f;
+    }
+
+    public Player p;
+    public int s;
+    public int f;
+}
+
+public struct PlayerChar
+{
+    public PlayerChar(bool _show, Character _character)
+    {
+        Show = _show;
+        character = _character;
+    }
+    public bool Show;
+    public Character character;
 }
 
 public enum Player
 {
-    p1, p2, p3, p4
+    p1, p2, p3, p4,
+}
+
+public enum Character
+{
+    b1, b2, b3, b4,
 }

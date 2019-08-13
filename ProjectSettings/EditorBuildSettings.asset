@@ -11,8 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Nova/Scenes/Scenes_1.unity
     guid: 21cc426b10c003d49ae8a92609255a35
-  - enabled: 1
-    path: Assets/Nova/UI/Scenes/StartScene.unity
+  - enabled: 0
+    path: Assets/Nova/UI/Scenes/StartScene 1.unity
     guid: 800312d1cf9a9b543985e7738585103b
   - enabled: 1
     path: Assets/Nova/UI/Scenes/CharacterSelectScene.unity
@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Nova/UI/Scenes/LoadScene.unity
     guid: e003b599a0911cc4f9bb75e014cedb96
+  - enabled: 1
+    path: Assets/Nova/UI/Scenes/StartScene.unity
+    guid: 909be52550f482245af9c6e65dc9ac12
+  - enabled: 1
+    path: Assets/Nova/Scenes/BirdControllerTest_Platformer.unity
+    guid: 8e60075847ee27048b129ab22170148d
+  - enabled: 1
+    path: Assets/Nova/Scenes/DungeonTestScene.unity
+    guid: 2b91ecef970bac64faba85f682b9e71e
+  - enabled: 1
+    path: Assets/Nova/Scenes/Test_Scenes_2.unity
+    guid: fef7655a43e00fe478578c6f59a7af8e
   m_configObjects: {}
