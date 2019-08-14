@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class CSPlayerController : MonoBehaviour
 {
     // [输入]
     private float inputMove;
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private bool inputDash = false;
 
     //[本角色的区分信息]
-    private int curPlayerNum;             //用于区分当前角色的编号
+    private int curCharaNum;             //用于区分当前角色的编号
     public string curController;    //用于控制器与当前角色对应
 
     //[DoubleClick判定用]
@@ -24,39 +24,49 @@ public class PlayerController : MonoBehaviour
     private float rPressedTime; // 按下第一次右时的时间记录
     private float lPressedTime; // 按下第一次左时的时间记录
 
+    //[角色锁定]
+    private bool moveable;
+
     private BirdPlatformerMovement m_BirdPlatformerMovement;
     private void Awake()
     {
         m_BirdPlatformerMovement = GetComponent<BirdPlatformerMovement>();
-    }
-
-    private void Start()
-    {
         curController = "null";     //初始化
         CheckCurrentPlayer();         //按gameObject名字获取当前角色编号后读取选角信息
     }
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void Update()
     {
-        //触发一次互动键来首次储存该角色的控制,例如键盘的互动键为e，触发一次后便可用键盘移动此角色。
+        //首次储存该角色的控制,调用ScoringSystem
         ControllerJudgement();
 
         //以传入的标签分别进行控制器的输入读取
         if (curController != "null")
             CharaController(curController);
-
-        //测试用方法：当按下C时生成下一个角色，然后需要按下下一个角色的Action键绑定移动
-        if (Input.GetKeyDown(KeyCode.C))
-            NextPlayerCreator();
     }
 
     private void FixedUpdate()
     {
         InitialDoubleClick();
-        m_BirdPlatformerMovement.Move(inputMove, ref inputJump, ref inputDash);
-        m_BirdPlatformerMovement.PickUp(inputPick, curPlayerNum);
+        if (moveable)
+        {
+            m_BirdPlatformerMovement.Move(inputMove, ref inputJump, ref inputDash);
+            m_BirdPlatformerMovement.PickUp(inputPick, curCharaNum);
+        }
+
     }
 
+    private void ControllerJudgement()
+    {
+        curController = ScoringSystom.FindControllerByChara((Character)(curCharaNum-1));
+        moveable = true;
+    }
+    /*
     private void ControllerJudgement()
     {
         if (curController != "null")
@@ -70,7 +80,9 @@ public class PlayerController : MonoBehaviour
                     if (Input.GetButton("J" + i + "Action"))
                         curController = "J" + i;
         }
-    }       //通过生成角色后第一次按下的互动键来绑定角色与控制器
+        moveable = true;
+        //GameObject.Find("CharacterSelectCanvas/CharPanel/P" + curPlayerNum + "Select").SendMessage("CheckCurController", curController);
+    }       //通过生成角色后第一次按下的互动键来绑定角色与控制器*/
 
     private void CharaController(string cCurController)
     {
@@ -85,17 +97,17 @@ public class PlayerController : MonoBehaviour
 
     private void CheckCurrentPlayer()
     {
-        if (curPlayerNum > 0)
+        if (curCharaNum > 0)
             return;
         else
             foreach (char c in gameObject.name)
                 if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
-                    curPlayerNum = Convert.ToInt32(c) - 48;
+                    curCharaNum = Convert.ToInt32(c) - 48;
     }       //获取当前玩家编号
-
+    /*
     private void NextPlayerCreator()
     {
-        int nextNum = curPlayerNum + 1;
+        int nextNum = curCharaNum + 1;
         string nextPlayer = "Player" + nextNum;
         if (nextNum > 4)
         {
@@ -113,7 +125,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     private bool DoubleClick (float press)
     {
@@ -207,4 +219,12 @@ public class PlayerController : MonoBehaviour
             lPressCount = 0;
         }       //当我们已经第一次输入axis后超过了双击时间时的判定
     }       //双击间隔判定
+
+    public void MovingPermit(bool permission)
+    {
+        if (permission)
+            moveable = true;
+        else
+            moveable = false;
+    }
 }

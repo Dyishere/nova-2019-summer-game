@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,8 +30,18 @@ public class CharSelect : MonoBehaviour
     private bool verifyImageShow = false;
     private bool unlock = true;
 
+    //[此栏操控的游戏角色信息]
+    public GameObject theCharaControlled;
+    public int curCharacterNum;
+    public int curPanelNum;
+
+    //[此栏操控的玩家控制信息]
+    public string curPlayerController;
+    private int time;
+
     private void Awake()
     {
+        CheckCurPanelNum();
         iM = ImageM.GetComponent<Image>();
         iL = ImageL.GetComponent<Image>();
         iR = ImageR.GetComponent<Image>();
@@ -49,7 +60,37 @@ public class CharSelect : MonoBehaviour
     void Update()
     {
         SetSprite();
+        CheckCurController();
 
+        if (curPlayerController != "null" && !ScoringSystom.PlayerJoin[curPanelNum])     //当前控制器已绑定后或上一玩家还未绑定时不接受绑定
+        {
+            if (Input.GetAxis(curPlayerController + "Horizontal") < -0.5f && keyDown)
+            {
+                SubIndex();
+                keyDown = false;
+            }
+            else if (Input.GetAxis(curPlayerController + "Horizontal") > 0.5f && keyDown)
+            {
+                AddIndex();
+                keyDown = false;
+            }
+
+            if (Mathf.Abs(Input.GetAxis(curPlayerController + "Horizontal")) < 0.5f && !keyDown)
+                keyDown = true;
+
+            if (Input.GetButtonDown(curPlayerController + "Pick") && unlock)
+            {
+                UnlockedKeyDown();
+            }
+            if (Input.GetButtonUp(curPlayerController + "Action") && verifyImageShow)
+            {
+                VerifyKeyDown();
+            }
+            if (Input.GetButtonDown(curPlayerController + "Action") && !Verifyed)
+                verifyImageShow = true;
+
+        } 
+        /*
         // 以下需区分四人的独立输入
         if (Input.GetKey(KeyCode.A) && keyDown) 
         {
@@ -76,7 +117,7 @@ public class CharSelect : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.V) && !verifyImageShow)
             verifyImageShow = true;
-
+        */
     }
     
     public void SubIndex()
@@ -105,7 +146,6 @@ public class CharSelect : MonoBehaviour
         i++;
         if (i > 3)
             i = 0;
-
         return i;
     }
 
@@ -130,7 +170,7 @@ public class CharSelect : MonoBehaviour
         LockedImage.SetActive(false);
         VerifyImage.SetActive(true);
         unlock = false;
-        verifyImageShow = true;
+        verifyImageShow = false;
     }
 
     // 
@@ -142,6 +182,7 @@ public class CharSelect : MonoBehaviour
         VerifyImage.SetActive(false);
         Tips1.SetActive(false);
         Tips2.SetActive(false);
+        ScoringSystom.Init();
     }
 
     private void SetSprite()
@@ -163,12 +204,70 @@ public class CharSelect : MonoBehaviour
         ScoringSystom.PlayerShow[(int)player].Show = true;
         ScoringSystom.PlayerShow[(int)player].character = (Character)spriteIndex;
         Verifyed = true;
+
+        //[输入相关]
+        ScoringSystom.PlayerInpuController[curPanelNum - 1].iCharaNum = (Character)spriteIndex;
+        ScoringSystom.PlayerJoin[curPanelNum] = true;
+        CharaCreator();
+        
     }
 
     private void UnlockedKeyDown()
     {
         LockedImage.SetActive(false);
         VerifyImage.SetActive(true);
-        unlock = false;     
+        unlock = false;    
+    }
+
+    //[输入相关]
+    private void CheckCurPanelNum()
+    {
+        foreach (char c in gameObject.name)
+            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
+                curPanelNum = Convert.ToInt32(c) - 48;
+        curPlayerController = "null";
+    }
+
+    private void CheckCurController()
+    {
+        if (curPlayerController != "null" || !ScoringSystom.PlayerJoin[curPanelNum - 1])     //当前控制器已绑定后或上一玩家还未绑定时不接受绑定
+            return;
+        else
+        {
+            if (Input.GetButtonDown("KPick"))
+            {
+                if (ScoringSystom.CheckControllerJoin("K"))
+                    return;
+                UnlockedOnClick();
+                curPlayerController = "K";
+                ScoringSystom.PlayerInpuController[curPanelNum-1].iController = curPlayerController;
+            }
+            else
+                for (int i = 1; i < 10; i++)
+                    if (Input.GetButton("J" + i + "Pick"))
+                    {
+                        if (ScoringSystom.CheckControllerJoin("J" + i))
+                            return;
+                        UnlockedOnClick();
+                        curPlayerController = "J" + i;
+                        ScoringSystom.PlayerInpuController[curPanelNum-1].iController = curPlayerController;
+                    }
+
+        }
+    }
+
+    private void CharaCreator()
+    {
+        string nextPlayer = "Player" + ((int)ScoringSystom.PlayerInpuController[curPanelNum-1].iCharaNum+1);
+        Debug.Log(nextPlayer);
+        GameObject[] all = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];
+        for (int i = 0; i < all.Length; i++)        //寻找被禁用的player
+        {
+            var item = all[i];
+            if (item.scene.isLoaded && item.name == nextPlayer)
+            {
+                item.SetActive(true);
+            }
+        }
     }
 }

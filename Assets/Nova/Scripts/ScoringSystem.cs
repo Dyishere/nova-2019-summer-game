@@ -70,12 +70,14 @@ public static class ScoringSystom
     }
 
     /// <summary>
-    /// 初始化，分数、羽毛归零
+    /// 初始化，分数、羽毛归零；选角色与控制器归零（输入相关）。
     /// </summary>
     public static void Init()
     {
         ResetFeathers();
         ResetScore();
+        //输入相关
+        ResetInput();
     }
 
     /// <summary>
@@ -219,6 +221,70 @@ public static class ScoringSystom
 
         return l;
     }
+
+    //[以下输入相关]
+    public static bool[] CharaSelected = new bool [4];
+    public static bool[] PlayerJoin = new bool[5];
+    public static ControllerInfo[] PlayerInpuController =
+    {
+        new ControllerInfo(Player.p1,Character.b0,"null"),
+        new ControllerInfo(Player.p2,Character.b0,"null"),
+        new ControllerInfo(Player.p3,Character.b0,"null"),
+        new ControllerInfo(Player.p4,Character.b0,"null")
+    };
+
+    public static bool CheckCharaJoin(Character c)
+    {
+        for (var i = Player.p1; i <= Player.p4; i++)
+            if (PlayerInpuController[(int)i].iCharaNum == c)
+                return true;
+        return false;
+    }
+
+    public static bool CheckControllerJoin(string c)
+    {
+        for (var i = Player.p1; i <= Player.p4; i++)
+            if (PlayerInpuController[(int)i].iController == c)
+                return true;
+        return false;
+    }
+
+    public static string FindControllerByChara(Character c)
+    {
+        for (var i = Player.p1; i <= Player.p4; i++)
+            if (PlayerInpuController[(int)i].iCharaNum == c)
+                return PlayerInpuController[(int)i].iController;
+        return "null";
+    }
+
+    public static void ResetInput()
+    {
+        ResetCharaSelected();
+        ResetPlayerController();
+        ResetPlayerJoin();
+    }
+
+    private static void ResetCharaSelected()
+    {
+        for (var i = Player.p1; i <= Player.p4; i++)
+        {
+            CharaSelected[(int)i] = false;
+            PlayerInpuController[(int)i].iCharaNum = Character.b0;
+        }
+    }
+
+    private static void ResetPlayerJoin()
+    {
+        PlayerJoin[0] = true;
+        for (var i = Player.p1; i <= Player.p4; i++)
+            PlayerJoin[(int)i + 1] = false;
+    }
+
+    private static void ResetPlayerController()
+    {
+        for (var i = Player.p1; i <= Player.p4; i++)
+            PlayerInpuController[(int)i].iController = "null";
+    }
 }
 
 public struct PlayerCantain
@@ -253,5 +319,20 @@ public enum Player
 
 public enum Character
 {
-    b1, b2, b3, b4,
+    b1, b2, b3, b4, b0,
+}
+
+//[输入相关]
+public struct ControllerInfo
+{
+    public Player iPlayerNum;
+    public Character iCharaNum;
+    public string iController;
+
+    public ControllerInfo(Player pn, Character cn, string c)
+    {
+        iPlayerNum = pn;
+        iCharaNum = cn;
+        iController = c;
+    }
 }
