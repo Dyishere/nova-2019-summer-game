@@ -94,7 +94,15 @@ public class PathFinding : MonoBehaviour
             {
                 if (x == 0 && y == 0)
                     continue;
-                if(xx + x >= 0&& xx + x< myGrid.nodeNumX && yy + y >= 0 && yy + y < myGrid.nodeNumY)
+                if (x == 1 && y == 1)
+                    continue;
+                if (x == -1 && y == 1)
+                    continue;
+                if (x == 1 && y == -1)
+                    continue;
+                if (x == -1 && y == -1)
+                    continue;
+                if (xx + x >= 0&& xx + x< myGrid.nodeNumX && yy + y >= 0 && yy + y < myGrid.nodeNumY)
                 {
                     neighbors.Add(myGrid.grid[xx + x, yy + y]);
                 }

@@ -151,6 +151,8 @@ public class CharSelect : MonoBehaviour
     // 按钮方法
     public void VerifyOnClick()
     {
+        if (ScoringSystom.CheckCharaJoin((Character)spriteIndex))
+            return;     //当该角色已被其他玩家选择时返回
         VerifyImage.SetActive(false);
         if (player == Player.p1 || player == Player.p3)
             Tips1.SetActive(true);
@@ -161,6 +163,11 @@ public class CharSelect : MonoBehaviour
         ScoringSystom.PlayerShow[(int)player].Show = true;
         ScoringSystom.PlayerShow[(int)player].character = (Character)spriteIndex;
         Verifyed = true;
+
+        //[输入相关]
+        ScoringSystom.PlayerInpuController[curPanelNum - 1].iCharaNum = (Character)spriteIndex;
+        ScoringSystom.PlayerJoin[curPanelNum] = true;
+        CharaCreator();
     }
 
     public void UnlockedOnClick()
@@ -209,14 +216,13 @@ public class CharSelect : MonoBehaviour
         ScoringSystom.PlayerInpuController[curPanelNum - 1].iCharaNum = (Character)spriteIndex;
         ScoringSystom.PlayerJoin[curPanelNum] = true;
         CharaCreator();
-        
     }
 
     private void UnlockedKeyDown()
     {
         LockedImage.SetActive(false);
         VerifyImage.SetActive(true);
-        unlock = false;    
+        unlock = false;
     }
 
     //[输入相关]
@@ -238,7 +244,8 @@ public class CharSelect : MonoBehaviour
             {
                 if (ScoringSystom.CheckControllerJoin("K"))
                     return;
-                UnlockedOnClick();
+                if (ScoringSystom.PlayerInpuController[curPanelNum - 1].iCharaNum == Character.b0)
+                    UnlockedOnClick();
                 curPlayerController = "K";
                 ScoringSystom.PlayerInpuController[curPanelNum-1].iController = curPlayerController;
             }
@@ -248,7 +255,8 @@ public class CharSelect : MonoBehaviour
                     {
                         if (ScoringSystom.CheckControllerJoin("J" + i))
                             return;
-                        UnlockedOnClick();
+                        if (ScoringSystom.PlayerInpuController[curPanelNum - 1].iCharaNum == Character.b0)
+                            UnlockedOnClick();
                         curPlayerController = "J" + i;
                         ScoringSystom.PlayerInpuController[curPanelNum-1].iController = curPlayerController;
                     }
@@ -258,13 +266,13 @@ public class CharSelect : MonoBehaviour
 
     private void CharaCreator()
     {
-        string nextPlayer = "Player" + ((int)ScoringSystom.PlayerInpuController[curPanelNum-1].iCharaNum+1);
-        Debug.Log(nextPlayer);
+        string charaChosed = "Player" + ((int)ScoringSystom.PlayerInpuController[curPanelNum-1].iCharaNum+1);
+        //Debug.Log(charaChosed);
         GameObject[] all = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];
         for (int i = 0; i < all.Length; i++)        //寻找被禁用的player
         {
             var item = all[i];
-            if (item.scene.isLoaded && item.name == nextPlayer)
+            if (item.scene.isLoaded && item.name == charaChosed)
             {
                 item.SetActive(true);
             }

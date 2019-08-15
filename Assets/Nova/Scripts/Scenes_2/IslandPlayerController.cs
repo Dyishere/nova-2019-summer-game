@@ -55,7 +55,7 @@ public class IslandPlayerController : MonoBehaviour
     {
         foreach (char c in gameObject.name)
             if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
-                curPlayerNum = Convert.ToInt32(c) - 48 - 1;
+                curCharaNum = Convert.ToInt32(c) - 48 - 1;
         int i = ScoringSystom.FindPlayerByChara((Character)curCharaNum);
         if (i == 5)
         {
