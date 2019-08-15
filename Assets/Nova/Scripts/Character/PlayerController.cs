@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     private bool inputDash = false;
 
     //[本角色的区分信息]
-    private int curPlayerNum;             //用于区分当前角色的编号
+    private int curCharaNum;        //用于区分当前角色的编号(0,1,2,3)
+    private int curPlayerNum;       //用于区分当前玩家的编号(0,1,2,3)
     public string curController;    //用于控制器与当前角色对应
 
     //[DoubleClick判定用]
@@ -28,33 +29,34 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         m_BirdPlatformerMovement = GetComponent<BirdPlatformerMovement>();
+        CheckCurrentChara();        //从scoringSystem获取该角色是否生成以及生成后的控制信息
+
     }
 
     private void Start()
     {
-        curController = "null";     //初始化
-        CheckCurrentPlayer();         //按gameObject名字获取当前角色编号后读取选角信息
+
     }
 
     private void Update()
     {
         //触发一次互动键来首次储存该角色的控制,例如键盘的互动键为e，触发一次后便可用键盘移动此角色。
-        ControllerJudgement();
+        //ControllerJudgement();
 
         //以传入的标签分别进行控制器的输入读取
         if (curController != "null")
             CharaController(curController);
 
         //测试用方法：当按下C时生成下一个角色，然后需要按下下一个角色的Action键绑定移动
-        if (Input.GetKeyDown(KeyCode.C))
-            NextPlayerCreator();
+        //if (Input.GetKeyDown(KeyCode.C))
+        //  NextPlayerCreator();
     }
 
     private void FixedUpdate()
     {
         InitialDoubleClick();
         m_BirdPlatformerMovement.Move(inputMove, ref inputJump, ref inputDash);
-        m_BirdPlatformerMovement.PickUp(inputPick, curPlayerNum);
+        m_BirdPlatformerMovement.PickUp(inputPick, curCharaNum);
     }
 
     private void ControllerJudgement()
@@ -83,19 +85,28 @@ public class PlayerController : MonoBehaviour
             inputDash = true;
     }       //已绑定控制器后分别读取输入
 
-    private void CheckCurrentPlayer()
+    private void CheckCurrentChara()
     {
-        if (curPlayerNum > 0)
-            return;
+        foreach (char c in gameObject.name)
+            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
+                curCharaNum = Convert.ToInt32(c) - 48 - 1;
+        int i = ScoringSystom.FindPlayerByChara((Character)curCharaNum);
+        if (i == 5)
+        {
+            curController = "null";
+            curPlayerNum = 5;
+            gameObject.SetActive(false);
+        }
         else
-            foreach (char c in gameObject.name)
-                if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
-                    curPlayerNum = Convert.ToInt32(c) - 48;
+        {
+            curController = ScoringSystom.PlayerInpuController[i].iController;
+            curPlayerNum = (int)ScoringSystom.PlayerInpuController[i].iPlayerNum;
+        }
     }       //获取当前玩家编号
 
     private void NextPlayerCreator()
     {
-        int nextNum = curPlayerNum + 1;
+        int nextNum = curCharaNum + 1;
         string nextPlayer = "Player" + nextNum;
         if (nextNum > 4)
         {

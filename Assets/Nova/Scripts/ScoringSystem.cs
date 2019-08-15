@@ -257,6 +257,14 @@ public static class ScoringSystom
         return "null";
     }
 
+    public static int FindPlayerByChara(Character c)
+    {
+        for (var i = Player.p1; i <= Player.p4; i++)
+            if (PlayerInpuController[(int)i].iCharaNum == c)
+                return (int)i;
+        return 5;
+    }
+
     public static void ResetInput()
     {
         ResetCharaSelected();

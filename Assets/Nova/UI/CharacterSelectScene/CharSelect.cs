@@ -31,13 +31,11 @@ public class CharSelect : MonoBehaviour
     private bool unlock = true;
 
     //[此栏操控的游戏角色信息]
-    public GameObject theCharaControlled;
     public int curCharacterNum;
     public int curPanelNum;
 
     //[此栏操控的玩家控制信息]
     public string curPlayerController;
-    private int time;
 
     private void Awake()
     {
@@ -194,6 +192,8 @@ public class CharSelect : MonoBehaviour
 
     private void VerifyKeyDown()
     {
+        if (ScoringSystom.CheckCharaJoin((Character)spriteIndex))
+            return;
         VerifyImage.SetActive(false);
         if (player == Player.p1 || player == Player.p3)
             Tips1.SetActive(true);
