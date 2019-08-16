@@ -5,14 +5,21 @@ using UnityEngine;
 public class GrappleMovement : MonoBehaviour
 {
     public float recoveringTime = 2f; //受伤后恢复的时间
-    public bool IsTree = false;
-    public bool IsPlayer = false;
-    public int catchPlayer = 0;
+    public float hp = 100f;
+    public float regionDamage; // 区域伤害
+    public bool isMovingToTree = false;
+    public bool isGrapplingEnemy = false;
+    public int grappledEnemyID = 0;
     Vector3 Pos = new Vector3();
 
 
     private bool isHurt = false;
 
+    private IslandPlayerController m_IslandPlayerController;
+    private void Awake()
+    {
+        m_IslandPlayerController = GetComponent<IslandPlayerController>();
+    }
     public void Move(float iMoveX, float iMoveY)
     {
         // 受伤期间无法操作
@@ -27,11 +34,11 @@ public class GrappleMovement : MonoBehaviour
         gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
 
 
-        if (IsPlayer == true)                     //拉敌人
+        if (isGrapplingEnemy == true)                     //拉敌人
         {
             GameObject temp = null;
 
-            switch (catchPlayer)
+            switch (grappledEnemyID)
             {
                 case 1:
                     temp = GameObject.Find("Player1");
@@ -53,8 +60,8 @@ public class GrappleMovement : MonoBehaviour
                 {
                     temp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                     temp.transform.position = gameObject.transform.position + (temp.transform.position - gameObject.transform.position).normalized * 3;
-                    IsPlayer = false;
-                    catchPlayer = 0;
+                    isGrapplingEnemy = false;
+                    grappledEnemyID = 0;
                     temp = null;
                 }
                 else
@@ -64,28 +71,62 @@ public class GrappleMovement : MonoBehaviour
             }
         }
 
-        if (IsTree == true)                      //把自己往树拉
+        if (isMovingToTree == true)                      //把自己往树拉
         {
             GameObject temp = GameObject.FindGameObjectWithTag("Tree");
             gameObject.GetComponent<Rigidbody2D>().velocity = (temp.transform.position - gameObject.transform.position).normalized * 10f;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // 如果触碰了陷阱
         // 请在这里添加陷阱条件
         if (false)
         {
-            GetHurt();
+            GetHurt(20);
         }
     }
-    private void GetHurt()
+
+    private float getRegionDamageRate = 0.2f; // 每过x秒，触发一次区域伤害 
+    private float getRegionDamageTimer = 0f;
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        IslandRegion m_Region = other.GetComponent<IslandRegion>();
+        if (m_Region == null) { return; }
+
+        if (m_Region.playerID != GetMyPlayerID())
+        {
+            getRegionDamageTimer += Time.deltaTime;
+            if (getRegionDamageTimer > getRegionDamageRate)
+            {
+                GetHurt(regionDamage);
+                getRegionDamageTimer = 0f;
+            }
+        }
+    }
+
+    private int GetMyPlayerID() // 低效操作，应该引用相关组件来获取ID值
+    {
+        switch (gameObject.name)
+        {
+            case "Player1": return 1;
+            case "Player2": return 2;
+            case "Player3": return 3;
+            case "Player4": return 4;
+            default: return -1;
+        }
+    }
+    private void GetHurt(float damage)
     {
         isHurt = true;
-
-        // 眩晕部分代码
         // m_Animator.SetBool("hurt", true);
+        hp -= damage;
+        if (hp < 0)
+        {
+            hp = 0f;
+            //死亡
+        }
         Invoke("Recover", recoveringTime);
     }
     private void Recover()

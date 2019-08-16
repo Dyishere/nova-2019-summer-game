@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
 
             }
         }
-        else if (move.IsTree == true)                      //如果子弹不能移动，并且勾到了树
+        else if (move.isMovingToTree == true)                      //如果子弹不能移动，并且勾到了树
         {                                                 //子弹静止
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             GameObject tree = GameObject.Find("Tree");
@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
             if (dis <= mixBulletLength)
             {
                 temp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                move.IsTree = false;
+                move.isMovingToTree = false;
                 gameObject.transform.position = temp.transform.position;
                 Stop = true;
                 nowIsReturnTime = false;
@@ -96,12 +96,12 @@ public class Bullet : MonoBehaviour
         {
             switch (collision.name)
             {
-                case "Player1": move.catchPlayer = 1; break;
-                case "Player2": move.catchPlayer = 2; break;
-                case "Player3": move.catchPlayer = 3; break;
-                case "Player4": move.catchPlayer = 4; break;
+                case "Player1": move.grappledEnemyID = 1; break;
+                case "Player2": move.grappledEnemyID = 2; break;
+                case "Player3": move.grappledEnemyID = 3; break;
+                case "Player4": move.grappledEnemyID = 4; break;
             }
-            move.IsPlayer = true;
+            move.isGrapplingEnemy = true;
             nowIsReturnTime = true;
         }
         if (collision.tag == "Tree")
@@ -109,7 +109,7 @@ public class Bullet : MonoBehaviour
             GameObject tree = GameObject.Find("Tree");                             //寻找目标树
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);   //子弹停止并移动到树的位置
             gameObject.transform.position = tree.transform.position;
-            move.IsTree = true;                                                    //让人物移动到树那里
+            move.isMovingToTree = true;                                                    //让人物移动到树那里
 
             Stop = true;                                                           //子弹停止移动，转动，重置子弹的发射和捕获
             nowIsReturnTime = true;
