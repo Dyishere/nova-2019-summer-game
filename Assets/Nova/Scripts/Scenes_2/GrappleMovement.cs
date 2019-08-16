@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class GrappleMovement : MonoBehaviour
 {
+    public float recoveringTime = 2f; //受伤后恢复的时间
     public bool IsTree = false;
     public bool IsPlayer = false;
     public int catchPlayer = 0;
     Vector3 Pos = new Vector3();
 
 
+    private bool isHurt = false;
+
     public void Move(float iMoveX, float iMoveY)
     {
-        //移动改这里
+        // 受伤期间无法操作
+        if (isHurt)
+        {
+            return;
+        }
 
         Pos.x = iMoveX;
         Pos.y = iMoveY;
 
         gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
-
-        //移动改这里
 
 
         if (IsPlayer == true)                     //拉敌人
@@ -64,5 +69,28 @@ public class GrappleMovement : MonoBehaviour
             GameObject temp = GameObject.FindGameObjectWithTag("Tree");
             gameObject.GetComponent<Rigidbody2D>().velocity = (temp.transform.position - gameObject.transform.position).normalized * 10f;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // 如果触碰了陷阱
+        // 请在这里添加陷阱条件
+        if (false)
+        {
+            GetHurt();
+        }
+    }
+    private void GetHurt()
+    {
+        isHurt = true;
+
+        // 眩晕部分代码
+        // m_Animator.SetBool("hurt", true);
+        Invoke("Recover", recoveringTime);
+    }
+    private void Recover()
+    {
+        isHurt = false;
+        // m_Animator.SetBool("hurt", false);
     }
 }
