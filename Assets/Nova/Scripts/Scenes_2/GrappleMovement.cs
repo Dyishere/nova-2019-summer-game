@@ -6,19 +6,22 @@ public class GrappleMovement : MonoBehaviour
 {
     public float recoveringTime = 2f; //受伤后恢复的时间
     public float hp = 100f;
-    public float regionDamage; // 区域伤害
+
     public bool isMovingToTree = false;
     public bool isGrapplingEnemy = false;
     public int grappledEnemyID = 0;
     Vector3 Pos = new Vector3();
 
-
+    public float regionDamage; // 区域伤害
+    public float regionGapDamage; // 浮岛之间间隔的伤害
     private bool isHurt = false;
 
     private IslandPlayerController m_IslandPlayerController;
+    private Rigidbody2D m_Rigidbody2D;
     private void Awake()
     {
         m_IslandPlayerController = GetComponent<IslandPlayerController>();
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
     }
     public void Move(float iMoveX, float iMoveY)
     {
@@ -31,8 +34,8 @@ public class GrappleMovement : MonoBehaviour
         Pos.x = iMoveX;
         Pos.y = iMoveY;
 
-        gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
-
+        // gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
+        m_Rigidbody2D.velocity = Pos.normalized * Time.deltaTime * 300f; // 魔法数字
 
         if (isGrapplingEnemy == true)                     //拉敌人
         {
@@ -88,35 +91,6 @@ public class GrappleMovement : MonoBehaviour
         }
     }
 
-    private float getRegionDamageRate = 0.2f; // 每过x秒，触发一次区域伤害 
-    private float getRegionDamageTimer = 0f;
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        IslandRegion m_Region = other.GetComponent<IslandRegion>();
-        if (m_Region == null) { return; }
-
-        if (m_Region.playerID != GetMyPlayerID())
-        {
-            getRegionDamageTimer += Time.deltaTime;
-            if (getRegionDamageTimer > getRegionDamageRate)
-            {
-                GetHurt(regionDamage);
-                getRegionDamageTimer = 0f;
-            }
-        }
-    }
-
-    private int GetMyPlayerID() // 低效操作，应该引用相关组件来获取ID值
-    {
-        switch (gameObject.name)
-        {
-            case "Player1": return 1;
-            case "Player2": return 2;
-            case "Player3": return 3;
-            case "Player4": return 4;
-            default: return -1;
-        }
-    }
     private void GetHurt(float damage)
     {
         isHurt = true;
@@ -128,6 +102,16 @@ public class GrappleMovement : MonoBehaviour
             //死亡
         }
         Invoke("Recover", recoveringTime);
+    }
+
+    public void GetRegionHurt(float damage)
+    {
+        hp -= damage;
+        if (hp < 0)
+        {
+            hp = 0f;
+            //死亡
+        }
     }
     private void Recover()
     {

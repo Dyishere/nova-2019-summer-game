@@ -27,8 +27,9 @@ public class IslandPlayerController : MonoBehaviour
 
     private void Start()
     {
-        CheckCurrentChara();         //按gameObject名字获取当前角色编号
-        LineController = GameObject.Find("Line" + (curCharaNum+1));
+        // CheckCurrentChara();         //按gameObject名字获取当前角色编号
+        CheckCurrentCharaTest();         //按gameObject名字获取当前角色编号
+        LineController = GameObject.Find("Line" + (curCharaNum + 1));
     }
 
     private void Update()
@@ -47,9 +48,17 @@ public class IslandPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_GrappleMovement.Move(inputHorizontal,inputVertical);
+        m_GrappleMovement.Move(inputHorizontal, inputVertical);
         LineController.GetComponent<Line>().Grapple(ref inputShoot, ref inputAim);
     }
+    private void CheckCurrentCharaTest()
+    {
+        foreach (char c in gameObject.name)
+            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
+                curCharaNum = Convert.ToInt32(c) - 48 - 1;
+        curController = "K";
+        curPlayerNum = 1;
+    }       //获取当前玩家编号
 
     private void CheckCurrentChara()
     {
