@@ -18,6 +18,6 @@ public class MSCcontral : MonoBehaviour
     public void BackToSelectPlayer()
     {
         ModeSelectCanvas.gameObject.SetActive(false);
-        OKButton.SetActive(true);
+        OKButton.GetComponent<Button>().interactable = true;
     }
 }

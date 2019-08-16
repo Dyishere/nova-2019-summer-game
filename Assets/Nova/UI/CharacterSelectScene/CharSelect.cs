@@ -28,7 +28,7 @@ public class CharSelect : MonoBehaviour
 
     // 
     private bool verifyImageShow = false;
-    private bool unlock = true;
+    public bool unlock = true;
 
     //[此栏操控的游戏角色信息]
     public int curCharacterNum;

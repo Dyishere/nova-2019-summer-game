@@ -5,6 +5,7 @@ using UnityEngine;
 public static class LoadSceneManager
 {
     public static Queue<String> SceneQueue = new Queue<string>();
+    public static List<String> GameList = new List<string>();
 
     public static void CleanSceneQueue()
     {

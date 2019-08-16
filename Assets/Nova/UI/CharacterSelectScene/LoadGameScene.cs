@@ -13,7 +13,6 @@ public class LoadGameScene : MonoBehaviour
     void Awake()
     {
         list = GameObject.Find("SceneList").GetComponent<SceneList>();
-        //load = GameObject.Find("LoadSceneNext(Clone)").GetComponent<LoadSceneNext>();
 
         this.GetComponent<Button>().onClick.AddListener(delegate {
             if (list.sceneList.Count == 0)
