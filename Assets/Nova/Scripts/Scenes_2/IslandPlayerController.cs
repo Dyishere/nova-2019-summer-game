@@ -28,7 +28,7 @@ public class IslandPlayerController : MonoBehaviour
     private void Start()
     {
         CheckCurrentChara();         //按gameObject名字获取当前角色编号
-        LineController = GameObject.Find("Line" + curPlayerNum);
+        LineController = GameObject.Find("Line" + (curCharaNum+1));
     }
 
     private void Update()
@@ -112,8 +112,8 @@ public class IslandPlayerController : MonoBehaviour
     {
         inputHorizontal = Input.GetAxis(cCurController + "Horizontal");
         inputVertical = Input.GetAxis(cCurController + "Vertical");
-        inputShoot = Input.GetButtonDown(cCurController + "Jump");
-        inputAim = Input.GetButtonDown(cCurController + "Action");
+        inputShoot = Input.GetButtonDown(cCurController + "Action");
+        inputAim = Input.GetButtonDown(cCurController + "Pick");
     }       //已绑定控制器后分别读取输入
 
 
