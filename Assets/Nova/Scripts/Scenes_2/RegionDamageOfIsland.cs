@@ -2,30 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 注意：浮岛之间的空隙 与 浮岛 边缘不能靠太近，否则会有双重伤害
-/// </summary>
-public class IslandRegion : MonoBehaviour
+public class RegionDamageOfIsland : MonoBehaviour
 {
-    public bool isGap;
-    public int playerID;
-
+    public int ownerPlayerID;
     public float regionDamage;
     private float getRegionDamageRate = 0.2f; // 每过x秒，触发一次区域伤害 
     private float getRegionDamageTimer = 0f;
     private void OnTriggerStay2D(Collider2D other)
     {
         // Debug.Log(other.gameObject.name);
-        GrappleMovement grappleMovement = other.GetComponent<GrappleMovement>();
-        if (grappleMovement == null)
+        PlayerHealth m_PlayerHealth = other.GetComponent<PlayerHealth>();
+        if (m_PlayerHealth == null)
             return;
 
-        if (isGap || playerID != GetPlayerIDTest(other.gameObject.name))
+        if (ownerPlayerID != GetPlayerIDTest(other.gameObject.name))
         {
             getRegionDamageTimer += Time.deltaTime;
             if (getRegionDamageTimer > getRegionDamageRate)
             {
-                grappleMovement.GetRegionHurt(regionDamage);
+                m_PlayerHealth.GetRegionHurt(regionDamage);
                 getRegionDamageTimer = 0f;
             }
         }
