@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 458825259}
   m_Layer: 10
   m_Name: greenEgg
-  m_TagString: Untagged
+  m_TagString: MissionProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 849188751}
   m_Layer: 10
   m_Name: redEgg
-  m_TagString: Untagged
+  m_TagString: MissionProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1373,7 +1373,7 @@ GameObject:
   - component: {fileID: 912077387}
   m_Layer: 10
   m_Name: yellowEgg
-  m_TagString: Untagged
+  m_TagString: MissionProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2055,7 +2055,7 @@ GameObject:
   - component: {fileID: 1354002878}
   m_Layer: 10
   m_Name: blueEgg
-  m_TagString: Untagged
+  m_TagString: MissionProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

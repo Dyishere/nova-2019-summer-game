@@ -711,7 +711,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.22913122, y: 1.6175914}
+  m_Offset: {x: -0.22913122, y: 1.875258}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -722,7 +722,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 4.071192}
+  m_Size: {x: 1, y: 1.4945374}
   m_EdgeRadius: 0
 --- !u!1 &260811960
 GameObject:
@@ -1855,13 +1855,14 @@ GameObject:
   - component: {fileID: 769440373}
   - component: {fileID: 769440372}
   - component: {fileID: 769440371}
+  - component: {fileID: 769440376}
   m_Layer: 0
   m_Name: Player4
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &769440370
 Transform:
   m_ObjectHideFlags: 0
@@ -2004,6 +2005,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &769440376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769440369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a9b6a950338014dac1c46328cc88e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnPorint: {fileID: 199979219}
+  hp: 100
 --- !u!1 &857941294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,13 +2033,14 @@ GameObject:
   - component: {fileID: 857941298}
   - component: {fileID: 857941297}
   - component: {fileID: 857941296}
+  - component: {fileID: 857941301}
   m_Layer: 0
   m_Name: Player3
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &857941295
 Transform:
   m_ObjectHideFlags: 0
@@ -2167,6 +2183,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &857941301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857941294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a9b6a950338014dac1c46328cc88e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnPorint: {fileID: 1719690817}
+  hp: 100
 --- !u!1 &899845368
 GameObject:
   m_ObjectHideFlags: 0
@@ -4616,7 +4646,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 46adc673becf6b94999c2f68df8fa115, type: 3}
-  m_Color: {r: 0.41869882, g: 0.9150943, b: 0.85898757, a: 1}
+  m_Color: {r: 0.9137255, g: 0.6188156, b: 0.41960782, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4847,13 +4877,14 @@ GameObject:
   - component: {fileID: 2062366859}
   - component: {fileID: 2062366858}
   - component: {fileID: 2062366857}
+  - component: {fileID: 2062366862}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2062366856
 Transform:
   m_ObjectHideFlags: 0
@@ -4996,6 +5027,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2062366862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062366855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a9b6a950338014dac1c46328cc88e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnPorint: {fileID: 1042102988}
+  hp: 100
 --- !u!1 &2095945849
 GameObject:
   m_ObjectHideFlags: 0

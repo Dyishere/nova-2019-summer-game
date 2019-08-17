@@ -13,9 +13,9 @@ public class DungeonCharaController : MonoBehaviour
     public string curController;    //用于控制器与当前角色对应
 
     //[安全区相关]
-    private bool areaHurtSwitch = false;
-    private bool inSafeArea = false;
-    private bool areaHurting;
+    public bool areaHurtSwitch = false;
+    public bool inSafeArea = false;
+    public bool areaHurting;
 
     //[捡拾相关]
     private string touchingProp = "null";        //玩家碰触的物品名字
@@ -56,6 +56,16 @@ public class DungeonCharaController : MonoBehaviour
         PickUp(inputPick, curPlayerNum);
         AreaHurtJudgement();
     }
+
+    private void CheckCurrentCharaTest()
+    {
+        foreach (char c in gameObject.name)
+            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
+                curCharaNum = Convert.ToInt32(c) - 48 - 1;
+        curController = "K";
+        curPlayerNum = 1;
+    }       //获取当前玩家编号
+
 
     private void Moving(float iHorizontal,float iVertical)
     {

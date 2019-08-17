@@ -7,6 +7,9 @@ TagManager:
   - SafeArea
   - Nest
   - Tree
+  - CatchPoint
+  - liatItem
+  - MissionProp
   layers:
   - Default
   - TransparentFX
