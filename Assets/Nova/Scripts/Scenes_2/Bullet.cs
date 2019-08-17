@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed = 20;              //子弹速度
     public float maxShotTime = 0.5f;            //发射出去最长的停留时间
     public int bulletRotateAngle = 3;           //子弹旋转角（旋转速度）
-    public float mixBulletLength = 6f;
+    public float mixBulletLength = 2f;
 
 
     bool nowIsReturnTime = false;               //是否停止转动
@@ -72,7 +72,7 @@ public class Bullet : MonoBehaviour
         else if (move.isMovingToTree == true)                      //如果子弹不能移动，并且勾到了树
         {                                                 //子弹静止
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            GameObject tree = GameObject.Find("Tree");
+            GameObject tree = GameObject.Find("CatchPoint");
             gameObject.transform.position = tree.transform.position;
 
             GameObject temp = MoveMaster;                 //在人到达和子弹最小距离时重置变量回收子弹
@@ -104,9 +104,9 @@ public class Bullet : MonoBehaviour
             move.isGrapplingEnemy = true;
             nowIsReturnTime = true;
         }
-        if (collision.tag == "Tree")
+        if (collision.tag == "CatchPoint")
         {
-            GameObject tree = GameObject.Find("Tree");                             //寻找目标树
+            GameObject tree = GameObject.Find("CatchPoint");                             //寻找目标树
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);   //子弹停止并移动到树的位置
             gameObject.transform.position = tree.transform.position;
             move.isMovingToTree = true;                                                    //让人物移动到树那里

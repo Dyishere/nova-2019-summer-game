@@ -7,6 +7,7 @@ public class GrappleMovement : MonoBehaviour
 
     public bool isMovingToTree = false;
     public bool isGrapplingEnemy = false;
+    public bool stopMoving = false;
     public int grappledEnemyID = 0;
     Vector3 Pos = new Vector3();
 
@@ -23,7 +24,11 @@ public class GrappleMovement : MonoBehaviour
         Pos.x = iMoveX;
         Pos.y = iMoveY;
 
-        gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
+        if(stopMoving == false)
+        {
+            gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
+        }
+        //gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
         // m_Rigidbody2D.velocity = Pos.normalized * Time.deltaTime * 300f; // 魔法数字
 
         if (isGrapplingEnemy == true)                     //拉敌人
@@ -48,10 +53,10 @@ public class GrappleMovement : MonoBehaviour
             if (temp != null)
             {
                 float dis = (transform.position - temp.transform.position).sqrMagnitude;
-                if (dis <= 6f)
+                if (dis <= 2f)
                 {
                     temp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                    temp.transform.position = gameObject.transform.position + (temp.transform.position - gameObject.transform.position).normalized * 3;
+                    temp.transform.position = gameObject.transform.position + (temp.transform.position - gameObject.transform.position).normalized * 1;
                     isGrapplingEnemy = false;
                     grappledEnemyID = 0;
                     temp = null;
@@ -65,7 +70,7 @@ public class GrappleMovement : MonoBehaviour
 
         if (isMovingToTree == true)                      //把自己往树拉
         {
-            GameObject temp = GameObject.FindGameObjectWithTag("Tree");
+            GameObject temp = GameObject.FindGameObjectWithTag("CatchPoint");
             gameObject.GetComponent<Rigidbody2D>().velocity = (temp.transform.position - gameObject.transform.position).normalized * 10f;
         }
     }

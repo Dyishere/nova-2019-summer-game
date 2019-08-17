@@ -36,7 +36,7 @@ public class Line : MonoBehaviour
                 bullet_.Stop = false;
             }
 
-            bullet.transform.position = new Vector3(transform.position.x + 2, transform.position.y, 0);
+            bullet.transform.position = new Vector3(transform.position.x + 0.75f, transform.position.y, 0);
 
             startRound = true;
             IsShotting = false;
