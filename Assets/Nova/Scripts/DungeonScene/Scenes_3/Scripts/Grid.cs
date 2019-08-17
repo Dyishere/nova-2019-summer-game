@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public GameObject G1, T1;//, G2, T2, G3, T3, G4, T4;
-    public Transform Gd1, Target1;//, Gb2, Target2, Gb3, Target3, Gb4, Target4;
-    Node playerNode, targetNode;
+    public GameObject G1, T1, G2, T2, G3, T3, G4, T4;
+    public Transform Gd1, Target1, Gd2, Target2, Gd3, Target3, Gd4, Target4;
+    Node playerNode1, targetNode1, playerNode2, targetNode2, playerNode3, targetNode3, playerNode4, targetNode4;
     public LayerMask unwalkableMask;
     public Vector2 gridSize;
     public float nodeRadius,nodeDiameter;
     public Node[,] grid;
-    public List<Node> path1;//,path2,path3,path4;
+    public List<Node> path1,path2,path3,path4;
     public int nodeNumX,nodeNumY;
     // Start is called before the first frame update
     void Start()
     {
         G1 = GameObject.Find("Guardian1");
-        //G2 = GameObject.Find("Guard2"); G3 = GameObject.Find("Guard3"); G4 = GameObject.Find("Guard4");
+        G2 = GameObject.Find("Guardian2"); G3 = GameObject.Find("Guardian3"); G4 = GameObject.Find("Guardian4");
         T1 = GameObject.Find("Player1");
+        T2 = GameObject.Find("Player2");
+        T3 = GameObject.Find("Player3");
+        T4 = GameObject.Find("Player4");
         nodeDiameter = nodeRadius * 2;
         nodeNumX = Mathf.RoundToInt(gridSize.x / nodeDiameter);
         nodeNumY = Mathf.RoundToInt(gridSize.y / nodeDiameter);
@@ -29,6 +32,12 @@ public class Grid : MonoBehaviour
     {
         Gd1 = G1.transform;
         Target1 = T1.transform;
+        Gd2 = G2.transform;
+        Target2 = T2.transform;
+        Gd3 = G3.transform;
+        Target3 = T3.transform;
+        Gd4 = G4.transform;
+        Target4 = T4.transform;
     }
     void CreateGrid()
     {
@@ -72,6 +81,27 @@ public class Grid : MonoBehaviour
                     if (GetNodeFromPosition(Target1.position) == n)
                         Gizmos.color = Color.white;
                     if ((path1 != null && path1.Contains(n)))
+                        Gizmos.color = Color.blue;
+                    //
+                    if (GetNodeFromPosition(Gd2.position) == n)
+                        Gizmos.color = Color.red;
+                    if (GetNodeFromPosition(Target2.position) == n)
+                        Gizmos.color = Color.white;
+                    if ((path2 != null && path2.Contains(n)))
+                        Gizmos.color = Color.blue;
+                    //
+                    if (GetNodeFromPosition(Gd3.position) == n)
+                        Gizmos.color = Color.red;
+                    if (GetNodeFromPosition(Target3.position) == n)
+                        Gizmos.color = Color.white;
+                    if ((path3 != null && path3.Contains(n)))
+                        Gizmos.color = Color.blue;
+                    //
+                    if (GetNodeFromPosition(Gd4.position) == n)
+                        Gizmos.color = Color.red;
+                    if (GetNodeFromPosition(Target4.position) == n)
+                        Gizmos.color = Color.white;
+                    if ((path4 != null && path4.Contains(n)))
                         Gizmos.color = Color.blue;
                     /*if (GetNodeFromPosition(Gd1.position) == n|| GetNodeFromPosition(Gd2.position) == n || GetNodeFromPosition(Gd3.position) == n || GetNodeFromPosition(Gd4.position) == n )
                         Gizmos.color = Color.red;

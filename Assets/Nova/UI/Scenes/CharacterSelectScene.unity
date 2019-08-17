@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9bcd0cd9b08eb42a435fa3c1948368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AddString: DungeonTestScene
+  AddString: Scenes_3
   Prefab: {fileID: 5121727346318417466, guid: 17ce1eece55da0848909487b98fc988c, type: 3}
 --- !u!1 &39255069
 GameObject:
@@ -7247,7 +7247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9bcd0cd9b08eb42a435fa3c1948368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AddString: Test_Scenes_2
+  AddString: Scenes_2
   Prefab: {fileID: 3012705711691543277, guid: a225e5d8838b0dd4a8f82b47b2963e45, type: 3}
 --- !u!1 &1341481728
 GameObject:

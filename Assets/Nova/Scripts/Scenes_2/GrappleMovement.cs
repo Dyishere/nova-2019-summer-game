@@ -23,8 +23,8 @@ public class GrappleMovement : MonoBehaviour
         Pos.x = iMoveX;
         Pos.y = iMoveY;
 
-        // gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
-        m_Rigidbody2D.velocity = Pos.normalized * Time.deltaTime * 300f; // 魔法数字
+        gameObject.transform.position = gameObject.transform.position + (Pos.normalized) * Time.deltaTime * 3;
+        // m_Rigidbody2D.velocity = Pos.normalized * Time.deltaTime * 300f; // 魔法数字
 
         if (isGrapplingEnemy == true)                     //拉敌人
         {

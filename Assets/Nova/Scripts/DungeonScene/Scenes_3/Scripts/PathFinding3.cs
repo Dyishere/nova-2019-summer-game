@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFinding : MonoBehaviour
+public class PathFinding3 : MonoBehaviour
 {
     Grid myGrid;
 
@@ -71,7 +71,7 @@ public class PathFinding : MonoBehaviour
             n = n.parent;
         }
         p.Reverse();                  //翻转
-        myGrid.path1 = p;
+        myGrid.path3 = p;
     }
 
     int GetDistance(Node n1,Node n2)
@@ -113,10 +113,10 @@ public class PathFinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindPath(myGrid.Gd1.position, myGrid.Target1.position,myGrid.path1);
-        //FindPath(myGrid.Player2.position, myGrid.Target2.position, myGrid.path2);
-        //FindPath(myGrid.Player3.position, myGrid.Target3.position, myGrid.path3);
-        //FindPath(myGrid.Player4.position, myGrid.Target4.position, myGrid.path4);
+        //FindPath(myGrid.Gd1.position, myGrid.Target1.position,myGrid.path1);
+        //FindPath(myGrid.Gd2.position, myGrid.Target2.position, myGrid.path2);
+        FindPath(myGrid.Gd3.position, myGrid.Target3.position, myGrid.path3);
+        //FindPath(myGrid.Gd4.position, myGrid.Target4.position, myGrid.path4);
     }
 
 }

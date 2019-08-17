@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Guardian1 : MonoBehaviour
+public class Guardian2 : MonoBehaviour
 {
     public float maxSpeed = 3f;
     GameObject PathFind;
     Grid myGrid;
-    public List<Node> path;
+    List<Node> path;
     // Start is called before the first frame update
     void Start()
     {
         PathFind = GameObject.Find("AstarPath");
         myGrid = PathFind.GetComponent<Grid>();
-        //path = myGrid.path1;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-            path = myGrid.path1;
+            path = myGrid.path2;
         
         /*if()              //(待实现)Target不再可用
         {
