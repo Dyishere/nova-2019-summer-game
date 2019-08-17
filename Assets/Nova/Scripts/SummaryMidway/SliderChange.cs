@@ -9,16 +9,12 @@ public class SliderChange : MonoBehaviour
     public Player player;
     public bool done;
 
-    //test
-    public int _score;
-
     private int score;
     private List<PlayerCantain> hightScore;
     private float valueShouldBe;
 
     void Start()
     {
-        ScoringSystom.ChangePlayerScore(player, _score);
         done = false;
         score = ScoringSystom.ReturnScoreByEnum(player);
         if (score < 0)

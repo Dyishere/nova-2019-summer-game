@@ -22,7 +22,10 @@ public class SceneList : MonoBehaviour
         foreach (var x in sceneList)
         {
             if (x.Flag)
+            {
                 LoadSceneManager.SceneQueue.Enqueue(x.sceneName);
+                LoadSceneManager.GameList.Add(x.sceneName);
+            }
         }
     }
 }
