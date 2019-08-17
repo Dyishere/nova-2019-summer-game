@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderChange : MonoBehaviour
+public class SliderControl : MonoBehaviour
 {
     public Slider slider;
     public Player player;
     public bool done;
+    public bool isWinner;
 
-    private int score;
-    private List<PlayerCantain> hightScore;
+    private int feather;
+    private List<PlayerCantain> hightFeather;
     private float valueShouldBe;
 
     void Start()
     {
+        isWinner = false;
         done = false;
-        score = ScoringSystom.ReturnScoreByEnum(player);
-        if (score < 0)
-            score = 0;
-        hightScore = ScoringSystom.FindMaxScore();
-        valueShouldBe = (float)score / hightScore[0].s;
+        feather = ScoringSystom.ReturnFeathersByEnum(player);
+        if (feather < 0)
+            feather = 0;
+        hightFeather = ScoringSystom.FindMaxFeather();
+        valueShouldBe = (float)feather / hightFeather[0].s;
         slider.value = 0f;
-
-        if (score == hightScore[0].s)
-            ScoringSystom.ChangePlayerScore(player, 1);
+        if (feather == hightFeather[0].f)
+            isWinner = true;
     }
 
     void Update()

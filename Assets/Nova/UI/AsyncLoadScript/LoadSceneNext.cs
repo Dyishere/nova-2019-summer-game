@@ -19,6 +19,6 @@ public class LoadSceneNext : MonoBehaviour
     public void CleanSceneList()
     {
         q.Clear();
-        q.Enqueue("StartScene");
+        q.Enqueue("SummaryScene");
     }
 }

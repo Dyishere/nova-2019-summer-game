@@ -10,7 +10,7 @@ public static class LoadSceneManager
     public static void CleanSceneQueue()
     {
         SceneQueue.Clear();
-        SceneQueue.Enqueue(Scenes.StartScene.ToString());
+        SceneQueue.Enqueue(Scenes.SummaryScene.ToString());
     }
 
     public static void InsertSceneToQueue(string SceneNameToLoadNext)
@@ -28,4 +28,5 @@ public enum Scenes
 {
     StartScene,
     CharacterSelectScene,
+    SummaryScene,
 }

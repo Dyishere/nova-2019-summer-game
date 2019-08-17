@@ -5,8 +5,8 @@ using UnityEngine;
 public static class ScoringSystom
 {
     
-    private static int[] _playerScore = new int[4];
-    private static int[] _playerFeathers = new int[4];
+    private static int[] _playerScore = { 0, 0, 0, 0};
+    private static int[] _playerFeathers = { 0, 0, 0, 0};
 
     public static PlayerChar[] PlayerShow = {
         new PlayerChar(false, Character.b1),
