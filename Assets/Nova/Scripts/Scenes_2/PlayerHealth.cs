@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public Transform RespawnPorint;
+    public Transform RespawnPoint;
     public float hp = 100f;
+    private GrappleMovement m_grappleMovement;
+    private void Awake()
+    {
+        m_grappleMovement = GetComponent<GrappleMovement>();
+    }
     public void GetRegionHurt(float damage)
     {
+        if (m_grappleMovement.isMovingToTree) return;
+
         hp -= damage;
         if (hp < 0)
         {
@@ -22,6 +29,6 @@ public class PlayerHealth : MonoBehaviour
     }
     public void Respawn()
     {
-        transform.position = RespawnPorint.position;
+        transform.position = RespawnPoint.position;
     }
 }
