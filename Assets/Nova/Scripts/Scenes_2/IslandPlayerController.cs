@@ -27,8 +27,8 @@ public class IslandPlayerController : MonoBehaviour
 
     private void Start()
     {
-        CheckCurrentChara();        // 按gameObject名字获取当前角色编号
-        // CheckCurrentCharaTest(); // 当前场景进行测试时采用此行代码，若要进行选角流程则取用上面的代码
+        //CheckCurrentChara();        // 按gameObject名字获取当前角色编号
+         CheckCurrentCharaTest(); // 当前场景进行测试时采用此行代码，若要进行选角流程则取用上面的代码
         LineController = GameObject.Find("Line" + (curCharaNum + 1));
     }
 
