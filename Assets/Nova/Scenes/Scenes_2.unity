@@ -135,12 +135,12 @@ PrefabInstance:
     - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11265129476192452, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
@@ -216,6 +216,16 @@ PrefabInstance:
         type: 3}
       propertyPath: mixBulletLength
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: Stop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: bulletRotateAngle
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce, type: 3}
@@ -352,7 +362,12 @@ PrefabInstance:
     - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11265129476192452, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
@@ -429,6 +444,16 @@ PrefabInstance:
       propertyPath: mixBulletLength
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: Stop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: bulletRotateAngle
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce, type: 3}
 --- !u!1 &160084436
@@ -474,7 +499,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 160084436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783c3c2289502e44aa5e690eaad3e39a, type: 3}
+  m_Script: {fileID: 11500000, guid: 463c27cc1e677b649b05e79ca377e632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!58 &160084439
@@ -754,7 +779,6 @@ GameObject:
   - component: {fileID: 260811962}
   - component: {fileID: 260811965}
   - component: {fileID: 260811964}
-  - component: {fileID: 260811963}
   m_Layer: 8
   m_Name: Player4_Home
   m_TagString: Untagged
@@ -825,18 +849,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &260811963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260811960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783c3c2289502e44aa5e690eaad3e39a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &260811964
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -913,7 +925,6 @@ GameObject:
   - component: {fileID: 281438920}
   - component: {fileID: 281438923}
   - component: {fileID: 281438922}
-  - component: {fileID: 281438921}
   m_Layer: 8
   m_Name: Player2_Home
   m_TagString: Untagged
@@ -984,18 +995,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &281438921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281438918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783c3c2289502e44aa5e690eaad3e39a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &281438922
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1073,7 +1072,7 @@ GameObject:
   - component: {fileID: 363099736}
   m_Layer: 0
   m_Name: Line1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1296,7 +1295,6 @@ GameObject:
   - component: {fileID: 660393413}
   - component: {fileID: 660393415}
   - component: {fileID: 660393414}
-  - component: {fileID: 660393416}
   m_Layer: 8
   m_Name: Player1_Home
   m_TagString: Untagged
@@ -1430,18 +1428,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &660393416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660393411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783c3c2289502e44aa5e690eaad3e39a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &673127191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,7 +1441,7 @@ GameObject:
   - component: {fileID: 673127192}
   m_Layer: 0
   m_Name: Line3
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1874,13 +1860,13 @@ GameObject:
   - component: {fileID: 769440372}
   - component: {fileID: 769440371}
   - component: {fileID: 769440376}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player3
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &769440370
 Transform:
   m_ObjectHideFlags: 0
@@ -2035,7 +2021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a9b6a950338014dac1c46328cc88e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 0}
+  RespawnPoint: {fileID: 199979219}
   hp: 100
 --- !u!1 &857941294
 GameObject:
@@ -2052,13 +2038,13 @@ GameObject:
   - component: {fileID: 857941297}
   - component: {fileID: 857941296}
   - component: {fileID: 857941301}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player4
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &857941295
 Transform:
   m_ObjectHideFlags: 0
@@ -2213,7 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a9b6a950338014dac1c46328cc88e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 0}
+  RespawnPoint: {fileID: 1719690817}
   hp: 100
 --- !u!1 &899845368
 GameObject:
@@ -2625,7 +2611,7 @@ GameObject:
   - component: {fileID: 969480629}
   - component: {fileID: 969480628}
   - component: {fileID: 969480627}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: CatchPoint
   m_TagString: CatchPoint
   m_Icon: {fileID: 0}
@@ -2991,7 +2977,7 @@ GameObject:
   - component: {fileID: 1203733891}
   m_Layer: 0
   m_Name: Line2
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3453,7 +3439,6 @@ GameObject:
   - component: {fileID: 1339454862}
   - component: {fileID: 1339454865}
   - component: {fileID: 1339454864}
-  - component: {fileID: 1339454863}
   m_Layer: 8
   m_Name: Player3_Home
   m_TagString: Untagged
@@ -3524,18 +3509,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1339454863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339454860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783c3c2289502e44aa5e690eaad3e39a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &1339454864
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3863,7 +3836,7 @@ GameObject:
   - component: {fileID: 1491126538}
   m_Layer: 0
   m_Name: Line4
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4009,7 +3982,12 @@ PrefabInstance:
     - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11265129476192452, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
@@ -4085,6 +4063,16 @@ PrefabInstance:
         type: 3}
       propertyPath: mixBulletLength
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: Stop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: bulletRotateAngle
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce, type: 3}
@@ -4516,13 +4504,13 @@ GameObject:
   - component: {fileID: 1997509637}
   - component: {fileID: 1997509636}
   - component: {fileID: 1997509635}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1997509634
 Transform:
   m_ObjectHideFlags: 0
@@ -4694,7 +4682,12 @@ PrefabInstance:
     - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812898336257681082, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11265129476192452, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
         type: 3}
@@ -4770,6 +4763,16 @@ PrefabInstance:
         type: 3}
       propertyPath: mixBulletLength
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: Stop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591599016218760857, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce,
+        type: 3}
+      propertyPath: bulletRotateAngle
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4536db8d07cdc4f8f8c2f3cd8e51ce, type: 3}
@@ -4906,7 +4909,7 @@ GameObject:
   - component: {fileID: 2062366858}
   - component: {fileID: 2062366857}
   - component: {fileID: 2062366862}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5067,7 +5070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a9b6a950338014dac1c46328cc88e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 0}
+  RespawnPoint: {fileID: 1042102988}
   hp: 100
 --- !u!1 &2095945849
 GameObject:

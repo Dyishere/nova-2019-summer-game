@@ -35,6 +35,10 @@ public class Line : MonoBehaviour
             {
                 bullet_.Stop = false;
             }
+            if(bullet_.followPlayer == true)
+            {
+                bullet_.followPlayer = false;
+            }
 
             bullet.transform.position = new Vector3(transform.position.x + 0.75f, transform.position.y, 0);
 

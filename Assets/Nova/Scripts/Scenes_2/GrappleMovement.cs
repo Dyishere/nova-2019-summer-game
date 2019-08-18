@@ -55,6 +55,7 @@ public class GrappleMovement : MonoBehaviour
                 float dis = (transform.position - temp.transform.position).sqrMagnitude;
                 if (dis <= 2f)
                 {
+                    temp.layer = 14;
                     temp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                     temp.transform.position = gameObject.transform.position + (temp.transform.position - gameObject.transform.position).normalized * 1;
                     isGrapplingEnemy = false;
@@ -63,6 +64,7 @@ public class GrappleMovement : MonoBehaviour
                 }
                 else
                 {
+                    temp.layer = 16;
                     temp.GetComponent<Rigidbody2D>().velocity = (gameObject.transform.position - temp.transform.position).normalized * 20f;
                 }
             }
@@ -70,6 +72,7 @@ public class GrappleMovement : MonoBehaviour
 
         if (isMovingToTree == true)                      //把自己往树拉
         {
+            gameObject.layer = 16;
             GameObject temp = GameObject.FindGameObjectWithTag("CatchPoint");
             gameObject.GetComponent<Rigidbody2D>().velocity = (temp.transform.position - gameObject.transform.position).normalized * 10f;
         }

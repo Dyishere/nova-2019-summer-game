@@ -11,8 +11,9 @@ public class Bullet : MonoBehaviour
     public bool enAbleToCatchPlayer = false;    //判断是否可以捕捉玩家（旋转时不捕捉）
     public float bulletSpeed = 20;              //子弹速度
     public float maxShotTime = 0.5f;            //发射出去最长的停留时间
-    public int bulletRotateAngle = 3;           //子弹旋转角（旋转速度）
+    public int bulletRotateAngle = 2;           //子弹旋转角（旋转速度）
     public float mixBulletLength = 2f;
+    public bool followPlayer = true;
 
 
     bool nowIsReturnTime = false;               //是否停止转动
@@ -32,42 +33,87 @@ public class Bullet : MonoBehaviour
     {
         if (Stop == false)                                      //如果子弹不停止
         {
-            if (line.IsShotting == false)                    //如果发射是 否，那么旋转，并更新开始时间，等到发射的时候就是
-            {                                                //刚好发射的时间
-                GameObject temp = MoveMaster;
-                gameObject.transform.RotateAround(temp.transform.position, new Vector3(0, 0, 1), bulletRotateAngle);
-                startTime = Time.time;
-            }
-            else if (nowIsReturnTime == false)               //如果发射是 是，并且还没到返回时间
+            if(followPlayer == false)
             {
-                GameObject temp = MoveMaster;                //给子弹速度
-                shotVelocity = (gameObject.transform.position - temp.transform.position).normalized * bulletSpeed;
-                gameObject.GetComponent<Rigidbody2D>().velocity = shotVelocity;
-                endTime = Time.time;                         //记录时间，如果到达最大返回时间，返回子弹
-                if (endTime - startTime >= maxShotTime)
+                if (line.IsShotting == false)                    //如果发射是 否，那么旋转，并更新开始时间，等到发射的时候就是
+                {                                                //刚好发射的时间
+                    GameObject temp = MoveMaster;
+                    gameObject.transform.RotateAround(temp.transform.position, new Vector3(0, 0, 1), bulletRotateAngle);
+                    startTime = Time.time;
+                }
+                else if (nowIsReturnTime == false)               //如果发射是 是，并且还没到返回时间
                 {
-                    nowIsReturnTime = true;
+                    GameObject temp = MoveMaster;                //给子弹速度
+                    shotVelocity = (gameObject.transform.position - temp.transform.position).normalized * bulletSpeed;
+                    gameObject.GetComponent<Rigidbody2D>().velocity = shotVelocity;
+                    endTime = Time.time;                         //记录时间，如果到达最大返回时间，返回子弹
+                    if (endTime - startTime >= maxShotTime)
+                    {
+                        nowIsReturnTime = true;
+                    }
+                }
+                else                                            //返回子弹
+                {
+                    GameObject temp = MoveMaster;
+                    shotVelocity = (gameObject.transform.position - temp.transform.position).normalized * bulletSpeed;
+                    GetComponent<Rigidbody2D>().velocity = -1 * shotVelocity;
+
+                    //如果当距离小于最小距离，那么回收子弹并且重置变量
+                    float dis = (gameObject.transform.position - temp.transform.position).sqrMagnitude;
+                    if (dis <= mixBulletLength)
+                    {
+                        gameObject.transform.position = temp.transform.position;
+                        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                        followPlayer = true;
+                        Stop = true;
+                        nowIsReturnTime = false;
+                        line.IsShotting = false;
+                        line.startRound = false;
+                    }
+
                 }
             }
-            else                                            //返回子弹
+            else
             {
-                GameObject temp = MoveMaster;
-                shotVelocity = (gameObject.transform.position - temp.transform.position).normalized * bulletSpeed;
-                GetComponent<Rigidbody2D>().velocity = -1 * shotVelocity;
-
-                //如果当距离小于最小距离，那么回收子弹并且重置变量
-                float dis = (gameObject.transform.position - temp.transform.position).sqrMagnitude;
-                if (dis <= 6f)
-                {
-                    gameObject.transform.position = temp.transform.position;
-                    gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                    Stop = true;
-                    nowIsReturnTime = false;
-                    line.IsShotting = false;
-                    line.startRound = false;
-                }
-
+                gameObject.transform.position = MoveMaster.transform.position;
             }
+
+            //if (line.IsShotting == false)                    //如果发射是 否，那么旋转，并更新开始时间，等到发射的时候就是
+            //{                                                //刚好发射的时间
+            //    GameObject temp = MoveMaster;
+            //    gameObject.transform.RotateAround(temp.transform.position, new Vector3(0, 0, 1), bulletRotateAngle);
+            //    startTime = Time.time;
+            //}
+            //else if (nowIsReturnTime == false)               //如果发射是 是，并且还没到返回时间
+            //{
+            //    GameObject temp = MoveMaster;                //给子弹速度
+            //    shotVelocity = (gameObject.transform.position - temp.transform.position).normalized * bulletSpeed;
+            //    gameObject.GetComponent<Rigidbody2D>().velocity = shotVelocity;
+            //    endTime = Time.time;                         //记录时间，如果到达最大返回时间，返回子弹
+            //    if (endTime - startTime >= maxShotTime)
+            //    {
+            //        nowIsReturnTime = true;
+            //    }
+            //}
+            //else                                            //返回子弹
+            //{
+            //    GameObject temp = MoveMaster;
+            //    shotVelocity = (gameObject.transform.position - temp.transform.position).normalized * bulletSpeed;
+            //    GetComponent<Rigidbody2D>().velocity = -1 * shotVelocity;
+
+            //    //如果当距离小于最小距离，那么回收子弹并且重置变量
+            //    float dis = (gameObject.transform.position - temp.transform.position).sqrMagnitude;
+            //    if (dis <= 6f)
+            //    {
+            //        gameObject.transform.position = temp.transform.position;
+            //        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            //        Stop = true;
+            //        nowIsReturnTime = false;
+            //        line.IsShotting = false;
+            //        line.startRound = false;
+            //    }
+
+            //}
         }
         else if (move.isMovingToTree == true)                      //如果子弹不能移动，并且勾到了树
         {                                                 //子弹静止
@@ -82,6 +128,7 @@ public class Bullet : MonoBehaviour
                 temp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 move.isMovingToTree = false;
                 gameObject.transform.position = temp.transform.position;
+                followPlayer = true;
                 Stop = true;
                 nowIsReturnTime = false;
                 line.IsShotting = false;
@@ -111,10 +158,12 @@ public class Bullet : MonoBehaviour
             gameObject.transform.position = tree.transform.position;
             move.isMovingToTree = true;                                                    //让人物移动到树那里
 
+            followPlayer = true;
             Stop = true;                                                           //子弹停止移动，转动，重置子弹的发射和捕获
             nowIsReturnTime = true;
             line.IsShotting = true;
             enAbleToCatchPlayer = true;
+
         }
 
     }

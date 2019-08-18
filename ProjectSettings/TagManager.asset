@@ -26,8 +26,8 @@ TagManager:
   - TileMap
   - Stick
   - Player
-  - Flying
-  - 
+  - Bullet
+  - beCatched
   - 
   - 
   - 
