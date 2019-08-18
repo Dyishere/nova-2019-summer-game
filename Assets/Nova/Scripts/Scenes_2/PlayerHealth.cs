@@ -16,10 +16,12 @@ public class PlayerHealth : MonoBehaviour
         if (m_grappleMovement.isMovingToTree) return;
 
         hp -= damage;
+        Debug.Log(gameObject.name + " now Hp is" + hp);
         if (hp < 0)
         {
             hp = 0f;
             Die();
+            //Respawn();
         }
     }
 

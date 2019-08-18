@@ -6,14 +6,18 @@ public class RegionDamageOfGap : MonoBehaviour
 {
     public float gapDamage;
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         // Debug.Log(other.gameObject.name);
         PlayerHealth m_PlayerHealth = other.GetComponent<PlayerHealth>();
+        GrappleMovement m_GrappleMovement = other.GetComponent<GrappleMovement>();
         if (m_PlayerHealth == null)
             return;
-        m_PlayerHealth.GetRegionHurt(gapDamage);
-        m_PlayerHealth.Respawn();
+        if(m_GrappleMovement.isMovingToTree == false && other.gameObject.layer == 14)
+        {
+            m_PlayerHealth.GetRegionHurt(gapDamage);
+            m_PlayerHealth.Respawn();
+        }
     }
 
     // private int GetPlayerIDTest(string name) // 低效操作，应该引用相关组件来获取ID值
