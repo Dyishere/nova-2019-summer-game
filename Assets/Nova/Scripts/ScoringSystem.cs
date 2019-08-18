@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ScoringSystom
+public static class ScoringSystem
 {
     
     private static int[] _playerScore = { 0, 0, 0, 0};

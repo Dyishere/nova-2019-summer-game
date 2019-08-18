@@ -51,23 +51,23 @@ public class Egg : MonoBehaviour
             switch(player)
             {
                 case 1:
-                    ScoringSystom.ChangePlayerScore(Player.p1, 40);
-                    Debug.Log("Player1的分数是：" + ScoringSystom.P1Score);
+                    ScoringSystem.ChangePlayerScore(Player.p1, 40);
+                    Debug.Log("Player1的分数是：" + ScoringSystem.P1Score);
                     EggDestroy();
                     break;
                 case 2:
-                    ScoringSystom.ChangePlayerScore(Player.p2, 40);
-                    Debug.Log("Player2的分数是：" + ScoringSystom.P2Score);
+                    ScoringSystem.ChangePlayerScore(Player.p2, 40);
+                    Debug.Log("Player2的分数是：" + ScoringSystem.P2Score);
                     EggDestroy();
                     break;
                 case 3:
-                    ScoringSystom.ChangePlayerScore(Player.p3, 40);
-                    Debug.Log("Player3的分数是：" + ScoringSystom.P3Score);
+                    ScoringSystem.ChangePlayerScore(Player.p3, 40);
+                    Debug.Log("Player3的分数是：" + ScoringSystem.P3Score);
                     EggDestroy();
                     break;
                 case 4:
-                    ScoringSystom.ChangePlayerScore(Player.p4, 40);
-                    Debug.Log("Player4的分数是：" + ScoringSystom.P4Score);
+                    ScoringSystem.ChangePlayerScore(Player.p4, 40);
+                    Debug.Log("Player4的分数是：" + ScoringSystem.P4Score);
                     EggDestroy();
                     break;
             }
@@ -77,23 +77,23 @@ public class Egg : MonoBehaviour
             switch(nestName)
             {
                 case "nest1":
-                    ScoringSystom.ChangePlayerScore(Player.p1, -25);
-                    Debug.Log("Player1的分数是：" + ScoringSystom.P1Score);
+                    ScoringSystem.ChangePlayerScore(Player.p1, -25);
+                    Debug.Log("Player1的分数是：" + ScoringSystem.P1Score);
                     EggDestroy();
                     break;
                 case "nest2":
-                    ScoringSystom.ChangePlayerScore(Player.p2, -25);
-                    Debug.Log("Player2的分数是：" + ScoringSystom.P2Score);
+                    ScoringSystem.ChangePlayerScore(Player.p2, -25);
+                    Debug.Log("Player2的分数是：" + ScoringSystem.P2Score);
                     EggDestroy();
                     break;
                 case "nest3":
-                    ScoringSystom.ChangePlayerScore(Player.p3, -25);
-                    Debug.Log("Player3的分数是：" + ScoringSystom.P3Score);
+                    ScoringSystem.ChangePlayerScore(Player.p3, -25);
+                    Debug.Log("Player3的分数是：" + ScoringSystem.P3Score);
                     EggDestroy();
                     break;
                 case "nest4":
-                    ScoringSystom.ChangePlayerScore(Player.p4, -25);
-                    Debug.Log("Player4的分数是：" + ScoringSystom.P4Score);
+                    ScoringSystem.ChangePlayerScore(Player.p4, -25);
+                    Debug.Log("Player4的分数是：" + ScoringSystem.P4Score);
                     EggDestroy();
                     break;
             }

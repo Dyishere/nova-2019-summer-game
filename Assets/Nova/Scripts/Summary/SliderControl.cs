@@ -18,10 +18,10 @@ public class SliderControl : MonoBehaviour
     {
         isWinner = false;
         done = false;
-        feather = ScoringSystom.ReturnFeathersByEnum(player);
+        feather = ScoringSystem.ReturnFeathersByEnum(player);
         if (feather < 0)
             feather = 0;
-        hightFeather = ScoringSystom.FindMaxFeather();
+        hightFeather = ScoringSystem.FindMaxFeather();
         valueShouldBe = (float)feather / hightFeather[0].s;
         slider.value = 0f;
         if (feather == hightFeather[0].f)

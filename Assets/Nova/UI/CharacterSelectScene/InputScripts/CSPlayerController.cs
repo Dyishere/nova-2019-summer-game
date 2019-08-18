@@ -63,7 +63,7 @@ public class CSPlayerController : MonoBehaviour
 
     private void ControllerJudgement()
     {
-        curController = ScoringSystom.FindControllerByChara((Character)(curCharaNum-1));
+        curController = ScoringSystem.FindControllerByChara((Character)(curCharaNum-1));
         moveable = true;
     }
     /*

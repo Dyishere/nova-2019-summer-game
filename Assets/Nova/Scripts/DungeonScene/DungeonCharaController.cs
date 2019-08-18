@@ -102,7 +102,7 @@ public class DungeonCharaController : MonoBehaviour
         foreach (char c in gameObject.name)
             if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
                 curCharaNum = Convert.ToInt32(c) - 48 - 1;
-        int i = ScoringSystom.FindPlayerByChara((Character)curCharaNum);
+        int i = ScoringSystem.FindPlayerByChara((Character)curCharaNum);
         if (i == 5)
         {
             curController = "null";
@@ -111,8 +111,8 @@ public class DungeonCharaController : MonoBehaviour
         }
         else
         {
-            curController = ScoringSystom.PlayerInpuController[i].iController;
-            curPlayerNum = (int)ScoringSystom.PlayerInpuController[i].iPlayerNum;
+            curController = ScoringSystem.PlayerInpuController[i].iController;
+            curPlayerNum = (int)ScoringSystem.PlayerInpuController[i].iPlayerNum;
         }
     }       //获取当前玩家编号
 

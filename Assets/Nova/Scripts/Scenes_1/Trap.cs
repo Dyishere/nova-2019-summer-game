@@ -22,23 +22,23 @@ public class Trap : MonoBehaviour
         switch(collision.name)
         {
             case "Player1":
-                ScoringSystom.ChangePlayerScore(Player.p1, -10);
-                Debug.Log("Player1的分数是：" + ScoringSystom.P1Score);
+                ScoringSystem.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player1的分数是：" + ScoringSystem.P1Score);
                 TrapDestroy();
                 break;
             case "Player2":
-                ScoringSystom.ChangePlayerScore(Player.p1, -10);
-                Debug.Log("Player2的分数是：" + ScoringSystom.P2Score);
+                ScoringSystem.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player2的分数是：" + ScoringSystem.P2Score);
                 TrapDestroy();
                 break;
             case "Player3":
-                ScoringSystom.ChangePlayerScore(Player.p1, -10);
-                Debug.Log("Player3的分数是：" + ScoringSystom.P3Score);
+                ScoringSystem.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player3的分数是：" + ScoringSystem.P3Score);
                 TrapDestroy();
                 break;
             case "Player4":
-                ScoringSystom.ChangePlayerScore(Player.p1, -10);
-                Debug.Log("Player4的分数是：" + ScoringSystom.P4Score);
+                ScoringSystem.ChangePlayerScore(Player.p1, -10);
+                Debug.Log("Player4的分数是：" + ScoringSystem.P4Score);
                 TrapDestroy();
                 break;
         }
