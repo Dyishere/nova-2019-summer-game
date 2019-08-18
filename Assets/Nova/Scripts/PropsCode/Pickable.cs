@@ -39,7 +39,7 @@ public class Pickable : MonoBehaviour
     {
         isPicked = !isPicked;
         if (isPicked)
-            curPlayerNum = curNum;
+            curPlayerNum = curNum + 1;
         else
             curPlayerNum = 0;
     }

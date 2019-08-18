@@ -111,7 +111,7 @@ public class PathFinding2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //FindPath(myGrid.Gd1.position, myGrid.Target1.position,myGrid.path1);
         FindPath(myGrid.Gd2.position, myGrid.Target2.position, myGrid.path2);

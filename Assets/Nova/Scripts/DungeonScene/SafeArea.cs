@@ -45,7 +45,8 @@ public class SafeArea : MonoBehaviour
 
     private void DangerSwicthOn()
     {
-        GameObject.Find("Player1").SendMessage("AreaHurtSwitch");
+        for(int i = 1;i <= 4;i++)
+            GameObject.Find("Player" + i).SendMessage("AreaHurtSwitch");
         transform.GetComponent<Camera>().backgroundColor = redBack;
 
     }
