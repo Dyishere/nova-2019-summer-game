@@ -16,15 +16,15 @@ public class SliderChange : MonoBehaviour
     void Start()
     {
         done = false;
-        score = ScoringSystom.ReturnScoreByEnum(player);
+        score = ScoringSystem.ReturnScoreByEnum(player);
         if (score < 0)
             score = 0;
-        hightScore = ScoringSystom.FindMaxScore();
+        hightScore = ScoringSystem.FindMaxScore();
         valueShouldBe = (float)score / hightScore[0].s;
         slider.value = 0f;
 
         if (score == hightScore[0].s)
-            ScoringSystom.ChangePlayerScore(player, 1);
+            ScoringSystem.ChangePlayerScore(player, 1);
     }
 
     void Update()

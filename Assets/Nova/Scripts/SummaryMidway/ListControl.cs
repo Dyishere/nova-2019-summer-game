@@ -34,7 +34,7 @@ public class ListControl : MonoBehaviour
             Destroy(firstItem);
             PressToContinue.SetActive(true);
             LoadSceneManager.GameList.RemoveAt(0);
-            ScoringSystom.ResetScore();
+            ScoringSystem.ResetScore();
             del = true;
         }
     }

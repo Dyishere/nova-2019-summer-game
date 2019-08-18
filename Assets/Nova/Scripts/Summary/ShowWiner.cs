@@ -17,7 +17,7 @@ public class ShowWiner : MonoBehaviour
     {
         winner.SetActive(false);
         continueButton.SetActive(false);
-        ScoringSystom.Init();
+        ScoringSystem.Init();
     }
 
     // Update is called once per frame

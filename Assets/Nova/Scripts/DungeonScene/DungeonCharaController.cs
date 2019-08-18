@@ -69,26 +69,6 @@ public class DungeonCharaController : MonoBehaviour
         curPlayerNum = 1;
     }       //获取当前玩家编号
 
-    private void CheckCurrentChara()
-    {
-        foreach (char c in gameObject.name)
-            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
-                curCharaNum = Convert.ToInt32(c) - 48 - 1;
-        int i = ScoringSystom.FindPlayerByChara((Character)curCharaNum);
-        if (i == 5)
-        {
-            curController = "null";
-            curPlayerNum = 5;
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            curController = ScoringSystom.PlayerInpuController[i].iController;
-            curPlayerNum = (int)ScoringSystom.PlayerInpuController[i].iPlayerNum;
-        }
-    }       //获取当前玩家编号
-
-
     private void Moving(float iHorizontal,float iVertical)
     {
         transform.Translate(new Vector3(iHorizontal * movingSpeed, iVertical * movingSpeed, 0));
@@ -118,6 +98,25 @@ public class DungeonCharaController : MonoBehaviour
     {
         areaHurtSwitch = !areaHurtSwitch;
     }
+
+    private void CheckCurrentChara()
+    {
+        foreach (char c in gameObject.name)
+            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
+                curCharaNum = Convert.ToInt32(c) - 48 - 1;
+        int i = ScoringSystem.FindPlayerByChara((Character)curCharaNum);
+        if (i == 5)
+        {
+            curController = "null";
+            curPlayerNum = 5;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            curController = ScoringSystem.PlayerInpuController[i].iController;
+            curPlayerNum = (int)ScoringSystem.PlayerInpuController[i].iPlayerNum;
+        }
+    }       //获取当前玩家编号
 
     private void ControllerJudgement()
     {

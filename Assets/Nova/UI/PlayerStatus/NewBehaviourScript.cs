@@ -14,7 +14,7 @@ public class NewBehaviourScript : MonoBehaviour
         this.gameObject.GetComponent<Button>().onClick.AddListener(
             delegate
             {
-                ScoringSystom.ChangePlayerScore(player, a);
+                ScoringSystem.ChangePlayerScore(player, a);
             });
     }
 

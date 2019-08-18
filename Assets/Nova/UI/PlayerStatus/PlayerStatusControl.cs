@@ -24,9 +24,9 @@ public class PlayerStatusControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HighestScore = ScoringSystom.FindMaxScore();
-        Score = ScoringSystom.ReturnScoreByEnum(player);
-        Feather = ScoringSystom.ReturnFeathersByEnum(player);
+        HighestScore = ScoringSystem.FindMaxScore();
+        Score = ScoringSystem.ReturnScoreByEnum(player);
+        Feather = ScoringSystem.ReturnFeathersByEnum(player);
         ScoreSlider.value = (float)Score / HighestScore[0].s;
         FeatherNum.text = " * " + Feather.ToString();
         ScoreNum.text = Score.ToString();
