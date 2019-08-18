@@ -5,6 +5,7 @@ using UnityEngine;
 public class DungeonFoundation : MonoBehaviour
 {
     public bool isMatch = false;
+    private bool sendPermit = true;
     public string myColor;
 
 

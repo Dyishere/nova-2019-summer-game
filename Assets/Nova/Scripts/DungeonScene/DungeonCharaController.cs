@@ -36,8 +36,11 @@ public class DungeonCharaController : MonoBehaviour
     private void Update()
     {
         if (areaHurting)
-            Debug.Log("在危险区中!!!");
-
+        {
+            GameObject.Find("Main Camera").GetComponent<DungeonScoreController>().playerDie(curPlayerNum);
+            areaHurting = false;
+            gameObject.SetActive(false);
+        }
         //触发一次互动键来首次储存该角色的控制,例如键盘的互动键为e，触发一次后便可用键盘移动此角色。
         //ControllerJudgement();
 
@@ -53,7 +56,7 @@ public class DungeonCharaController : MonoBehaviour
     private void FixedUpdate()
     {
         Moving(inputHorizontal,inputVertical);
-        PickUp(inputPick, curPlayerNum);
+        PickUp(inputPick, curCharaNum);
         AreaHurtJudgement();
     }
 
@@ -64,6 +67,25 @@ public class DungeonCharaController : MonoBehaviour
                 curCharaNum = Convert.ToInt32(c) - 48 - 1;
         curController = "K";
         curPlayerNum = 1;
+    }       //获取当前玩家编号
+
+    private void CheckCurrentChara()
+    {
+        foreach (char c in gameObject.name)
+            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
+                curCharaNum = Convert.ToInt32(c) - 48 - 1;
+        int i = ScoringSystom.FindPlayerByChara((Character)curCharaNum);
+        if (i == 5)
+        {
+            curController = "null";
+            curPlayerNum = 5;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            curController = ScoringSystom.PlayerInpuController[i].iController;
+            curPlayerNum = (int)ScoringSystom.PlayerInpuController[i].iPlayerNum;
+        }
     }       //获取当前玩家编号
 
 
@@ -96,25 +118,6 @@ public class DungeonCharaController : MonoBehaviour
     {
         areaHurtSwitch = !areaHurtSwitch;
     }
-
-    private void CheckCurrentChara()
-    {
-        foreach (char c in gameObject.name)
-            if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
-                curCharaNum = Convert.ToInt32(c) - 48 - 1;
-        int i = ScoringSystom.FindPlayerByChara((Character)curCharaNum);
-        if (i == 5)
-        {
-            curController = "null";
-            curPlayerNum = 5;
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            curController = ScoringSystom.PlayerInpuController[i].iController;
-            curPlayerNum = (int)ScoringSystom.PlayerInpuController[i].iPlayerNum;
-        }
-    }       //获取当前玩家编号
 
     private void ControllerJudgement()
     {
