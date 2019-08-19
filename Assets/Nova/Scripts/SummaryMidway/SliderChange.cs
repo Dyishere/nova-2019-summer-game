@@ -8,6 +8,7 @@ public class SliderChange : MonoBehaviour
     public Slider slider;
     public Player player;
     public bool done;
+    public Text text;
 
     private int score;
     private List<PlayerCantain> hightScore;
@@ -22,6 +23,8 @@ public class SliderChange : MonoBehaviour
         hightScore = ScoringSystem.FindMaxScore();
         valueShouldBe = (float)score / hightScore[0].s;
         slider.value = 0f;
+
+	text.text = score.ToString();
 
         if (score == hightScore[0].s)
             ScoringSystem.ChangePlayerScore(player, 1);
