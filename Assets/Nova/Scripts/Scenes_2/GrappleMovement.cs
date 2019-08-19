@@ -54,7 +54,7 @@ public class GrappleMovement : MonoBehaviour
             if (temp != null)
             {
                 float dis = (transform.position - temp.transform.position).sqrMagnitude;
-                if (dis <= 2f)
+                if (dis <= 4f)
                 {
                     temp.layer = 14;
                     temp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
@@ -73,6 +73,7 @@ public class GrappleMovement : MonoBehaviour
 
         if (isMovingToTree == true)                      //把自己往树拉
         {
+            stopMoving = true;
             gameObject.layer = 16;
             GameObject temp = catchPoint;
             gameObject.GetComponent<Rigidbody2D>().velocity = (temp.transform.position - gameObject.transform.position).normalized * 10f;

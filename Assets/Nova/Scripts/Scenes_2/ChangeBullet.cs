@@ -9,6 +9,7 @@ public class ChangeBullet : MonoBehaviour
         if(collision.tag == "Player")
         {
             collision.transform.GetChild(1).gameObject.layer = 8;
+            collision.transform.GetChild(1).GetComponent<Bullet>().nowLayer = 8;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -16,6 +17,7 @@ public class ChangeBullet : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.transform.GetChild(1).gameObject.layer = 17;
+            collision.transform.GetChild(1).GetComponent<Bullet>().nowLayer = 17;
         }
     }
 }
