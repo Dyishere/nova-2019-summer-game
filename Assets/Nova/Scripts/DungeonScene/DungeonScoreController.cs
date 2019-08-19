@@ -11,7 +11,7 @@ public class DungeonScoreController : MonoBehaviour
     private bool[] playerExist = new bool[4];
 
     private void Start()
-    { 
+    {
         for (int i = 0; i < 4; i++)
             playerExist[i] = true;
     }
@@ -21,7 +21,7 @@ public class DungeonScoreController : MonoBehaviour
         playerExist[PlayerNum] = false;
     }
 
-    public void EggMatch (bool match)
+    public void EggMatch(bool match)
     {
         if (match)
             totalFeather += eachEggValue;
@@ -53,11 +53,11 @@ public class DungeonScoreController : MonoBehaviour
     {
         EggScoreAccount();
         PlayerExistAccount();
-        for (int i = 0;i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (playerExist[i])
             {
-                ScoringSystom.ChangePlayerFeather((Player)i, (int)(totalFeather / playerAccount));
+                ScoringSystem.ChangePlayerFeather((Player)i, (int)(totalFeather / playerAccount));
             }
         }
     }
