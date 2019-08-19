@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 鸟类角色移动控制器，实现移动、多段跳、羽落效果、踩头攻击、冲刺攻击等功能。
 /// 这个组件提供Move方法，请在其他组件（如玩家控制器、AI控制器）中调用该方法。
-/// 请注意：默认情况下，角色美术资源应该统一向右看
+/// 请注意：默认情况下，角色美术资源应该统一向左看
 /// 如果需要修改朝向,请在Unity Editor修改子物体 CharacterSprite 的 Scale.x 改为 -1
 /// </summary>
 public class BirdPlatformerMovement : MonoBehaviour
@@ -41,7 +41,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     [Header("角色状态")]
     public bool isDashing = false;
     private const int maxJumpTimes = 2; // 可以连跳的次数
-    private bool isFacingRight = true;
+    private bool isFacingLeft = true;
     private bool isGrounded = false;
     private int jumpCounter = 0; // 记录跳跃的次数（用于连跳）
     private float jumpTimer = 0f; // 记录跳跃瞬间后经过的时间
@@ -64,7 +64,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     private void Start()
     {
         //自动初始化 isFacingRight 的值
-        isFacingRight = CharacterSprite.transform.localScale.x > 0;
+        isFacingLeft = CharacterSprite.transform.localScale.x < 0;
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public class BirdPlatformerMovement : MonoBehaviour
         }
         m_Animator.SetBool("isFlying", isFlying);
 
-        float facingDir = isFacingRight ? 1f : -1f;
+        float facingDir = isFacingLeft ? 1f : -1f;
         if (isFlying)
         {
             moveDir += new Vector2(iMove * flyingSpeed + facingDir * flyingBaseSpeed, 0);
@@ -171,11 +171,11 @@ public class BirdPlatformerMovement : MonoBehaviour
         }
 
         // 翻转
-        if ((iMove > 0f && !isFacingRight) || (iMove < 0f && isFacingRight))
+        if ((iMove > 0f && !isFacingLeft) || (iMove < 0f && isFacingLeft))
         {
             Vector2 mScale = new Vector2(CharacterSprite.transform.localScale.x * (-1f), CharacterSprite.transform.localScale.y);
             CharacterSprite.transform.localScale = mScale;
-            isFacingRight = !isFacingRight;
+            isFacingLeft = !isFacingLeft;
             transform.Find("PickPos").transform.localPosition = new Vector2(transform.Find("PickPos").transform.localPosition.x * -1, 1);
         }
 
@@ -240,7 +240,7 @@ public class BirdPlatformerMovement : MonoBehaviour
     /// </summary>
     private void AddRevForce()
     {
-        float facingDir = isFacingRight ? 1f : -1f;
+        float facingDir = isFacingLeft ? 1f : -1f;
         float revForce = 0.8f * dashForce; // 这里使用了魔法数字0.8倍
         m_Rigidbody2D.AddForce(Vector2.right * -1f * facingDir * revForce);
     }
@@ -249,7 +249,7 @@ public class BirdPlatformerMovement : MonoBehaviour
         isHurt = true;
 
         // 眩晕部分代码
-        m_Animator.SetBool("hurt", true);
+        m_Animator.SetTrigger("hurt");
         Invoke("Recover", recoveringTime);
     }
 
