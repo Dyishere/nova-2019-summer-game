@@ -9,6 +9,7 @@ public class GrappleMovement : MonoBehaviour
     public bool isGrapplingEnemy = false;
     public bool stopMoving = false;
     public int grappledEnemyID = 0;
+    public GameObject catchPoint;
     Vector3 Pos = new Vector3();
 
     public float regionDamage; // 区域伤害
@@ -73,7 +74,7 @@ public class GrappleMovement : MonoBehaviour
         if (isMovingToTree == true)                      //把自己往树拉
         {
             gameObject.layer = 16;
-            GameObject temp = GameObject.FindGameObjectWithTag("CatchPoint");
+            GameObject temp = catchPoint;
             gameObject.GetComponent<Rigidbody2D>().velocity = (temp.transform.position - gameObject.transform.position).normalized * 10f;
         }
     }

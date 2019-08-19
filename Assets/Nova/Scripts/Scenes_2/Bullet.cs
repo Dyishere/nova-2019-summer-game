@@ -80,9 +80,9 @@ public class Bullet : MonoBehaviour
         }
         else if (move.isMovingToTree == true)                      //如果子弹不能移动，并且勾到了树
         {                                                 //子弹静止
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            GameObject tree = GameObject.Find("CatchPoint");
-            gameObject.transform.position = tree.transform.position;
+            //gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            //GameObject tree = GameObject.Find("CatchPoint");
+            //gameObject.transform.position = tree.transform.position;
 
             GameObject temp = MoveMaster;                 //在人到达和子弹最小距离时重置变量回收子弹
             float dis = (transform.position - temp.transform.position).sqrMagnitude;
@@ -117,7 +117,8 @@ public class Bullet : MonoBehaviour
         }
         if (collision.tag == "CatchPoint")
         {
-            GameObject tree = GameObject.Find("CatchPoint");                             //寻找目标树
+            GameObject tree = collision.gameObject;
+            move.catchPoint = tree;//寻找目标树
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);   //子弹停止并移动到树的位置
             gameObject.transform.position = tree.transform.position;
             move.isMovingToTree = true;                                                    //让人物移动到树那里

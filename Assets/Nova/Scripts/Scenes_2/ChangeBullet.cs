@@ -15,7 +15,7 @@ public class ChangeBullet : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.transform.GetChild(1).gameObject.layer = 15;
+            collision.transform.GetChild(1).gameObject.layer = 17;
         }
     }
 }

@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     public Transform RespawnPoint;
     public float hp = 100f;
+    public Text hpText;
+
     private GrappleMovement m_grappleMovement;
+
     private void Awake()
     {
         m_grappleMovement = GetComponent<GrappleMovement>();
@@ -16,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
         if (m_grappleMovement.isMovingToTree) return;
 
         hp -= damage;
+        hpText.text = ("hp: " + hp);
         Debug.Log(gameObject.name + " now Hp is" + hp);
         if (hp < 0)
         {

@@ -57,7 +57,7 @@ public class DungeonScoreController : MonoBehaviour
         {
             if (playerExist[i])
             {
-                ScoringSystom.ChangePlayerFeather((Player)i, (int)(totalFeather / playerAccount));
+                ScoringSystem.ChangePlayerFeather((Player)i, (int)(totalFeather / playerAccount));
             }
         }
     }
