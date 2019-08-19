@@ -3184,7 +3184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlatformScenes: Scenes_1
-  SkylandScenes: Test_Scenes_2
+  SkylandScenes: Scenes_2
   DungeonScenes: Scenes_3
   PlatformTime: 210
   SkylandTime: 300

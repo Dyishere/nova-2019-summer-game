@@ -37,6 +37,7 @@ public class TimeManager : MonoBehaviour
     private bool IsPause = false;
     private Gamemode NowGamemode;
     private string CheckMethod;
+    private float CheckTime;
 
 
     private GameObject[] players = new GameObject[4];
@@ -53,7 +54,7 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine("StartTimeCountdown");
-        InvokeRepeating(CheckMethod, 0f, 1f);
+        InvokeRepeating(CheckMethod, 0f, CheckTime);
     }
 
     private void InitTime()
@@ -129,12 +130,15 @@ public class TimeManager : MonoBehaviour
         {
             case Gamemode.Platform:
                 CheckMethod = "CheckRank";
+                CheckTime = 60f;
                 break;
             case Gamemode.Skyland:
                 CheckMethod = "CheckSkyLandPlayer";
+                CheckTime = 1f;
                 break;
             case Gamemode.Dungeon:
                 CheckMethod = "CheckDungeonPlayer";
+                CheckTime = 1f;
                 break;
             default:
                 Debug.LogError("未知的游戏模式");

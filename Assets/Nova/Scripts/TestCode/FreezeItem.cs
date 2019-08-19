@@ -12,12 +12,13 @@ public class FreezeItem : MonoBehaviour
         playerR2D = player.GetComponent<Rigidbody2D>();
         playerR2D.constraints = RigidbodyConstraints2D.FreezePosition;
         Invoke("UnFreezed", FreezeTime);
-        Destroy(gameObject);
+        
     }
 
     private void UnFreezed()
     {
         playerR2D.constraints =~ RigidbodyConstraints2D.FreezePosition;
+        Destroy(gameObject);
     }
 
 
