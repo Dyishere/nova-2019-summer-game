@@ -7,7 +7,7 @@ public class FreezeItem : MonoBehaviour
     [SerializeField] private float FreezeTime = 1.5f;
     Rigidbody2D playerR2D ;
 
-    private void OnTriggerEnter(Collider player)
+    private void OnTriggerEnter2D (Collider2D player)
     {
         playerR2D = player.GetComponent<Rigidbody2D>();
         playerR2D.constraints = RigidbodyConstraints2D.FreezePosition;

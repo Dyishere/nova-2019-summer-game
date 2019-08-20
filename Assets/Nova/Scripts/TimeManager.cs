@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
 
     [Header("场景名称")]
     [SerializeField] private string PlatformScenes = "Scenes_1";
-    [SerializeField] private string SkylandScenes = "Test_Scenes_2";
+    [SerializeField] private string SkylandScenes = "Scenes_2";
     [SerializeField] private string DungeonScenes = "Scenes_3";
 
     [Header("场景时间设置")]
@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Text TimeCountdownText;
 
     [Header("结算场景")]
-    [SerializeField] private string NextScenes = "SummaryScene";
+    [SerializeField] private string NextScenes = "MidwaySummary";
 
     [Header("减分设置")]
     [SerializeField]private int ReduceScore = 20 ;
