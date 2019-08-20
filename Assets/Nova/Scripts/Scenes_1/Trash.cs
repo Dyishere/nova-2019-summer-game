@@ -5,6 +5,12 @@ using UnityEngine;
 public class Trash : MonoBehaviour
 {
     int whoPick = 0;
+    private Pickable PA;
+
+    private void Start()
+    {
+        PA = GetComponent<Pickable>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -72,7 +78,7 @@ public class Trash : MonoBehaviour
 
     void Update()
     {
-        whoPick = Pickable.curPlayerNum;
+        whoPick = PA.curPlayerNum;
         if (transform.GetComponent<Pickable>().isPicked)
             SubstantializeProb();
     }
@@ -81,7 +87,7 @@ public class Trash : MonoBehaviour
     {
         Creator.trashes.Remove((int)(transform.position.x-0.5f));
         if(GetComponent<Pickable>().isPicked)
-            GameObject.Find("Player" + Pickable.curPlayerNum).SendMessage("PickUpPermit", "null");
+            GameObject.Find("Player" + PA.curPlayerNum + 1).SendMessage("PickUpPermit", "null");
         Destroy(gameObject);
     }
 

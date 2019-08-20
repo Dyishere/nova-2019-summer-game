@@ -49,8 +49,8 @@ public class BirdPlatformerMovement : MonoBehaviour
     private bool dashed = false; // 在这次滑翔中是否已经冲刺过
     private float dashTimer = 0f;
     private bool isHurt = false; // 被攻击后的眩晕状态, 无法操作, 短时间内不会被继续受伤害
-    private string touchingProp = "null";        //玩家碰触的物品名字
-    private bool isPicking = false;              //是否正在拿着东西
+    public string touchingProp = "null";        //玩家碰触的物品名字
+    public bool isPicking = false;              //是否正在拿着东西
 
     private Rigidbody2D m_Rigidbody2D;
     private Animator m_Animator;
@@ -267,14 +267,14 @@ public class BirdPlatformerMovement : MonoBehaviour
         m_Animator.SetBool("hurt", false);
     }
 
-    public void PickUp(bool iPick, int curPlayerNum)        //PlayerController调用，传入当前的玩家编号
+    public void PickUp(bool iPick, int curCharaNum)        //PlayerController调用，传入当前的角色编号
     {
 
         if (touchingProp == "null" || !iPick)       //如果未碰触物体或没有按下捡拾指令
             return;
         else
         {
-            GameObject.Find(touchingProp).SendMessage("BeingPicked", curPlayerNum);     //触发碰触物体上的捡拾脚本Pickable
+            GameObject.Find(touchingProp).SendMessage("BeingPicked", curCharaNum + 1);     //触发碰触物体上的捡拾脚本Pickable,+1使从零开始的角色编号与场景中从一开始的角色名字对应
             isPicking = !isPicking;
             if (!isPicking)     //放下物品时初始化
                 touchingProp = "null";

@@ -227,10 +227,10 @@ public static class ScoringSystem
     public static bool[] PlayerJoin = new bool[5];
     public static ControllerInfo[] PlayerInpuController =
     {
-        new ControllerInfo(Player.p1,Character.b0,"null"),
-        new ControllerInfo(Player.p2,Character.b0,"null"),
-        new ControllerInfo(Player.p3,Character.b0,"null"),
-        new ControllerInfo(Player.p4,Character.b0,"null")
+        new ControllerInfo(Player.p1,Character.none,"null"),
+        new ControllerInfo(Player.p2,Character.none,"null"),
+        new ControllerInfo(Player.p3,Character.none,"null"),
+        new ControllerInfo(Player.p4,Character.none,"null")
     };
 
     public static bool CheckCharaJoin(Character c)
@@ -257,12 +257,12 @@ public static class ScoringSystem
         return "null";
     }
 
-    public static int FindPlayerByChara(Character c)
+    public static Player FindPlayerByChara(Character c)
     {
         for (var i = Player.p1; i <= Player.p4; i++)
             if (PlayerInpuController[(int)i].iCharaNum == c)
-                return (int)i;
-        return 5;
+                return i;
+        return Player.none;
     }
 
     public static void ResetInput()
@@ -277,7 +277,7 @@ public static class ScoringSystem
         for (var i = Player.p1; i <= Player.p4; i++)
         {
             CharaSelected[(int)i] = false;
-            PlayerInpuController[(int)i].iCharaNum = Character.b0;
+            PlayerInpuController[(int)i].iCharaNum = Character.none;
         }
     }
 
@@ -322,12 +322,12 @@ public struct PlayerChar
 
 public enum Player
 {
-    p1, p2, p3, p4,
+    p1, p2, p3, p4,none,
 }
 
 public enum Character
 {
-    b1, b2, b3, b4, b0,
+    b1, b2, b3, b4, none,
 }
 
 //[输入相关]

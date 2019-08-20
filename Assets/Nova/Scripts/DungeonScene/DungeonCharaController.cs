@@ -101,20 +101,22 @@ public class DungeonCharaController : MonoBehaviour
 
     private void CheckCurrentChara()
     {
+        // 读取本脚本绑定的角色名字中的序号，并由0开始
         foreach (char c in gameObject.name)
             if (Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57)
                 curCharaNum = Convert.ToInt32(c) - 48 - 1;
-        int i = ScoringSystem.FindPlayerByChara((Character)curCharaNum);
-        if (i == 5)
+        // 由此角色编号查找控制该角色的玩家编号
+        Player i = ScoringSystem.FindPlayerByChara((Character)curCharaNum);
+        if (i == Player.none)
         {
             curController = "null";
-            curPlayerNum = 5;
+            curPlayerNum = 4;
             gameObject.SetActive(false);
         }
         else
         {
-            curController = ScoringSystem.PlayerInpuController[i].iController;
-            curPlayerNum = (int)ScoringSystem.PlayerInpuController[i].iPlayerNum;
+            curController = ScoringSystem.PlayerInpuController[(int)i].iController;
+            curPlayerNum = (int)ScoringSystem.PlayerInpuController[(int)i].iPlayerNum;
         }
     }       //获取当前玩家编号
 
@@ -169,7 +171,8 @@ public class DungeonCharaController : MonoBehaviour
             return;
         else
         {
-            GameObject.Find("Egg/" + touchingProp).SendMessage("BeingPicked", curNum);     //触发碰触物体上的捡拾脚本Pickable
+            GameObject.Find("Egg/" + touchingProp).SendMessage("BeingPicked", curNum + 1);      // 触发碰触物体上的捡拾脚本Pickable,+1使从零开始的角色编号与场景中从一开始的角色名字对应
+
             isPicking = !isPicking;
             if (!isPicking)     //放下物品时初始化
                 touchingProp = "null";

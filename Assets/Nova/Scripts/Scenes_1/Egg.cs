@@ -5,7 +5,13 @@ using UnityEngine;
 public class Egg : MonoBehaviour
 {
     int whoPick=0;
-    
+    private Pickable PA;
+
+    private void Start()
+    {
+        PA = GetComponent<Pickable>();
+    }
+
     void Update()
     {
         if (transform.GetComponent<Pickable>().isPicked)
@@ -110,6 +116,6 @@ public class Egg : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY;
         gameObject.GetComponent<CapsuleCollider2D>().isTrigger = false;
-        whoPick = Pickable.curPlayerNum;
+        whoPick = PA.curPlayerNum;
     }
 }

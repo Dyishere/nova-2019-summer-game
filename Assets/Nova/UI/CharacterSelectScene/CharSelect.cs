@@ -244,7 +244,7 @@ public class CharSelect : MonoBehaviour
             {
                 if (ScoringSystem.CheckControllerJoin("K"))
                     return;
-                if (ScoringSystem.PlayerInpuController[curPanelNum - 1].iCharaNum == Character.b0)
+                if (ScoringSystem.PlayerInpuController[curPanelNum - 1].iCharaNum == Character.none)
                     UnlockedOnClick();
                 curPlayerController = "K";
                 ScoringSystem.PlayerInpuController[curPanelNum-1].iController = curPlayerController;
@@ -255,7 +255,7 @@ public class CharSelect : MonoBehaviour
                     {
                         if (ScoringSystem.CheckControllerJoin("J" + i))
                             return;
-                        if (ScoringSystem.PlayerInpuController[curPanelNum - 1].iCharaNum == Character.b0)
+                        if (ScoringSystem.PlayerInpuController[curPanelNum - 1].iCharaNum == Character.none)
                             UnlockedOnClick();
                         curPlayerController = "J" + i;
                         ScoringSystem.PlayerInpuController[curPanelNum-1].iController = curPlayerController;
