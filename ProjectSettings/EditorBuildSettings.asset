@@ -41,4 +41,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Nova/Scenes/MidwaySummary.unity
+    guid: c88e9619bf50a20438a609316e758d25
+  - enabled: 1
+    path: Assets/Nova/Scenes/SummaryScene.unity
+    guid: b6f6f75eb3bc2b44bbfc4781c450bb06
   m_configObjects: {}
