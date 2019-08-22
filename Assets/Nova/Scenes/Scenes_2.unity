@@ -4955,7 +4955,7 @@ MonoBehaviour:
   SkylandTime: 300
   DungeonTime: 300
   TimeCountdownText: {fileID: 1828681473}
-  NextScenes: SummaryScene
+  NextScenes: MidwaySummary
   ReduceScore: 20
 --- !u!4 &1622594744
 Transform:

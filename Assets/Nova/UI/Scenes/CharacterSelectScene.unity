@@ -1774,6 +1774,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &458088041
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2414,6 +2416,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &539197997
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4166,6 +4170,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &824623894
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -9831,6 +9837,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &1957754631
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

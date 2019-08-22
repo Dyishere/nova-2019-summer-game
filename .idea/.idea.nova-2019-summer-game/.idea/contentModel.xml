@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\GXY\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\GXY\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_nova-2019-summer-game.1118853733.00" t="ExcludeRecursive" />
+    <e p="D:\unity\nova-2019-summer-game" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Nova" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="CameraFollow.cs" t="Include" />
+            <e p="DungeonScene" t="Include">
+              <e p="DungeonCharaController.cs" t="Include" />
+              <e p="DungeonEgg.cs" t="Include" />
+              <e p="DungeonFoundation.cs" t="Include" />
+              <e p="DungeonScoreController.cs" t="Include" />
+              <e p="SafeArea.cs" t="Include" />
+              <e p="scene3A" t="Include">
+                <e p="Movement.cs" t="Include" />
+                <e p="Scripts" t="Include">
+                  <e p="Grid.cs" t="Include" />
+                  <e p="Guardian1.cs" t="Include" />
+                  <e p="Guardian2.cs" t="Include" />
+                  <e p="Guardian3.cs" t="Include" />
+                  <e p="Guardian4.cs" t="Include" />
+                  <e p="Node.cs" t="Include" />
+                  <e p="PathFinding1.cs" t="Include" />
+                  <e p="PathFinding2.cs" t="Include" />
+                  <e p="PathFinding3.cs" t="Include" />
+                  <e p="PathFinding4.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="PropsCode" t="Include">
+              <e p="Pickable.cs" t="Include" />
+            </e>
+            <e p="Scenes_1" t="Include">
+              <e p="Character" t="Include">
+                <e p="BirdPlatformerMovement.cs" t="Include" />
+                <e p="PlayerController.cs" t="Include" />
+              </e>
+              <e p="Creator.cs" t="Include" />
+              <e p="Egg.cs" t="Include" />
+              <e p="Trap.cs" t="Include" />
+              <e p="TrapCreator.cs" t="Include" />
+              <e p="Trash.cs" t="Include" />
+            </e>
+            <e p="Scenes_2" t="Include">
+              <e p="Bullet.cs" t="Include" />
+              <e p="ChangeBullet.cs" t="Include" />
+              <e p="GrappleMovement.cs" t="Include" />
+              <e p="IslandPlayerController.cs" t="Include" />
+              <e p="IslandRegion.cs" t="Include" />
+              <e p="jijifusiji" t="Include">
+                <e p="AvoidFall.cs" t="Include" />
+                <e p="Bullet1.cs" t="Include" />
+                <e p="HurtPlayer.cs" t="Include" />
+                <e p="Line1.cs" t="Include" />
+                <e p="Move1.cs" t="Include" />
+                <e p="Platform.cs" t="Include" />
+              </e>
+              <e p="Line.cs" t="Include" />
+              <e p="PlayerHealth.cs" t="Include" />
+              <e p="RegionDamageOfGap.cs" t="Include" />
+              <e p="RegionDamageOfIsland.cs" t="Include" />
+            </e>
+            <e p="ScoringSystem.cs" t="Include" />
+            <e p="Summary" t="Include">
+              <e p="ShowWiner.cs" t="Include" />
+              <e p="SliderControl.cs" t="Include" />
+            </e>
+            <e p="SummaryMidway" t="Include">
+              <e p="ListControl.cs" t="Include" />
+              <e p="SliderChange.cs" t="Include" />
+            </e>
+            <e p="TestCode" t="Include">
+              <e p="BirdPlatformerTestCode.cs" t="Include" />
+              <e p="DugeonCharaTest.cs" t="Include" />
+              <e p="FreezeItem.cs" t="Include" />
+              <e p="SpeedUpItem.cs" t="Include" />
+              <e p="TestBirdPlatformerControlelr.cs" t="Include" />
+            </e>
+            <e p="TimeManager.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="AsyncLoadScript" t="Include">
+              <e p="LoadScene.cs" t="Include" />
+              <e p="LoadSceneManager.cs" t="Include" />
+              <e p="LoadSceneNext.cs" t="Include" />
+            </e>
+            <e p="CharacterSelectScene" t="Include">
+              <e p="AddItem.cs" t="Include" />
+              <e p="CharSelect.cs" t="Include" />
+              <e p="CSCcontral.cs" t="Include" />
+              <e p="InputScripts" t="Include">
+                <e p="CSPlayerController.cs" t="Include" />
+              </e>
+              <e p="LoadGameScene.cs" t="Include" />
+              <e p="MSCcontral.cs" t="Include" />
+              <e p="OpenModeSelect.cs" t="Include" />
+              <e p="PrepareScript.cs" t="Include" />
+              <e p="RemoveThis.cs" t="Include" />
+              <e p="SceneList.cs" t="Include" />
+              <e p="WidethControl.cs" t="Include" />
+            </e>
+            <e p="PlayerStatus" t="Include">
+              <e p="NewBehaviourScript.cs" t="Include" />
+              <e p="PlayerStatusControl.cs" t="Include" />
+            </e>
+            <e p="StartSceneUIScript" t="Include">
+              <e p="Fade.cs" t="Include" />
+              <e p="UIcontral.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="nova-2019-summer-game.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

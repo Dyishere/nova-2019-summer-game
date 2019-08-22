@@ -265,6 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6430b6d02bdf20e45918280d6c96659f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curCharaNum: 0
+  curPlayerNum: 0
   curController: 
 --- !u!114 &170446838
 MonoBehaviour:
@@ -298,6 +300,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &170446839
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -775,6 +779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6430b6d02bdf20e45918280d6c96659f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curCharaNum: 0
+  curPlayerNum: 0
   curController: 
 --- !u!114 &381115713
 MonoBehaviour:
@@ -808,6 +814,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &381115714
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2850,6 +2858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6430b6d02bdf20e45918280d6c96659f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curCharaNum: 0
+  curPlayerNum: 0
   curController: 
 --- !u!114 &1374585699
 MonoBehaviour:
@@ -2883,6 +2893,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &1374585700
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3269,7 +3281,7 @@ MonoBehaviour:
   SkylandTime: 300
   DungeonTime: 300
   TimeCountdownText: {fileID: 1064617548}
-  NextScenes: SummaryScene
+  NextScenes: MidwaySummary
   ReduceScore: 20
 --- !u!4 &1534097651
 Transform:
@@ -8979,6 +8991,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6430b6d02bdf20e45918280d6c96659f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curCharaNum: 0
+  curPlayerNum: 0
   curController: 
 --- !u!114 &1980786833
 MonoBehaviour:
@@ -9012,6 +9026,8 @@ MonoBehaviour:
   headBounce: 1000
   headGetHurtRange: 0.88
   isDashing: 0
+  touchingProp: null
+  isPicking: 0
 --- !u!70 &1980786834
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
