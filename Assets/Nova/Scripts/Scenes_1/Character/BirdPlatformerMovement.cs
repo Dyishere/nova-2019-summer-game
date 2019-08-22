@@ -286,6 +286,10 @@ public class BirdPlatformerMovement : MonoBehaviour
         if (!isPicking)
             touchingProp = message;
         if (message == "null")
+        {
+            touchingProp = "null";
             isPicking = false;
+        }
+
     }       //监视是否碰触可捡拾物品并bu获取物品名字
 }

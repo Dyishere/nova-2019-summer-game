@@ -87,7 +87,7 @@ public class Trash : MonoBehaviour
     {
         Creator.trashes.Remove((int)(transform.position.x-0.5f));
         if(GetComponent<Pickable>().isPicked)
-            GameObject.Find("Player" + PA.curPlayerNum + 1).SendMessage("PickUpPermit", "null");
+            GameObject.Find("Player" + PA.curPlayerNum).SendMessage("PickUpPermit", "null");
         Destroy(gameObject);
     }
 
